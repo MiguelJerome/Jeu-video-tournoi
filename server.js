@@ -40,8 +40,8 @@ app.use(express.static('public'));
 
 // Programmation de routes
 app.get('/', async (request, response) => {
-    response.render('todo', {
-        titre: 'Todo',
+    response.render('acceuil', {
+        titre: 'Acceuil',
         styles: ['/css/todo.css'],
         scripts: ['/js/todo.js']/*,
         todos: await getTodos(),
@@ -50,22 +50,43 @@ app.get('/', async (request, response) => {
     });
 })
 
+app.get('/acceuil', (request, response) => {
+    response.render('acceuil', {
+        titre: 'Acceuil'
+    });
+})
+
+app.get('/compte', (request, response) => {
+    response.render('compte', {
+        titre: 'Compte'
+    });
+})
+
+app.get('/admin', (request, response) => {
+    response.render('admin', {
+        titre: 'Administrateur',
+        styles: ['/css/admin.css']
+    });
+})
+/*
 app.get('/apropos', (request, response) => {
     response.render('apropos', {
         titre: 'À propos'
     });
 })
-
+*/
+/*
 app.post('/api/todo', async (request, response) =>{
-   /* let id = await addTodo(request.body.texte);*/
+    let id = await addTodo(request.body.texte);
     response.status(201).json({id: id});
 });
-
+*/
+/*
 app.patch('/api/todo', async (request, response) => {
-   /* await checkTodo(request.body.id);*/
+   await checkTodo(request.body.id);
     response.status(200).end();
 });
-
+*/
 // Démarrage du serveur
 app.listen(process.env.PORT);
 console.log('Serveur démarré: http://localhost:' + process.env.PORT);
