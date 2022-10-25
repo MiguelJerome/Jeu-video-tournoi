@@ -4,8 +4,8 @@
 
 
 
-### For using nodemon, you need to type in the command line (CLI) in the terminal    npm run watch
-### To start the server, you need to type in the command line (CLI) in the terminal   npm start
+### For using nodemon, you need to type in the command line (CLI) in the terminal:    npm run watch
+### To start the server, you need to type in the command line (CLI) in the terminal:   npm start
 
 # Project Title
 Handlebars View todo
