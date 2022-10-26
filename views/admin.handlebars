@@ -40,28 +40,32 @@
             </figure>
         </div>
 
-        <div class="form-wrapper">
+        <div class="form-admin-wrapper">
             <h1>Ajouter Tournoi</h1>
             <form action="">
                 <label>
                     Nom
-                    <input type="text">
+                    <input placeholder="Nom" required autocomplete="off" type="text" id="nom-tournoi">
                 </label>
 
                 <label>
-                    Descrition
-                    <input type="text">
+                    Description
+                    <input placeholder="Description" required autocomplete="off" type="text" id="description-tournoi">
                 </label>
 
                 <label>
                     Date debut
-                    <input type="date">
+                    <input placeholder="Date debut" required autocomplete="off" type="date" id="date-debut-tournoi">
                 </label>
 
                 <label>
                     Capacite
-                    <input type="number">
+                    <input placeholder="Capacite" required autocomplete="off" type="number" id="capacite-tournoi">
                 </label>
-                <input type="submit" name="" id="">
+                <button type="reset" class="btn-ajouter-tournoi">Reset Tournoi</button> 
+                <br>
+                <button type="submit" class="btn-ajouter-tournoi">Ajouter Tournoi</button> 
             </form>
         </div>
+
+        <script defer src="/javascript/admin.js"></script>

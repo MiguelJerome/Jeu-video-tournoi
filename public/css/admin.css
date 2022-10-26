@@ -55,7 +55,14 @@ input{
     font-size: 1.5em;
 }
 
-input[type="submit"]{
+.btn-ajouter-tournoi
+{
+    border-radius: 5px;
+    width: 500px;
+    height: 40px;
+    border-color:springgreen;
+    padding: 5px;
+    font-size: 1.5em;
     background-color:springgreen;
     align-items: center;
 }
