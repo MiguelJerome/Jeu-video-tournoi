@@ -1,6 +1,6 @@
 main{
-    max-width: 1000px;
-    margin: auto;
+    max-width: 97rem; 
+    margin: auto;   
 }
 
 figure{
@@ -43,6 +43,9 @@ form{
     display: flex;
     flex-direction: column;
     width: 1000px;
+    flex-wrap: wrap;
+    align-content: flex-end;
+    justify-content: center;
     align-items: center;
 }
 
@@ -66,3 +69,4 @@ input{
     background-color:springgreen;
     align-items: center;
 }
+

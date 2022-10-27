@@ -1,0 +1,51 @@
+
+<div class="acceuil-container">
+ {{#each tournois}}
+<div class="headerTournoi">
+   
+        <div class="inheaderTournoi">
+            <div class = "logoTournoi">
+                <h1>Tournois de Jeu Video</h1>
+                <ul class="navigationTournoi">
+                    
+                        <li>Numero Tournoi:{{this.id_tournois}}</li>
+                        <br>
+                        <li>Nom:{{this.nom}}</li>
+                        <br>
+                        <li>Description:{{this.description}}</li>
+                        <br>
+                        <li>Capacite:{{this.capacite}}</li>
+                        <br>
+                        <li>Date_debut:{{this.date_debut}}</li>
+                        <br>
+                    </ul>
+                    <button type="submit" class="btn-inscription-tournoi">Incription Tournoi</button> 
+            </div>
+        </div>     
+    </div>
+   
+    {{/each}}
+</div>
+
+
+
+
+
+<!--
+    <ul id="liste-todo">
+    {{#each todos}}
+        <li>
+            <div class="texte">{{this.id_tournois}}</div>
+            <div class="texte">{{this.nom}}</div>
+            <div class="texte">{{this.description}}</div>
+            <div class="texte">{{this.capacite}}</div>
+            <div class="texte">{{this.date_debut}}</div>     
+        </li>
+    {{/each}}
+</ul>
+
+<form id="form-todo">
+    
+    <input type="submit" value="Ajouter">
+</form>
+-->

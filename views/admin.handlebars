@@ -1,48 +1,9 @@
-  <div class="tournois">
-
-            <figure>
-                <img src="./valorant-finalreview-blogroll-1591393688330_160w.jpg" alt="">
-                <figcaption>
-                    <p>Tournoi de valorant</p>
-                    <p>tournoir</p>
-                </figcaption>
-                <Button>Supprimer</Button>
-
-            </figure>
-
-            <figure>
-                <img src="./valorant-finalreview-blogroll-1591393688330_160w.jpg" alt="">
-                <figcaption>
-                    <p>Tournoi de valorant</p>
-                    <p>tournoir</p>
-                </figcaption>
-                <Button>Supprimer</Button>
-            </figure>
-
-            <figure>
-                <img src="./valorant-finalreview-blogroll-1591393688330_160w.jpg" alt="">
-                <figcaption>
-                    <p>Tournoi de valorant</p>
-                    <p>tournoir</p>
-                </figcaption>
-                <Button>Supprimer</Button>
-
-            </figure>
-
-            <figure>
-                <img src="./valorant-finalreview-blogroll-1591393688330_160w.jpg" alt="">
-                <figcaption>
-                    <p>Tournoi de valorant</p>
-                    <p>tournoir</p>
-                </figcaption>
-                <Button>Supprimer</Button>
-
-            </figure>
-        </div>
-
+  <div class="tournoi-supprimer-wrapper"
+  {{>gerer-tournoi}}
+  
         <div class="form-admin-wrapper">
-            <h1>Ajouter Tournoi</h1>
-            <form action="">
+            
+            <form action="http://localhost:5000/admin" method="post">
                 <label>
                     Nom
                     <input placeholder="Nom" required autocomplete="off" type="text" id="nom-tournoi">
@@ -60,12 +21,14 @@
 
                 <label>
                     Capacite
-                    <input placeholder="Capacite" required autocomplete="off" type="number" id="capacite-tournoi"  min="1" max="12">
+                    <input placeholder="Capacite" required autocomplete="off" type="number" id="capacite-tournoi" min="1" max="16">
                 </label>
                 <button type="reset" class="btn-ajouter-tournoi">Reset Tournoi</button> 
                 <br>
                 <button type="submit" class="btn-ajouter-tournoi">Ajouter Tournoi</button> 
             </form>
         </div>
+</div>
 
-        <script defer src="/javascript/admin.js"></script>
+
+       

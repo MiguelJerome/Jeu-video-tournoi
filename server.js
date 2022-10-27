@@ -6,6 +6,7 @@ import cors from 'cors';
 import compression from 'compression';
 //import connectionPromise from './model/connection.js';
 import {  } from './model/todo.js';
+import { getTournoi, addTournoi } from './model/admin.js';
 
 // Création du serveur web
 let app = express();
@@ -43,16 +44,19 @@ app.get('/', async (request, response) => {
     response.render('acceuil', {
         titre: 'Acceuil',
         styles: ['/css/todo.css'],
-        scripts: ['/js/todo.js']/*,
-        todos: await getTodos(),
-        argent: 213
-        */
+        scripts: ['/js/todo.js'],
+        tournois: await getTournoi(),
+
+        
     });
 })
 
-app.get('/acceuil', (request, response) => {
+app.get('/acceuil', async (request, response) => {
     response.render('acceuil', {
-        titre: 'Acceuil'
+        titre: 'Acceuil',
+        styles: ['/css/todo.css'],
+        scripts: ['/js/todo.js'],
+        tournois: await getTournoi(),
     });
 })
 
@@ -62,12 +66,36 @@ app.get('/compte', (request, response) => {
     });
 })
 
-app.get('/admin', (request, response) => {
+app.get('/admin', async(request, response) => {
     response.render('admin', {
         titre: 'Administrateur',
-        styles: ['/css/admin.css']
+        styles: ['/css/admin.css'],
+        scripts: ['/js/admin.js'],
+        tournois: await getTournoi(),
     });
+    
+   // let id = await addTournoi();
+   // response.status(201).json({id: id});
+    
 })
+
+
+app.post('/admin', async (request, response) =>{
+     response.render('admin', {
+        titre: 'Administrateur',
+        styles: ['/css/admin.css'],
+        scripts: ['/js/admin.js'],
+        tournois: await getTournoi(),
+        id: await addTournoi(),
+        
+    });
+    
+    //let id = await addTournoi();
+    //response.status(201).json({id});
+  
+});
+
+
 /*
 app.get('/apropos', (request, response) => {
     response.render('apropos', {
