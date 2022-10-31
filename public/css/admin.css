@@ -70,3 +70,8 @@ input{
     align-items: center;
 }
 
+#description-tournoi{
+    width: 500px;
+    height: 200px;
+}
+

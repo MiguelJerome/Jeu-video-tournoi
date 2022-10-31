@@ -13,7 +13,7 @@
 
 # Project Title
 Handlebars View todo
-![Employee Tracker](./img/Screenshot%202022-10-25%20143106.png) 
+![Handlebars View todo](./img/Screenshot%202022-10-25%20143106.png) 
 
 ## Table of Contents
 * [Project Title](#Project-Title)

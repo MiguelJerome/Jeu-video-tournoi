@@ -4,27 +4,13 @@ import { engine } from 'express-handlebars';
 import helmet from 'helmet';
 import cors from 'cors';
 import compression from 'compression';
-//import connectionPromise from './model/connection.js';
-import {  } from './model/todo.js';
-import { getTournoi, addTournoi } from './model/admin.js';
+import { getTournoi, addTournoi,supprimerTournoi } from './model/admin.js';
 
 // Création du serveur web
 let app = express();
 
 // Création de l'engin dans Express
-app.engine('handlebars', engine({
-    helpers: {
-        afficheArgent: (nombre) => nombre && nombre.toFixed(2) + ' $'
-        /*{
-            if(nombre){
-                return nombre.toFixed(2) + ' $';
-            }
-            else {
-                return null;
-            }
-        }*/
-    }
-}));
+app.engine('handlebars', engine());
 
 // Mettre l'engin handlebars comme engin de rendu
 app.set('view engine', 'handlebars');
@@ -43,26 +29,24 @@ app.use(express.static('public'));
 app.get('/', async (request, response) => {
     response.render('acceuil', {
         titre: 'Acceuil',
-        styles: ['/css/todo.css'],
-        scripts: ['/js/todo.js'],
-        tournois: await getTournoi(),
-
-        
+        styles: ['/css/admin.css'],
+        tournois: await getTournoi(),  
     });
 })
 
 app.get('/acceuil', async (request, response) => {
     response.render('acceuil', {
         titre: 'Acceuil',
-        styles: ['/css/todo.css'],
-        scripts: ['/js/todo.js'],
+        styles: ['/css/admin.css'],
         tournois: await getTournoi(),
     });
 })
 
-app.get('/compte', (request, response) => {
+app.get('/compte', async (request, response) => {
     response.render('compte', {
-        titre: 'Compte'
+        titre: 'Compte',
+        styles: ['/css/admin.css'],
+        tournois: await getTournoi()
     });
 })
 
@@ -73,10 +57,6 @@ app.get('/admin', async(request, response) => {
         scripts: ['/js/admin.js'],
         tournois: await getTournoi(),
     });
-    
-   // let id = await addTournoi();
-   // response.status(201).json({id: id});
-    
 })
 
 
@@ -85,36 +65,20 @@ app.post('/admin', async (request, response) =>{
         titre: 'Administrateur',
         styles: ['/css/admin.css'],
         scripts: ['/js/admin.js'],
-        tournois: await getTournoi(),
-        id: await addTournoi(),
-        
+        id: await addTournoi(request.body.nom,request.body.date_debut,request.body.capacite,request.body.description),   
     });
-    
-    //let id = await addTournoi();
-    //response.status(201).json({id});
-  
 });
 
-
-/*
-app.get('/apropos', (request, response) => {
-    response.render('apropos', {
-        titre: 'À propos'
+app.delete('/admin',async(request,response)=>{
+    response.render('admin', {
+        titre: 'Administrateur',
+        styles: ['/css/admin.css'],
+        scripts: ['/js/admin.js'],  
+        tournois: await getTournoi(),
+        id:await supprimerTournoi(request.body.id)
     });
 })
-*/
-/*
-app.post('/api/todo', async (request, response) =>{
-    let id = await addTodo(request.body.texte);
-    response.status(201).json({id: id});
-});
-*/
-/*
-app.patch('/api/todo', async (request, response) => {
-   await checkTodo(request.body.id);
-    response.status(200).end();
-});
-*/
+
 // Démarrage du serveur
 app.listen(process.env.PORT);
-console.log('Serveur démarré: http://localhost:' + process.env.PORT);
+console.log(`Serveur démarré: http://localhost:${process.env.PORT}`);

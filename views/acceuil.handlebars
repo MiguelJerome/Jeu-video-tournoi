@@ -1,16 +1,15 @@
-
-  <div class="tournoi-supprimer-wrapper"
-{{>tournoi-en-cours}}
-  </div>
-<ul id="liste-todo">
-    {{#each todos}}
-        <li>
-            <div class="texte">{{this.id_tournois}}</div>
-            <div class="texte">{{this.nom}}</div>
-            <div class="texte">{{this.description}}</div>
-            <div class="texte">{{this.capacite}}</div>
-            <div class="texte">{{this.date_debut}}</div>     
-        </li>
-    {{/each}}
-</ul>
+<div class="tournoi-supprimer-wrapper"
+  {{>tournoi-en-cours}}
+</div>
+    <ul id="liste-todo">
+      {{#each todos}}
+          <li>
+              <div class="texte">{{this.id_tournois}}</div>
+              <div class="texte">{{this.nom}}</div>
+              <div class="texte">{{this.description}}</div>
+              <div class="texte">{{this.capacite}}</div>
+              <div class="texte">{{this.date_debut}}</div>     
+          </li>
+      {{/each}}
+    </ul>
 

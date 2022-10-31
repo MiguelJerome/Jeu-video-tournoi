@@ -1,33 +1,26 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{{titre}}</title>
-
-    <link rel="stylesheet" href="./css/normalize.css">
-    <link rel="stylesheet" href="./css/style.css">
-    <link rel="stylesheet" href="./css/main.css">
-
-    {{#each styles}}
-        <link rel="stylesheet" href="{{this}}">
-    {{/each}}
-
-    {{#each scripts}}
-        <script type="module" src="{{this}}"></script>
-    {{/each}}
-
-</head>
-<body>
-    {{>header}}
-
-    <!--{{afficheArgent argent}}-->
-    <main>
-        <div class = "main-container"></div>
-        {{{body}}}
-        </div>
-    </main>
-   
-</body>
-</html>
+    <html lang="en">    
+        <head>
+            <meta charset="UTF-8">
+            <meta http-equiv="X-UA-Compatible" content="IE=edge">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+                <title>{{titre}}</title>
+                    <link rel="stylesheet" href="./css/normalize.css">
+                    <link rel="stylesheet" href="./css/style.css">
+                    <link rel="stylesheet" href="./css/main.css">
+                        {{#each styles}}
+                            <link rel="stylesheet" href="{{this}}">
+                        {{/each}}
+                            {{#each scripts}}
+                                <script type="module" src="{{this}}"></script>
+                            {{/each}}
+        </head>
+        <body>
+            {{>header}}
+                <main>
+                    <div class = "main-container"></div>
+                        {{{body}}}
+                    </div>
+                </main>
+        </body>
+    </html>
