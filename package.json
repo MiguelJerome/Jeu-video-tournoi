@@ -1,7 +1,7 @@
 {
-  "name": "liste-todo",
+  "name": "jeu-video",
   "version": "1.0.0",
-  "description": "Un serveur de liste TODO.",
+  "description": "tournoi de jeu video",
   "type": "module",
   "main": "server.js",
   "scripts": {
@@ -9,7 +9,7 @@
     "watch": "nodemon",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "Jonathan Wilkie",
+  "author": "Miguel Jerome, Synn Sloan Igondjo, Marc-Raphael Chehab, James Bell",
   "license": "ISC",
   "dependencies": {
     "compression": "^1.7.4",

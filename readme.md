@@ -1,6 +1,6 @@
 
 # Tournoi de video jeu, Reverse Engineering Database
-![Reverse Engineering Database](./img/ReverseEngineeringDiagramDatabase.png) 
+![Reverse Engineering Database](./public/img/ReverseEngineeringDiagramDatabase.png) 
 
 # Tournoi de video jeu and all the links
 * [Tournoi de jeu video Git Hub](https://github.com/MiguelJerome/Jeu-video-tournoi)
@@ -13,7 +13,7 @@
 
 # Project Title
 Handlebars View todo
-![Handlebars View todo](./img/Screenshot%202022-10-25%20143106.png) 
+![Handlebars View todo](./public/img/Screenshot%202022-10-25%20143106.png) 
 
 ## Table of Contents
 * [Project Title](#Project-Title)

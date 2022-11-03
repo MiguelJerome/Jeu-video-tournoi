@@ -98,7 +98,6 @@
     flex-direction: column;
     flex-wrap: wrap;
     align-content: center;
-    
 }
 .logoTournoi{
     height: 100%;
@@ -149,7 +148,6 @@
     font-size: 16px;
 }
 
-
 .btn-inscription-tournoi
 {
     border-radius: 5px;
@@ -159,6 +157,16 @@
     padding: 5px;
     font-size: 1.5em;
     background-color:springgreen;
+    align-items: center;
+}
+
+.btn-desinscrire-tournoi{
+    border-radius: 5px;
+    width: 100%;
+    height: 40px;
+    padding: 5px;
+    font-size: 1.5em;
+    background-color:rgb(255, 0, 0);
     align-items: center;
 }
 
@@ -173,4 +181,3 @@
     background-color:springgreen;
     align-items: center;
 }
-
