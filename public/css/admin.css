@@ -42,13 +42,30 @@ input{
     height: 200px;
 }
 
-form-admin-wrapper{
-    display: flex;
+.form-admin-wrapper{
     display: flex;
     flex-direction: column;
-    width: 1000px;
+    width: 45rem;
     flex-wrap: wrap;
     align-content: flex-start;
     justify-content: space-between;
     align-items: flex-start;
+    background-color: #000;
+    color: #fff;
+    opacity: 0.5;
+    font-weight: bolder;
+    font-size: large;
+}
+
+.form-admin{
+    
+color:black
+}
+
+label{
+    color:#ffd700;
+}
+
+::placeholder{
+    color:f8c5ae;
 }

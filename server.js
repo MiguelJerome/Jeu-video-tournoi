@@ -5,7 +5,7 @@ import helmet from 'helmet';
 import cors from 'cors';
 import compression from 'compression';
 import { getTournoi, addTournoi,supprimerTournoi,getTournoiInscrit,addTournoiInscrit,getIds,deleteTournoiInscrit,getNombreInscrit } from './model/admin.js';
-
+//import {validate} from './validation.js';
 // Création du serveur web
 let app = express();
 
@@ -102,12 +102,14 @@ app.get('/admin', async(request, response) => {
 })
 
 app.post('/admin', async (request, response) =>{
-     response.render('admin', {
-        titre: 'Administrateur',
-        styles: ['/css/admin.css'],
-        scripts: ['/js/admin.js'],
-        id: await addTournoi(request.body.nom,request.body.date_debut,request.body.capacite,request.body.description),
-    });
+   // if(validate(request.body)){
+        response.render('admin', {
+            titre: 'Administrateur',
+            styles: ['/css/admin.css'],
+            scripts: ['/js/admin.js'],
+            id: await addTournoi(request.body.nom,request.body.date_debut,request.body.capacite,request.body.description),
+        });
+  //  }
 });
 
 app.get('/accueil/id', async (req,res)=>{
