@@ -57,6 +57,10 @@
     font-size: 32px;
     font-weight: 200;
 }
+
+nav{
+    font-weight: bolder;
+}
 .navigation{
     float: right;
     height: 100%;
@@ -150,34 +154,229 @@
 
 .btn-inscription-tournoi
 {
+    display: flex;
+    color: black;
     border-radius: 5px;
     width: 100%;
     height: 40px;
-    border-color:springgreen;
-    padding: 5px;
-    font-size: 1.5em;
-    background-color:springgreen;
+    border-color: springgreen;
+    padding: 100px;
+    font-size: 1.7rem;
+    font-weight: bolder;
+    background-color: springgreen;
     align-items: center;
+    overflow: visible;
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
+    animation: buttons1 6s forwards, buttons2 4s infinite;
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-content: space-around;
+    justify-content: center;
+    box-shadow: 0 3px 3px 0 rgb(0 0 0 / 14%), 0 1px 7px 0 rgb(0 0 0 / 12%), 0 3px 1px -1px rgb(0 0 0 / 20%);
+    overflow: visible;
+    position: relative;
 }
 
 .btn-desinscrire-tournoi{
+    display: flex;
     border-radius: 5px;
     width: 100%;
     height: 40px;
-    padding: 5px;
-    font-size: 1.5em;
-    background-color:rgb(255, 0, 0);
+    padding: 100px;
+    font-size: 1.7rem;
+    font-weight: bolder;
     align-items: center;
+    overflow: visible;
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
+    animation: buttons1 6s forwards, buttons2 4s infinite;
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-content: space-around;
+    justify-content: center;
+    box-shadow: 0 3px 3px 0 rgb(0 0 0 / 14%), 0 1px 7px 0 rgb(0 0 0 / 12%), 0 3px 1px -1px rgb(0 0 0 / 20%);
+    overflow: visible;
+    position: relative;
+    background-color:rgb(255, 0, 0);
+    color: white;
+}
+
+.btn-desinscrire-tournoi:hover
+{
+    box-shadow: 0 3px 3px 0 rgb(0 0 0 / 14%), 0 1px 7px 0 rgb(0 0 0 / 12%), 0 3px 1px -1px rgb(0 0 0 / 20%);
+    background-color:#ff0000;
+    color: white;
+    border-radius: 50%;
 }
 
 .btn-supprimer-tournoi
 {
+    display: flex;
+    color: black;
     border-radius: 5px;
     width: 100%;
     height: 40px;
-    border-color:springgreen;
-    padding: 5px;
-    font-size: 1.5em;
-    background-color:springgreen;
+    border-color: springgreen;
+    padding: 100px;
+    font-size: 1.7rem;
+    font-weight: bolder;
+    background-color: springgreen;
     align-items: center;
+    overflow: visible;
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
+    animation: buttons1 6s forwards, buttons2 4s infinite;
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-content: space-around;
+    justify-content: center;
+    box-shadow: 0 3px 3px 0 rgb(0 0 0 / 14%), 0 1px 7px 0 rgb(0 0 0 / 12%), 0 3px 1px -1px rgb(0 0 0 / 20%);
+    overflow: visible;
+    position: relative;
 }
+
+@keyframes buttons1
+{
+  0%
+  {
+    transform:  scale(1); opacity: 0.8;
+    font-size:3rem;
+    color: black;
+    box-shadow: 0 3px 3px 0 rgb(0 0 0 / 14%), 0 1px 7px 0 rgb(0 0 0 / 12%), 0 3px 1px -1px rgb(0 0 0 / 20%);
+    border-radius: 50%;
+    align-items: center;
+    line-height: 40px;
+    overflow: visible;
+    position: relative;
+  }
+
+  100%
+  {
+    transform:  scale(0.75); opacity: 0.8;
+    font-size:3rem;
+    color: black;
+    box-shadow: 0 3px 3px 0 rgb(0 0 0 / 14%), 0 1px 7px 0 rgb(0 0 0 / 12%), 0 3px 1px -1px rgb(0 0 0 / 20%);
+    border-radius: 50%;
+    align-items: center;
+    line-height: 40px;
+    overflow: visible;
+    position: relative;
+  }
+}
+
+@keyframes buttons2
+{
+  100%
+  {
+    transform:  scale(0.5); opacity: 0.8;
+    font-size:3rem;
+    ccolor: black;
+    box-shadow: 0 3px 3px 0 rgb(0 0 0 / 14%), 0 1px 7px 0 rgb(0 0 0 / 12%), 0 3px 1px -1px rgb(0 0 0 / 20%);
+    border-radius: 50%;
+    align-items: center;
+    line-height: 40px;
+    overflow: visible;
+    position: relative;
+  }
+  0%
+  {
+    transform:  scale(0.25); opacity: 0.8;
+    font-size:3rem;
+    color: black; 
+    box-shadow: 0 3px 3px 0 rgb(0 0 0 / 14%), 0 1px 7px 0 rgb(0 0 0 / 12%), 0 3px 1px -1px rgb(0 0 0 / 20%);
+    border-radius: 50%;
+    align-items: center;
+    line-height: 40px;
+    overflow: visible;
+    position: relative;
+  }
+}
+
+.btn-supprimer-tournoi:hover
+{
+    box-shadow: 0 3px 3px 0 rgb(0 0 0 / 14%), 0 1px 7px 0 rgb(0 0 0 / 12%), 0 3px 1px -1px rgb(0 0 0 / 20%);
+    background-color:springgreen;
+    border-radius: 50%;
+}
+
+.wallpaper-background{
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    background-image: url(../img/cs-go-1920x1080-14.jpg);
+    background-size: cover; 
+    z-index: 9999;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    justify-content: center;
+    align-items: flex-start;
+    background-attachment: fixed;
+    background-position: 80%;
+}
+
+footer{
+    font-weight: bolder;
+}
+
+#footer-github{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+  }
+
+.gitHubicon {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    background-image: url(/img/cdnlogo.com_github.svg);
+    background-size: cover;
+    justify-content:flex-start;
+    align-content: flex-end; 
+    z-index: 1;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+
+.tournoi-info{
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-content: flex-start;
+    justify-content: center;
+    align-items: flex-start;
+    margin: 10;
+    color: black;
+}
+
+.tournoi-card{ 
+    background-color: #101010;
+    padding: 1rem;
+    margin: 1rem;
+    box-shadow: 0 3px 3px 0 rgb(0 0 0 / 14%), 0 1px 7px 0 rgb(0 0 0 / 12%), 0 3px 1px -1px rgb(0 0 0 / 20%);
+}
+
+.tournoi-card-info{ 
+    background-color:#feabe6;
+}
+
+p{
+    color:#633633;
+    font-weight: bolder;
+    font-size: large;
+}
+
+.card-background{
+    background-color: #92baf4;
+}
+
+
+
+
+
+
+
+

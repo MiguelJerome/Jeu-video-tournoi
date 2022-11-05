@@ -1,12 +1,15 @@
-<ul class="navigationTournoi">
-<li>Numero Tournoi:{{this.id_tournois}}</li>
-    <br>
-    <li>Nom:{{this.nom}}</li>
-    <br>
-    <li>Description:{{this.description}}</li>
-    <br>
-    <li>Capacite:{{this.capacite}}</li>
-    <br>
-    <li>Date_debut:{{this.date_debut}}</li>
-    <br>
-</ul>
+<div class="tournoi-card-info">
+    <div class="card-image">
+        <img src="/img/2208_w023_n003_2818b_p1_2818.jpg">
+            <span class="card-title">Tournoi Info</span>
+    </div>
+        <div class ="card-content">
+            <div class=" card-content">      
+                {{>output-NumeroTournoi-tournoi-info}}
+                {{>output-Nom-tournoi-info}}
+                {{>output-Description-tournoi-info}}
+                {{>output-Capacite-tournoi-info}}
+                {{>output-DateDebut-tournoi-info}}
+            </div>
+        </div>
+</div>
