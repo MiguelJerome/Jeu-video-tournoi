@@ -1,36 +1,3 @@
-main{
-    max-width: 97rem; 
-    margin: auto;   
-}
-
-figure{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    background-color: cadetblue;
-}
-
-figure img{
-    width: 100%;
-}
-
-figure button{
-    background-color:skyblue;
-    width: 100px;
-    height: 40px;
-    border-radius: 5px;
-}
-
-.tournois{
-    display: grid;
-    grid-template-columns: repeat(2,1fr);
-}
-
-h1{
-    text-align: center;
-    font-size:3em;
-}
-
 label{
     display: flex;
     flex-direction: column;
@@ -74,4 +41,3 @@ input{
     width: 500px;
     height: 200px;
 }
-

@@ -16,7 +16,7 @@ async function desinscription(id_tournois){
     }
 }
 
-for(let i = 0 ;i<desinscrires.length;i++)
+for(let i = 0 ;i < desinscrires.length;i++)
 {
     desinscrires[i].addEventListener('click',()=>{
         desinscription(desinscrires[i].dataset.id)

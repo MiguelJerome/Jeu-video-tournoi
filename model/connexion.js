@@ -2,6 +2,12 @@ import { existsSync } from 'fs';
 import sqlite3 from 'sqlite3';
 import { open } from 'sqlite';
 
+let year = '2022';
+let month = '11';
+let days = '05';
+let separtorDate = '-';
+
+const tournoiDefaultDate = `'${year}${separtorDate}${month}${separtorDate}${days}'`;
 /**
  * Constante indiquant si la base de données existe au démarrage du serveur 
  * ou non.
@@ -40,7 +46,7 @@ const createDatabase = async (connectionPromise) => {
             nom TEXT NOT NULL,
             description TEXT NOT NULL,
             capacite INTEGER NOT NULL,
-            date_debut INTEGER NOT NULL
+            date_debut TEXT NOT NULL
         );
         
         CREATE TABLE IF NOT EXISTS tournois_utilisateur(
@@ -75,16 +81,16 @@ const createDatabase = async (connectionPromise) => {
             (1, 'zeke_the_form@gmail.com', 'passw0rd', 'Zeke', 'Anderson');
             
         INSERT INTO tournois (nom, date_debut, capacite, description) VALUES 
-            ('Call Of Duty : Modern Warfare II',  27, 16, 'Il plonge les joueurs dans un conflit mondial sans précédent avec le retour de la Task Force 141, il propose des combats multijoueurs immersifs et des missions coop axées sur la narration.'),
-            ('Jump Force',  27, 16, 'Il propose des combats en équipe réunissant tous les héros des mangas du Shonen Weekly Jump comme Naruto, Dragon Ball Z, One Piece ou encore Bleach.'),
-            ('NBA 2K23',  27, 16, 'Il propose des matchs de BasketBall intenses avec vos franchises préférées de la NBA. Affrontez-vous en 1 vs 1, 2 vs 2 ou 3 vs 3 mode bitume en choisissant vos joueurs.'),
-            ('FIFA 23', 27, 16, 'Il propose des matchs de Football immersifs avec toutes les équipes du monde dans les stades de Football les plus célèbres du milieu. .'),
-            ('NHL 23',  27, 16, 'Il propose des matchs de hockey sur glace avec toutes les équipes, hommes et femmes de la Ligue Nationale de Hockey.'),
-            ('Battlefield 4',  27, 16, 'Battlefield V (BFV) est un jeu vidéo de tir à la première personne développé par DICE et édité par Electronic Arts, sorti le 20 novembre 2018 sur PlayStation 4, Xbox One et Microsoft Windows.'),
-            ('Forza Horizon 5',  27, 16, 'Découvrez le monde ouvert vivant et changeant constamment, situé dans les magnifiques paysages du Mexique, et vibrez au volant de centaines de voitures parmi les plus belles du monde.'),
-            ('Street Fighter V',  27, 16, 'Découvrez l’intensité du combat face à face avec Street Fighter™ V! Choisissez parmi 36 personnages avec leur histoire et leurs défis uniques, combattez des amis en ligne ou non avec une foule d’options de correspondance.'),
-            ('Tekken 8',  27, 16, 'Découvrez l’intensité du combat face à face avec Tekken 8! Choisissez parmi 28 personnages et revivez l’histoire culte de la rivalité entre la famille Mishima et la famille Kazama..'),
-            ('Naruto Storm 4',  27, 16, 'Plonger dans des combats en 3 dimensions dans l’univers de ninja de Naruto et ses amis et affrontez-vous avec tous les personnages culte du manga.');
+            ('Call Of Duty : Modern Warfare II',  ${tournoiDefaultDate}, 16, 'Il plonge les joueurs dans un conflit mondial sans précédent avec le retour de la Task Force 141, il propose des combats multijoueurs immersifs et des missions coop axées sur la narration.'),
+            ('Jump Force',  ${tournoiDefaultDate}, 16, 'Il propose des combats en équipe réunissant tous les héros des mangas du Shonen Weekly Jump comme Naruto, Dragon Ball Z, One Piece ou encore Bleach.'),
+            ('NBA 2K23',  ${tournoiDefaultDate}, 16, 'Il propose des matchs de BasketBall intenses avec vos franchises préférées de la NBA. Affrontez-vous en 1 vs 1, 2 vs 2 ou 3 vs 3 mode bitume en choisissant vos joueurs.'),
+            ('FIFA 23', ${tournoiDefaultDate}, 16, 'Il propose des matchs de Football immersifs avec toutes les équipes du monde dans les stades de Football les plus célèbres du milieu. .'),
+            ('NHL 23',  ${tournoiDefaultDate}, 16, 'Il propose des matchs de hockey sur glace avec toutes les équipes, hommes et femmes de la Ligue Nationale de Hockey.'),
+            ('Battlefield 4',  ${tournoiDefaultDate}, 16, 'Battlefield V (BFV) est un jeu vidéo de tir à la première personne développé par DICE et édité par Electronic Arts, sorti le 20 novembre 2018 sur PlayStation 4, Xbox One et Microsoft Windows.'),
+            ('Forza Horizon 5',  ${tournoiDefaultDate}, 16, 'Découvrez le monde ouvert vivant et changeant constamment, situé dans les magnifiques paysages du Mexique, et vibrez au volant de centaines de voitures parmi les plus belles du monde.'),
+            ('Street Fighter V',  ${tournoiDefaultDate}, 16, 'Découvrez l’intensité du combat face à face avec Street Fighter™ V! Choisissez parmi 36 personnages avec leur histoire et leurs défis uniques, combattez des amis en ligne ou non avec une foule d’options de correspondance.'),
+            ('Tekken 8',  ${tournoiDefaultDate}, 16, 'Découvrez l’intensité du combat face à face avec Tekken 8! Choisissez parmi 28 personnages et revivez l’histoire culte de la rivalité entre la famille Mishima et la famille Kazama..'),
+            ('Naruto Storm 4',  ${tournoiDefaultDate}, 16, 'Plonger dans des combats en 3 dimensions dans l’univers de ninja de Naruto et ses amis et affrontez-vous avec tous les personnages culte du manga.');
         
         INSERT INTO tournois_utilisateur (id_tournois, id_utilisateur) VALUES 
             (1, 5),

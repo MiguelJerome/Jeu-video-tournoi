@@ -61,7 +61,7 @@ app.get('/acceuil', async (request, response) => {
         styles: ['/css/admin.css'],
         scripts: ['/js/accueil.js'],
         tournois: await getTournoi(),
-        nombres :await getNombreInscrit()
+        nombres : await getNombreInscrit()
     });
 })
 
@@ -70,8 +70,7 @@ app.post('/acceuil', async (request, response) => {
         titre: 'Accueil',
         styles: ['/css/admin.css'],
         scripts: ['/js/accueil.js'],
-        id:await addTournoiInscrit(request.body.id_tournois),
-
+        id: await addTournoiInscrit(request.body.id_tournois),
     });
 })
 
@@ -81,7 +80,6 @@ app.get('/compte', async (request, response) => {
         styles: ['/css/admin.css'],
         scripts: ['/js/compte.js'],
         tournois: await getTournoiInscrit(),
-
     });
 })
 
@@ -91,7 +89,6 @@ app.delete('/compte', async (request, response) => {
         styles: ['/css/admin.css'],
         scripts: ['/js/compte.js'],
         tournois: await deleteTournoiInscrit(request.body.id_tournois),
-
     });
 })
 
@@ -101,7 +98,6 @@ app.get('/admin', async(request, response) => {
         styles: ['/css/admin.css'],
         scripts: ['/js/admin.js'],
         tournois: await getTournoi(),
-
     });
 })
 
@@ -111,7 +107,6 @@ app.post('/admin', async (request, response) =>{
         styles: ['/css/admin.css'],
         scripts: ['/js/admin.js'],
         id: await addTournoi(request.body.nom,request.body.date_debut,request.body.capacite,request.body.description),
-   
     });
 });
 

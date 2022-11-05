@@ -57,7 +57,7 @@ async function supprimerTournoi(id){
 }
   
 document.querySelector('.form-admin-wrapper').addEventListener('submit', ajouterTournoiServeur);
-    for(let i = 0; i<buttons.length; i++)
+    for(let i = 0; i < buttons.length; i++)
     {
         buttons[i].addEventListener('click',()=>{
         supprimerTournoi(buttons[i].dataset.id);

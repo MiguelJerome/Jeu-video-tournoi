@@ -177,6 +177,7 @@ nav{
     box-shadow: 0 3px 3px 0 rgb(0 0 0 / 14%), 0 1px 7px 0 rgb(0 0 0 / 12%), 0 3px 1px -1px rgb(0 0 0 / 20%);
     overflow: visible;
     position: relative;
+    text-shadow: 5px 5px 10px  #40b5ad;
 }
 
 .btn-desinscrire-tournoi{
@@ -201,7 +202,7 @@ nav{
     overflow: visible;
     position: relative;
     background-color:rgb(255, 0, 0);
-    color: white;
+    text-shadow: 5px 5px 10px  white;
 }
 
 .btn-desinscrire-tournoi:hover
@@ -237,6 +238,7 @@ nav{
     box-shadow: 0 3px 3px 0 rgb(0 0 0 / 14%), 0 1px 7px 0 rgb(0 0 0 / 12%), 0 3px 1px -1px rgb(0 0 0 / 20%);
     overflow: visible;
     position: relative;
+    text-shadow: 5px 5px 10px  #40b5ad;
 }
 
 @keyframes buttons1
@@ -296,8 +298,7 @@ nav{
   }
 }
 
-.btn-supprimer-tournoi:hover
-{
+.btn-supprimer-tournoi:hover{
     box-shadow: 0 3px 3px 0 rgb(0 0 0 / 14%), 0 1px 7px 0 rgb(0 0 0 / 12%), 0 3px 1px -1px rgb(0 0 0 / 20%);
     background-color:springgreen;
     border-radius: 50%;
@@ -328,7 +329,7 @@ footer{
     flex-direction: column;
   }
 
-.gitHubicon {
+.gitHubicon{
     height: 100%;
     width: 100%;
     display: flex;
@@ -353,10 +354,14 @@ footer{
 }
 
 .tournoi-card{ 
-    background-color: #101010;
-    padding: 1rem;
+    padding: 2rem;
     margin: 1rem;
-    box-shadow: 0 3px 3px 0 rgb(0 0 0 / 14%), 0 1px 7px 0 rgb(0 0 0 / 12%), 0 3px 1px -1px rgb(0 0 0 / 20%);
+    text-decoration:none;
+    background: #087ee1;
+    border-radius: 1rem;
+    text-shadow: 5px 5px 10px  black;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    font-weight: bolder;
 }
 
 .tournoi-card-info{ 
@@ -372,11 +377,3 @@ p{
 .card-background{
     background-color: #92baf4;
 }
-
-
-
-
-
-
-
-
