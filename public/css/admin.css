@@ -11,9 +11,9 @@ form{
     flex-direction: column;
     width: 1000px;
     flex-wrap: wrap;
-    align-content: flex-end;
-    justify-content: center;
-    align-items: center;
+    align-content: flex-start;
+    justify-content: space-between;
+    align-items: flex-start;
 }
 
 input{
@@ -40,4 +40,15 @@ input{
 #description-tournoi{
     width: 500px;
     height: 200px;
+}
+
+form-admin-wrapper{
+    display: flex;
+    display: flex;
+    flex-direction: column;
+    width: 1000px;
+    flex-wrap: wrap;
+    align-content: flex-start;
+    justify-content: space-between;
+    align-items: flex-start;
 }
