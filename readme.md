@@ -97,7 +97,7 @@ Handlebars View todo and all the links
 
 # Project TitleB
 List todo Validation
-![Handlebars View todo](./public/img/Screenshot%202022-11-05%20234244.png) 
+![List todo Validation](./public/img/Screenshot%202022-11-05%20234244.png) 
 
 ## Table of Contents
 * [Project TitleB](#Project-Title)
@@ -116,6 +116,6 @@ In the second step, you have two different options you can choose from:
 * To start the server, you need to type in the command line (CLI) in the terminal:   npm start
 
 ## Test InstructionsB
-Handlebars View todo and all the links
-* [Handlebars View todo Git Hub](https://github.com/MiguelJerome/todo-valadation)
-* [Handlebars View todo deploy to Heroku](https://damp-falls-38473.herokuapp.com/ )
+List todo Validation and all the links
+* [List todo Validation Git Hub](https://github.com/MiguelJerome/todo-valadation)
+* [List todo Validation deploy to Heroku](https://damp-falls-38473.herokuapp.com/ )
