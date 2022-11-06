@@ -100,6 +100,7 @@ textarea{
 }
 
 .form-admin-wrapper{
+   
     display: flex;
     flex-direction: column;
     width: 45rem;
@@ -112,7 +113,7 @@ textarea{
     font-weight: bolder;
     font-size: large;
     border-radius: 1rem;
-    border: 0.5rem solid #f8c5ae;
+    border: 2rem solid #f8c5ae;
 }
 
 #nom-tournoi{
