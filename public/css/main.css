@@ -5,155 +5,11 @@
     text-decoration: none;
 }
 
-.main-container
-{
-    display: flex;
-}
-.acceuil-container{
-    display: flex;
-    display: flex;
-    flex-direction: column;
-    flex-wrap: wrap;
-    justify-content: center;
-    align-content: stretch;
-    align-items: baseline;
-}
-.tournoi-supprimer-wrapper
-{
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    align-content: center;
-    align-items: baseline;
-}
-
-.header{
-
-    width: 100%;
-    height: 80px;
-    display: block;
-    background-color: #101010;
-}
-.inheader{
-
-    width: 1000px;
-    height: 100%;
-    display: block;
-    margin: 0 auto;
-    
-}
-.logo{
-    height: 100%;
-    display: table;
-    float: left;
-}
-.logo h1{
-    color: white;
-    height: 100%;
-    display: table-cell;
-    vertical-align: middle;
-    font-family: 'Montserrat';
-    font-size: 32px;
-    font-weight: 200;
-}
-
 nav{
     font-weight: bolder;
 }
-.navigation{
-    float: right;
-    height: 100%;
-}
-.navigation a{
-    height: 100%;
-    display: table;
-    float: left;
-    padding: 0px 20px;
-}
-.navigation a:last-child{
-    padding-right: 0;
-}
-.navigation a li{
-    display: table-cell;
-    vertical-align: middle;
-    height: 100%;
-    color: white;
-    font-family: 'Montserrat';
-    font-size: 16px;
-}
 
-.headerTournoi{
-    width: 25rem;
-    height: 450px;
-    display: flex;
-    margin-bottom: 1rem;
-    background-color: #101010;
-    flex-direction: row;
-    flex-wrap: wrap;
-    align-content: flex-end;
-}
-.inheaderTournoi{
-
-    width: 36rem;
-    height: 27rem;
-    display: flex;
-    margin: 0 auto;
-    flex-direction: column;
-    flex-wrap: wrap;
-    align-content: center;
-}
-.logoTournoi{
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: stretch;
-    justify-content: center;
-    align-content: space-between;
-}
-.logoTournoi h1{
-    color: white;
-    height: 100%;
-    display: flex;
-    font-family: 'Montserrat';
-    font-size: 32px;
-    font-weight: 20;
-    flex-direction: row;
-    flex-wrap: wrap;
-    align-content: center;
-    justify-content: space-evenly;
-    align-items: center;
-}
-.navigationTournoi{
-    height: 100%;
-    display: flex;
-    float: left;
-    padding: 0px 20px;
-    flex-direction: column;
-    flex-wrap: nowrap;
-    align-content: stretch;
-    justify-content: flex-start;
-    align-items: stretch;
-}
-.navigationTournoi {
-    height: 100%;
-    display: flex;
-    float: left;
-    padding: 0px 20px;
-}
-.navigationTournoi a:last-child{
-    padding-left: 0;
-}
-.navigationTournoi li{
-    display: flex;
-    height: 100%;
-    color: white;
-    font-family: 'Montserrat';
-    font-size: 16px;
-}
-
-.btn-inscription-tournoi
-{
+.btn-inscription-tournoi{
     display: flex;
     color: black;
     border-radius: 5px;
@@ -205,16 +61,14 @@ nav{
     text-shadow: 5px 5px 10px  white;
 }
 
-.btn-desinscrire-tournoi:hover
-{
+.btn-desinscrire-tournoi:hover{
     box-shadow: 0 3px 3px 0 rgb(0 0 0 / 14%), 0 1px 7px 0 rgb(0 0 0 / 12%), 0 3px 1px -1px rgb(0 0 0 / 20%);
     background-color:#ff0000;
     color: white;
     border-radius: 50%;
 }
 
-.btn-supprimer-tournoi
-{
+.btn-supprimer-tournoi{
     display: flex;
     color: black;
     border-radius: 5px;
@@ -241,8 +95,7 @@ nav{
     text-shadow: 5px 5px 10px  #40b5ad;
 }
 
-@keyframes buttons1
-{
+@keyframes buttons1{
   0%
   {
     transform:  scale(1); opacity: 0.8;
@@ -255,7 +108,6 @@ nav{
     overflow: visible;
     position: relative;
   }
-
   100%
   {
     transform:  scale(0.75); opacity: 0.8;
@@ -270,8 +122,7 @@ nav{
   }
 }
 
-@keyframes buttons2
-{
+@keyframes buttons2{
   100%
   {
     transform:  scale(0.5); opacity: 0.8;
@@ -311,7 +162,7 @@ nav{
     flex-wrap: wrap;
     background-image: url(../img/cs-go-1920x1080-14.jpg);
     background-size: cover; 
-    z-index: 9999;
+    z-index: -1;
     font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
     justify-content: center;
     align-items: flex-start;
@@ -377,4 +228,3 @@ p{
 .card-background{
     background-color: #92baf4;
 }
-
