@@ -62,9 +62,9 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 ## Questions
 * [Miguel-Jerome](https://github.com/MiguelJerome/) Github
-* [James-Bell]() Github
-* [Marc-Raphael-Chehab]() Github
-* [Synn-Sloan-Igondjo]() Github
+* [James-Bell](https://github.com/wikssjs) Github
+* [Marc-Raphael-Chehab](https://github.com/MarcPharaoh) Github
+* [Synn-Sloan-Igondjo](https://github.com/synnsloan) Github
 * How to reach us: You use contact us on GitHub
 
 
