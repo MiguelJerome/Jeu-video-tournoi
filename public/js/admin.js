@@ -1,5 +1,6 @@
 let buttons = document.querySelectorAll('.btn-supprimer-tournoi');
 
+
 async function ajouterTournoiServeur(event) {
     event.preventDefault();
     

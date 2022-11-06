@@ -1,10 +1,10 @@
 const validateNom = (nom) => {
-    return typeof(nom) === 'string' && nom.length > 0
+    return typeof(nom) === 'string' && nom.length > 2
                     && nom.length < 50;
 }
 const validateDescription = (description) => {
     return typeof(description) === 'string' && description.length > 0
-    && description.length < 500;
+    && description.length < 200;
 }
 
 const validateDate = (date) => {

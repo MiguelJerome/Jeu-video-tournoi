@@ -156,3 +156,9 @@ textarea{
     text-shadow: 5px 5px 10px  black;
     font-size: 1.7rem;
 }
+
+.error{
+    display: none;
+    color: #a00;
+    padding: 10rem;
+}
