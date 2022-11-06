@@ -4,13 +4,17 @@ let buttons = document.querySelectorAll('.btn-supprimer-tournoi');
 async function ajouterTournoiServeur(event) {
     event.preventDefault();
     
-    // get les valeurs des inputs du formulaire admin ajouter tournoi
+    /**
+     * get les valeurs des inputs du formulaire admin ajouter tournoi
+     */
     const nomTournoi = await document.querySelector('#nom-tournoi').value.trim();
     const descriptionTournoi = await document.querySelector('#description-tournoi').value.trim();
     const dateDebutTournoi = await document.querySelector('#date-debut-tournoi').value.trim();
     const capaciteTournoi = await document.querySelector('#capacite-tournoi').value.trim();
 
-    //Les donnees a jouter au serveur
+   /**
+     * Les donnees ajouter au serveur
+     */
     let data = {
         nom:nomTournoi,
         date_debut:dateDebutTournoi,
@@ -29,7 +33,9 @@ async function ajouterTournoiServeur(event) {
         let data = await response.json();
     }
 
-    //effacer les input du formulaire admin ajouter tournoi
+    /**
+     * effacer les input du formulaire admin ajouter tournoi
+     */
     document.querySelector('#nom-tournoi').value = "";
     document.querySelector('#description-tournoi').value = "";
     document.querySelector('#date-debut-tournoi').value = "";
@@ -56,8 +62,15 @@ async function supprimerTournoi(id){
         let data = await response.json();
     }
 }
-  
+
+    /**
+     * Ajout de l'eventlistener sur le formulaire
+     */
 document.querySelector('.form-admin-wrapper').addEventListener('submit', ajouterTournoiServeur);
+
+    /**
+    * Ajout de l'eventlistener sur les boutons supprimer
+    */
     for(let i = 0; i < buttons.length; i++)
     {
         buttons[i].addEventListener('click',()=>{
