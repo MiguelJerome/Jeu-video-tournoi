@@ -1,8 +1,8 @@
 # Jeu-Video-Tournoi
-![Jeu-Video-Tournoi](./img/Acceuil.png) 
-![Jeu-Video-Tournoi](./img/Compte.png) 
-![Jeu-Video-Tournoi](./img/Admin-supprimer.png)
-![Jeu-Video-Tournoi](./img/Admin-ajouter-tournoi.png)  
+![Jeu-Video-Tournoi](./public/img/Acceuil.png) 
+![Jeu-Video-Tournoi](./public/img/Compte.png) 
+![Jeu-Video-Tournoi](./public/img/Admin-supprimer.png)
+![Jeu-Video-Tournoi](./public/img/Admin-ajouter-tournoi.png)  
 
 ## Table of Contents
 * [Jeu-Video-Tournoi](#WhoYaGot)
@@ -69,53 +69,53 @@ SOFTWARE.
 
 
 # References Project use
-# Project Title1
+# Project TitleA
 Handlebars View todo
 ![Handlebars View todo](./public/img/Screenshot%202022-10-25%20143106.png) 
 
 ## Table of Contents
-* [Project Title1](#Project-Title)
-* [Description1](#Description)
-* [Installation instructions1](#Installation-instructions)
-* [Usage Information1](#Usage-Information)
-* [Test Instructions1](#Test-Instructions)
+* [Project TitleA](#Project-Title)
+* [DescriptionA](#Description)
+* [Installation instructionsA](#Installation-instructions)
+* [Usage InformationA](#Usage-Information)
+* [Test InstructionsA](#Test-Instructions)
 
-## Description1
+## DescriptionA
     This application is used for creating a todo list with the help of an SQLite database by using the route and the service of handlebars.
-## Installation instructions1
+## Installation instructionsA
 * In the first step, you need to type in the command line (CLI) in the terminal:    npm i
-## Usage Information1
+## Usage InformationA
 In the second step, you have two different options you can choose from:
 * For using nodemon, you need to type in the command line (CLI) in the terminal:    npm run watch
 * To start the server, you need to type in the command line (CLI) in the terminal:   npm start
 
-## Test Instructions1
+## Test InstructionsA
 Handlebars View todo and all the links
 * [Handlebars View todo Git Hub](https://github.com/MiguelJerome/handlebarsViewTodo)
 * [Handlebars View todo deploy to Heroku](https://frozen-harbor-56299.herokuapp.com/)
 
 
-# Project Title2
+# Project TitleB
 List todo Validation
 ![Handlebars View todo](./public/img/Screenshot%202022-11-05%20234244.png) 
 
 ## Table of Contents
-* [Project Title2](#Project-Title)
-* [Description2](#Description)
-* [Installation instructions2](#Installation-instructions)
-* [Usage Information2](#Usage-Information)
-* [Test Instructions2](#Test-Instructions)
+* [Project TitleB](#Project-Title)
+* [DescriptionB](#Description)
+* [Installation instructionsB](#Installation-instructions)
+* [Usage InformationB](#Usage-Information)
+* [Test InstructionsB](#Test-Instructions)
 
-## Description2
+## DescriptionB
     This application is used for creating a todo list with the help of an SQLite database by using the route and the service of handlebars and verify user input.
-## Installation instructions2
+## Installation instructionsB
 * In the first step, you need to type in the command line (CLI) in the terminal:    npm i
-## Usage Information2
+## Usage InformationB
 In the second step, you have two different options you can choose from:
 * For using nodemon, you need to type in the command line (CLI) in the terminal:    npm run watch
 * To start the server, you need to type in the command line (CLI) in the terminal:   npm start
 
-## Test Instructions2
+## Test InstructionsB
 Handlebars View todo and all the links
 * [Handlebars View todo Git Hub](https://github.com/MiguelJerome/todo-valadation)
 * [Handlebars View todo deploy to Heroku](https://damp-falls-38473.herokuapp.com/ )
