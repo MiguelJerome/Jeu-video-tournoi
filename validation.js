@@ -34,7 +34,7 @@ const validateDate = (date) => {
  */
 const validateCapacite = (capacite) => {
     return typeof(capacite) === 'number' && capacite> 0
-    && capacite< 16;
+    && capacite < 17;
 }
 
 /**
