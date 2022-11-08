@@ -49,14 +49,11 @@ const validateDate = () => {
         errorDate.innerText = 'Ce champ est requis';
         errorDate.style.display = 'block';
     }
-    else if(inputDate.validity.rangeUnderflow) {
-        errorDate.innerText = 'La valeur doit être supérieure à 0';
+    else if(inputDate.validity.typeMismatch) {
+        errorDate.innerText = 'Le format est invalide';
         errorDate.style.display = 'block';
     }
-    else if(inputDate.validity.rangeOverflow) {
-        errorDate.innerText = 'La valeur doit être inférieure ou égale à 16';
-        errorDate.style.display = 'block';
-    }
+    
 }
 
 form.addEventListener('submit', validateDate);

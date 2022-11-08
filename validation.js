@@ -23,7 +23,8 @@ const validateDescription = (description) => {
  * @returns booleen vrai ou faux
  */
 const validateDate = (date) => {
-    return typeof(capacite) === 'number' &&  capacite<=0;
+    return typeof(date) === 'string' && date.length > 0
+    && date.length < 50;
 }
 
 /**
