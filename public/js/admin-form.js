@@ -110,3 +110,46 @@ form.addEventListener('submit', async (event) => {
         inputDescription.value = '';
     }
 });
+
+
+const resetSoumission = () => {
+    document.location.reload();
+    inputNomTournoi.value = '';
+    inputCapacite.value = '';
+    inputDate.value = '';
+    inputDescription.value = '';
+
+    if(inputNomTournoi.validity.valid) {
+        errorNomTournoi.style.display = 'none';
+    }
+    else if(inputNomTournoi.validity.valueMissing) {
+        errorNomTournoi.innerText = 'Ce champ est requis';
+        errorNomTournoi.style.display = 'block';
+    }
+
+    if(inputDescription.validity.valid) {
+        errorDescription.style.display = 'none';
+    }
+    else if(inputDescription.validity.valueMissing) {
+        errorDescription.innerText = 'Ce champ est requis';
+        errorDescription.style.display = 'block';
+    }
+    
+    if(inputDate.validity.valid) {
+        errorDate.style.display = 'none';
+    }
+    else if(inputDate.validity.valueMissing) {
+        errorDate.innerText = 'Ce champ est requis';
+        errorDate.style.display = 'block';
+    }
+
+    if(inputCapacite.validity.valid) {
+        errorCapacite.style.display = 'none';
+    }
+    else if(inputCapacite.validity.valueMissing) {
+        errorCapacite.innerText = 'Ce champ est requis';
+        errorCapacite.style.display = 'block';
+    }
+};
+
+form.addEventListener('reset', resetSoumission);
