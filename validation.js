@@ -4,8 +4,7 @@
  * @returns booleen vrai ou faux
  */
 const validateNom = (nom) => {
-    return typeof(nom) === 'string' && nom.length > 2
-                    && nom.length < 50;
+    return typeof nom === 'string' && !!nom;
 }
 
 /**
@@ -15,7 +14,7 @@ const validateNom = (nom) => {
  */
 const validateDescription = (description) => {
     return typeof(description) === 'string' && description.length > 0
-    && description.length < 200;
+    && description.length < 50;
 }
 
 /**
@@ -24,8 +23,7 @@ const validateDescription = (description) => {
  * @returns booleen vrai ou faux
  */
 const validateDate = (date) => {
-    return typeof(date) === 'string' && date.length > 0
-    && date.length < 50;
+    return typeof(capacite) === 'number' &&  capacite<=0;
 }
 
 /**
@@ -46,14 +44,3 @@ const validateCapacite = (capacite) => {
 export const validate = (body) => {
     return validateNom(body.nom) && validateDescription(body.description) && validateDate(body.date_debut) && validateCapacite(body.capacite);
 }
-
-
-// i put this code in the post of admin and it works;
-/*  if(validate(request.body)){
-     response.render('admin', {
-        titre: 'Administrateur',
-        styles: ['/css/admin.css'],
-        scripts: ['/js/admin.js'],
-        id: await addTournoi(request.body.nom,request.body.date_debut,parseInt(request.body.capacite),request.body.description),
-   
-    });*/

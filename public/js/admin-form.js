@@ -1,4 +1,4 @@
-let buttons = document.getElementById('form-admin');
+let form = document.getElementById('form-admin');
 
 // Nom tournoi
 let inputNomTournoi = document.getElementById('nom-tournoi');
@@ -22,12 +22,16 @@ const validateCapacite = () => {
     if(inputCapacite.validity.valid) {
         errorCapacite.style.display = 'none';
     }
+    else if(inputCapacite.validity.valueMissing) {
+        errorCapacite.innerText = 'Ce champ est requis';
+        errorCapacite.style.display = 'block';
+    }
     else if(inputCapacite.validity.rangeUnderflow) {
         errorCapacite.innerText = 'La valeur doit être supérieure à 0';
         errorCapacite.style.display = 'block';
     }
     else if(inputCapacite.validity.rangeOverflow) {
-        errorCapacite.innerText = 'La valeur doit être inférieure ou égale à 150';
+        errorCapacite.innerText = 'La valeur doit être inférieure ou égale à 16';
         errorCapacite.style.display = 'block';
     }
 }
@@ -45,8 +49,12 @@ const validateDate = () => {
         errorDate.innerText = 'Ce champ est requis';
         errorDate.style.display = 'block';
     }
-    else if(inputDate.validity.typeMismatch) {
-        errorDate.innerText = 'Le format est invalide';
+    else if(inputDate.validity.rangeUnderflow) {
+        errorDate.innerText = 'La valeur doit être supérieure à 0';
+        errorDate.style.display = 'block';
+    }
+    else if(inputDate.validity.rangeOverflow) {
+        errorDate.innerText = 'La valeur doit être inférieure ou égale à 16';
         errorDate.style.display = 'block';
     }
 }
@@ -69,7 +77,7 @@ const validateDescription = () => {
         errorDescription.style.display = 'block';
     }
     else if(inputDescription.validity.tooLong) {
-        errorDescription.innerText = 'Le message doit avoir au maximum 200 caractères';
+        errorDescription.innerText = 'Le message doit avoir au maximum 50 caractères';
         errorDescription.style.display = 'block';
     }
 }

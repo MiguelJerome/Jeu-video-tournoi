@@ -96,20 +96,23 @@ app.get('/admin', async(request, response) => {
     response.render('admin', {
         titre: 'Administrateur',
         styles: ['/css/admin.css'],
-        scripts: ['/js/admin.js'],
-        tournois: await getTournoi(),
+        scripts: ['/js/admin.js','/js/admin-form.js'],
+        tournois: await getTournoi(),  
     });
 })
 
 app.post('/admin', async (request, response) =>{
- //   if(validate(request.body)){
-        response.render('admin', {
-            titre: 'Administrateur',
-            styles: ['/css/admin.css'],
-            scripts: ['/js/admin.js','/js/admin-form.js'],
-            id: await addTournoi(request.body.nom,request.body.date_debut,request.body.capacite,request.body.description),
-        });
-//    }
+    if(validate(request.body)){
+        console.log('Okay add tournament');
+        console.log(request.body);
+        addTournoi(request.body.nom, request.body.date_debut, request.body.capacite, request.body.description);
+        response.status(200).end();
+    }
+    else{
+        console.log('error add tournament');
+        console.log(request.body);
+        response.status(400).end();
+   }
 });
 
 app.get('/accueil/id', async (req,res)=>{
