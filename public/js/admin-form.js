@@ -1,6 +1,6 @@
 let form = document.getElementById('form-admin');
 
-// Nom tournoi
+// Nom tournoi: validation du formulaire ajouter tournoi
 let inputNomTournoi = document.getElementById('nom-tournoi');
 let errorNomTournoi = document.getElementById('error-nom-tournoi');
 const validateNomTournoi = () => {
@@ -15,7 +15,7 @@ const validateNomTournoi = () => {
 
 form.addEventListener('submit', validateNomTournoi);
 
-// Capacite
+// Capacite : validation du formulaire ajouter tournoi
 let inputCapacite = document.getElementById('capacite-tournoi');
 let errorCapacite = document.getElementById('error-capacite');
 const validateCapacite = () => {
@@ -38,7 +38,7 @@ const validateCapacite = () => {
 
 form.addEventListener('submit', validateCapacite);
 
-// Date
+// Date : validation du formulaire ajouter tournoi
 let inputDate = document.getElementById('date-debut-tournoi');
 let errorDate = document.getElementById('error-date');
 const validateDate = () => {
@@ -58,7 +58,7 @@ const validateDate = () => {
 
 form.addEventListener('submit', validateDate);
 
-// Description
+// Description : validation du formulaire ajouter tournoi
 let inputDescription = document.getElementById('description-tournoi');
 let errorDescription = document.getElementById('error-description');
 const validateDescription = () => {
@@ -81,7 +81,7 @@ const validateDescription = () => {
 
 form.addEventListener('submit', validateDescription);
 
-// Soumission
+// Soumission : envoyer les inputs du formulaire ajouter tournoi pour etre eventuelle sauver dans la base de donnee
 form.addEventListener('submit', async (event) => {
     event.preventDefault();
 
@@ -111,7 +111,7 @@ form.addEventListener('submit', async (event) => {
     }
 });
 
-
+//bouton reset : validation du formulaire ajouter tournoi
 const resetSoumission = () => {
     document.location.reload();
     inputNomTournoi.value = '';

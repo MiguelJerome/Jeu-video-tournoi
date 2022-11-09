@@ -45,7 +45,7 @@ app.use(compression());
 app.use(json());
 app.use(express.static('public'));
 
-// Programmation de routes
+// Get sur la route racine
 app.get('/', async (request, response) => {
     response.render('acceuil', {
         titre: 'Acceuil',
@@ -55,6 +55,7 @@ app.get('/', async (request, response) => {
     });
 })
 
+//Get sur la route /accueil pour avoir tous les tournois
 app.get('/acceuil', async (request, response) => {
     response.render('acceuil', {
         titre: 'Acceuil',
@@ -65,6 +66,7 @@ app.get('/acceuil', async (request, response) => {
     });
 })
 
+//Post sur la route /accueil pour s'inscrire a un tournois
 app.post('/acceuil', async (request, response) => {
     response.render('acceuil', {
         titre: 'Accueil',
@@ -74,6 +76,7 @@ app.post('/acceuil', async (request, response) => {
     });
 })
 
+//Get sur la route /compte Pour avoir les tournois Inscrits
 app.get('/compte', async (request, response) => {
     response.render('compte', {
         titre: 'Compte',
@@ -83,6 +86,7 @@ app.get('/compte', async (request, response) => {
     });
 })
 
+//Delete sur la route /compte pour se desinscrire a un tournoi
 app.delete('/compte', async (request, response) => {
     response.render('compte', {
         titre: 'Compte',
@@ -92,6 +96,7 @@ app.delete('/compte', async (request, response) => {
     });
 })
 
+//Get sur la route /admin pour avoir tous les tournois
 app.get('/admin', async(request, response) => {
     response.render('admin', {
         titre: 'Administrateur',
@@ -100,6 +105,7 @@ app.get('/admin', async(request, response) => {
         tournois: await getTournoi(),  
     });
 })
+
 
 app.post('/admin', async (request, response) =>{
     if(validate(request.body)){
@@ -115,11 +121,13 @@ app.post('/admin', async (request, response) =>{
    }
 });
 
+//Post sur la route /admin pour ajouter un trounois
 app.get('/accueil/id', async (req,res)=>{
     let ids = await getIds(); 
     res.status(200).json(ids);
 });
 
+//Delete sur la route /admin pour suprimmer un tournoi
 app.delete('/admin',async(request,response)=>{
     response.render('admin', {
         titre: 'Administrateur',
