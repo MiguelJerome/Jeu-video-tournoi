@@ -1,3 +1,4 @@
+/*c est le style pour les labels du formulaire ajouter tournoi*/
 label{
     display: flex;
     flex-direction: column;
@@ -7,12 +8,14 @@ label{
     color:#ffd700;
 }
 
+/*c est le style pour le label datepicker du formulaire ajouter tournoi*/
 datepicker{
     background-color: #333;
     border: .5rem solid #555;
     color: #EEE;
 }
 
+/*c est le style pour le formulaire ajouter tournoi*/
 form{
     display: flex;
     flex-direction: column;
@@ -22,6 +25,7 @@ form{
     align-items: stretch;
 }
 
+/*c est le style pour les inputs du formulaire ajouter tournoi*/
 input{
     border-radius: 5px;
     width: 500px;
@@ -34,6 +38,7 @@ input{
     border: 0.5rem solid #555;
 }
 
+/*c est le style pour le label textarea du formulaire ajouter tournoi*/
 textarea{
     resize: none;
     width: 1rem;
@@ -42,6 +47,7 @@ textarea{
     color: #EEE;
 }
 
+/*c est le style pour le bouton ajouter du formulaire ajouter tournoi*/
 .btn-ajouter-tournoi{
     display: flex;
     color: black;
@@ -69,6 +75,7 @@ textarea{
     text-shadow: 5px 5px 10px  #40b5ad;
 }
 
+/*c est le style pour le bouton reset du formulaire ajouter tournoi*/
 .btn-reset-tournoi{
     display: flex;
     border-radius: 5px;
@@ -94,13 +101,14 @@ textarea{
     text-shadow: 5px 5px 10px  white;
 }
 
+/*c est le style pour le label description*/
 #description-tournoi{
     width: 500px;
     height: 200px;
 }
 
+/*c est le style pour le formulaire ajouter tournoi*/
 .form-admin-wrapper{
-   
     display: flex;
     flex-direction: column;
     width: 45rem;
@@ -116,6 +124,7 @@ textarea{
     border: 2rem solid #f8c5ae;
 }
 
+/*c est le style pour le label nom-tournoi*/
 #nom-tournoi{
     background-color: #feabe6;
     border: 0.5rem solid #92baf4;
@@ -125,6 +134,7 @@ textarea{
     font-size: 1.7rem;
 }
 
+/*c est le style pour le label description*/
 #description-tournoi{
     background-color: #feabe6;
     border: 0.5rem solid #92baf4;
@@ -134,6 +144,7 @@ textarea{
     font-size: 1.7rem;
 }
 
+/*c est le style pour le label date debut*/
 #date-debut-tournoi{
     background-color: #feabe6;
     border: 0.5rem solid #92baf4;
@@ -143,6 +154,7 @@ textarea{
     font-size: 1.7rem;
 }
 
+/*c est le style pour le label capicite*/
 #capacite-tournoi{
     background-color: #feabe6;
     border: 0.5rem solid #92baf4;
@@ -151,12 +163,15 @@ textarea{
     border-radius: 1rem;
     font-size: 1.7rem;
 }
+
+/*c est le style pour des placeholder pour chaque des input du formaulaie ajouter tournoi qui l'utilise*/
 ::placeholder{
     color:springgreen;
     text-shadow: 5px 5px 10px  black;
     font-size: 1.7rem;
 }
 
+/*c est le style pour le bloc d error pour chaque des input du formaulaie ajouter tournoi*/
 .error{
     display: none;
     color: #a00;

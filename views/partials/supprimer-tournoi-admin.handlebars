@@ -1,9 +1,16 @@
+<!--montre pour tous les composantes tournois de la table tournoi-->
 {{#each tournois}}
+<!--ceci est le wrapper grid de colonne pour les cartes tournoi-->
     <div class="grid-example col s12 m6">
-        <div class="tournoi-card">   
+<!--ceci est le wrapper carte tournoi-->    
+        <div class="tournoi-card">  
+ <!--ceci est le wrapper grid de colonne pour les cartes tournoi--> 
             <div class="card">
+<!--ceci est la composante  tournoi info--> 
                 {{>tournoi-info}} 
+<!--ceci est le wrapper du background pour la carte tournoi--> 
                     <div class="card-background">
+<!--ceci est la composante pour le bouton supprimer de la page admin--> 
                         {{>bouton-supprimer-admin}} 
                     </div>
             </div>  

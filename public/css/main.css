@@ -5,10 +5,12 @@
     text-decoration: none;
 }
 
+/*mettre les caracteres en foncer pour la barre de navigation*/
 nav{
     font-weight: bolder;
 }
 
+/*c est le style pour le bouton inscription*/
 .btn-inscription-tournoi{
     display: flex;
     color: black;
@@ -36,6 +38,7 @@ nav{
     text-shadow: 5px 5px 10px  #40b5ad;
 }
 
+/*c est le style pour le bouton desinscrire*/
 .btn-desinscrire-tournoi{
     display: flex;
     border-radius: 5px;
@@ -61,6 +64,7 @@ nav{
     text-shadow: 5px 5px 10px  white;
 }
 
+/*c est le style en faisant le hover pour le bouton desinscrire*/
 .btn-desinscrire-tournoi:hover{
     box-shadow: 0 3px 3px 0 rgb(0 0 0 / 14%), 0 1px 7px 0 rgb(0 0 0 / 12%), 0 3px 1px -1px rgb(0 0 0 / 20%);
     background-color:#ff0000;
@@ -68,6 +72,8 @@ nav{
     border-radius: 50%;
 }
 
+
+/*c est le style pour le bouton supprimer*/
 .btn-supprimer-tournoi{
     display: flex;
     color: black;
@@ -95,6 +101,7 @@ nav{
     text-shadow: 5px 5px 10px  #40b5ad;
 }
 
+/*c est l'animation des boutons*/
 @keyframes buttons1{
   0%
   {
@@ -149,12 +156,14 @@ nav{
   }
 }
 
+/*c est le style en faisant le hover pour le bouton supprimer*/
 .btn-supprimer-tournoi:hover{
     box-shadow: 0 3px 3px 0 rgb(0 0 0 / 14%), 0 1px 7px 0 rgb(0 0 0 / 12%), 0 3px 1px -1px rgb(0 0 0 / 20%);
     background-color:springgreen;
     border-radius: 50%;
 }
 
+/*c est le style pour le wallpaper de cs-go*/
 .wallpaper-background{
     height: 100%;
     width: 100%;
@@ -170,16 +179,20 @@ nav{
     background-position: 80%;
 }
 
+/*mettre les caracteres plus foncer de la partie footer*/
 footer{
     font-weight: bolder;
 }
 
+
+/*c est le display pour l icon de GitHub de la partie footer*/
 #footer-github{
     display: flex;
     align-items: center;
     flex-direction: column;
   }
 
+/*c est le style pour l icon de GitHub de la partie footer*/
 .gitHubicon{
     height: 100%;
     width: 100%;
@@ -193,6 +206,7 @@ footer{
     font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
 }
 
+/*c est le style pour la carte tournoi parti info*/
 .tournoi-info{
     display: flex;
     flex-direction: column;
@@ -204,6 +218,8 @@ footer{
     color: black;
 }
 
+
+/*c est le style pour la carte tournoi*/
 .tournoi-card{ 
     padding: 2rem;
     margin: 5rem;
@@ -215,20 +231,25 @@ footer{
     font-weight: bolder;
 }
 
+
+/*couleur du background de la carte tournoi partie info*/
 .tournoi-card-info{ 
     background-color:#feabe6;
 }
 
+/*c est le style pour les donnee de tournoi pour la carte tournoi*/
 p{
     color:#633633;
     font-weight: bolder;
     font-size: large;
 }
 
+/*couleur du background de la carte tournoi*/
 .card-background{
     background-color: #92baf4;
 }
 
+/*couleur titre des info donnes de la table tounoi*/
 span{
     color:white;
 }
