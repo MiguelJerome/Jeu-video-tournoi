@@ -13,13 +13,12 @@ async function disableButton(){
                     let id = data[i].id_tournois;
                     if(id==inscrires[j].dataset.id){
                         inscrires[j].disabled = true;
-                         inscrires[j].innerText = "INCRIT"
+                         inscrires[j].innerText = "INCRIT";
                     }
              }
         }
     }
 }
-
 
 /**
  * Fonction qui inscrit l'utilisateur a un cours.
@@ -29,7 +28,7 @@ async function inscription(id_tournois){
       
     let data = {
       id_tournois:id_tournois
-    }
+    };
   
     let response = await fetch('/acceuil', {
       method: 'POST',
@@ -51,8 +50,8 @@ for(let i = 0;i<inscrires.length;i++)
         inscription(inscrires[i].dataset.id);
         inscrires[i].style.backgroundColor = "gray";
         inscrires[i].disabled = true;
-        inscrires[i].innerText = "INCRIT"
-    })
+        inscrires[i].innerText = "INCRIT";
+    });
 }
 
 await disableButton();

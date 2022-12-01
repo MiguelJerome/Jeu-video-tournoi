@@ -45,3 +45,9 @@ const validateCapacite = (capacite) => {
 export const validate = (body) => {
     return validateNom(body.nom) && validateDescription(body.description) && validateDate(body.date_debut) && validateCapacite(body.capacite);
 }
+
+const validateCourriel = (courriel) => {
+    return typeof courriel === 'string' && 
+        !!courriel &&
+        courriel.match(/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/);
+}

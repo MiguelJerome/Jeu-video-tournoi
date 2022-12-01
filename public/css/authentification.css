@@ -1,0 +1,115 @@
+/*c est le style pour les labels du formulaire authentifation*/
+label{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-size: 1.5em;
+    margin: 20px;
+    color:#ffd700;
+}
+
+/*c est le style pour le formulaire authentifation*/
+form{
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-content: center;
+    justify-content: space-between;
+    align-items: stretch;
+}
+
+/*c est le style du titre du formulaire authentifation*/
+.title-auth{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-size: 3rem;
+    margin: 20px;
+    color:white;
+}
+
+/*c est le style pour les inputs du formulaire authentifation*/
+input{
+    border-radius: 5px;
+    width: 500px;
+    height: 40px;
+    border-color:springgreen;
+    padding: 5px;
+    font-size: 1.5em;
+    color:#fff;
+    background-color: #333;
+    border: 0.5rem solid #555;
+}
+
+/*c est le style pour l'input-nom-utilisateur*/
+#input-nom-utilisateur{
+    background-color: #feabe6;
+    border: 0.5rem solid #92baf4;
+    color: black;
+    font-weight: bolder;
+    border-radius: 1rem;
+    font-size: 1.7rem;
+}
+
+/*c est le style pour l'input-mot-de-passe*/
+#input-mot-de-passe{
+    background-color: #feabe6;
+    border: 0.5rem solid #92baf4;
+    color: black;
+    font-weight: bolder;
+    border-radius: 1rem;
+    font-size: 1.7rem;
+}
+
+/*c est le style pour des placeholder pour chaque des input du formulaire authentifation qui l'utilise*/
+::placeholder{
+    color:springgreen;
+    text-shadow: 5px 5px 10px  black;
+    font-size: 1.7rem;
+}
+
+/*c est le style pour le formulaire authenfication*/
+.form-authentification-wrapper{
+    display: flex;
+    flex-direction: column;
+    width: 45rem;
+    flex-wrap: wrap;
+    align-content: center;
+    justify-content: center;
+    align-items: center;
+    background-color: #000;
+    opacity: 0.8;
+    font-weight: bolder;
+    font-size: large;
+    border-radius: 1rem;
+    border: 2rem solid #f8c5ae;
+}
+
+/*c est le style pour le bouton authenfication du formulaire authenfication*/
+.btn-authentification{
+    display: flex;
+    color: black;
+    border-radius: 5px;
+    width: 100%;
+    height: 40px;
+    border-color: springgreen;
+    padding: 100px;
+    font-size: 1.7rem;
+    font-weight: bolder;
+    background-color: springgreen;
+    overflow: visible;
+    position: relative;
+    z-index: 1;
+    animation: buttons1 6s forwards, buttons2 4s infinite;
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-content: space-around;
+    justify-content: center;
+    box-shadow: 0 3px 3px 0 rgb(0 0 0 / 14%), 0 1px 7px 0 rgb(0 0 0 / 12%), 0 3px 1px -1px rgb(0 0 0 / 20%);
+    text-shadow: 5px 5px 10px  #40b5ad;
+}
+
+/*c est le style de container du formulaire authenfication*/
+.container-auth{
+    margin: 5rem;
+}

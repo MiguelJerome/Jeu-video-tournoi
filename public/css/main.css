@@ -253,3 +253,37 @@ p{
 span{
     color:white;
 }
+/*cookie*/
+#message-cookie{
+    background-color: #087ee1;
+    color: white;
+    display: flex;
+    height: 50px;
+    position: sticky;
+    bottom: 0;
+}
+#message-cookie p{
+    display: flex;
+}
+.btn-cookie{
+    background-color: #feabe6;
+    display: flex;
+    border-radius: 5px;
+    width: 100%;
+    height: 40px;
+    padding: 25px;
+    font-size: 1.7rem;
+    font-weight: bolder;
+    align-items: center;
+    overflow: visible;
+    overflow: hidden;
+    z-index: 100000;
+    animation: buttons1 6s forwards, buttons2 4s infinite;
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-content: space-around;
+    justify-content: center;
+    box-shadow: 0 3px 3px 0 rgb(0 0 0 / 14%), 0 1px 7px 0 rgb(0 0 0 / 12%), 0 3px 1px -1px rgb(0 0 0 / 20%);
+    overflow: visible;
+    text-shadow: 5px 5px 10px  white;
+}
