@@ -11,17 +11,16 @@ export const addUtilisateur = async (courriel, motDePasse) => {
         VALUES (?, ?)`,
         [courriel, motDePasseHash]
     );
-};
+}
 
 export const getUtilisateurByCourriel = async (courriel) => {
     let connexion = await connectionPromise;
-    console.log(courriel);
 
     let utilisateur = await connexion.get(
         `SELECT *
         FROM utilisateur
         WHERE courriel = ?`,
         [courriel]
-    );
+    )
     return utilisateur;
-};
+}

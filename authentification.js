@@ -6,9 +6,11 @@ import { getUtilisateurByCourriel } from "./model/utilisateur.js";
 let config = {
     usernameField: 'courriel',
     passwordField: 'motDePasse'
-};
+}
+
 
 passport.use(new Strategy(config, async (courriel, motDePasse, done) => {
+
     try {
         let utilisateur = await getUtilisateurByCourriel(courriel);
 

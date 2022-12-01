@@ -8,9 +8,17 @@
                 <h2 class="title-auth">{{titre}}</h2>
                 <!--ceci sont tous les composantes du formulaire authentification--> 
                 {{>label-input-nom-utilisateur-authentification}}
+
+                <label>
+    Prenom d'utilisateur:*
+    <input type="text" id="input-prenom-utilisateur" required>
+</label>
                 {{>label-input-mot-passe-authentification}}
                 <!--ceci est le bouton d'authentification a partir du formulaire authentification --> 
-                
+                <label>
+    Courriel d'utilisateur:*
+    <input type="text" id="input-courriel-utilisateur" required>
+</label>
                 {{>bouton-authentification}}
             </form>
         </div>

@@ -46,6 +46,7 @@ export const validate = (body) => {
     return validateNom(body.nom) && validateDescription(body.description) && validateDate(body.date_debut) && validateCapacite(body.capacite);
 }
 
+
 const validateCourriel = (courriel) => {
     return typeof courriel === 'string' && 
         !!courriel &&

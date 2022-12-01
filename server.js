@@ -12,6 +12,7 @@ import { addUtilisateur } from './model/utilisateur.js';
 import {validate} from './validation.js';
 import './authentification.js';
 
+
 // Création du serveur web
 let app = express();
 
@@ -23,7 +24,7 @@ app.engine('handlebars', engine({
         afficheNombreInscrit:(id_tournois)=>{
             i++;
             for(i ;i<nombres.length;){
-                console.log(id_tournois);
+                console.log(id_tournois)
                 if(nombres[i].id_tournois==id_tournois){
                     return nombres[i].nombre   
                 }
@@ -72,7 +73,7 @@ app.get('/', async (request, response) => {
         scripts: ['/js/accueil.js'],
         tournois: await getTournoi(), 
     });
-});
+})
 
 //Get sur la route /accueil pour avoir tous les tournois
 app.get('/acceuil', async (request, response) => {
@@ -84,7 +85,7 @@ app.get('/acceuil', async (request, response) => {
         tournois: await getTournoi(),
         nombres : await getNombreInscrit()
     });
-});
+})
 
 //Post sur la route /accueil pour s'inscrire a un tournois
 app.post('/acceuil', async (request, response) => {
@@ -94,7 +95,7 @@ app.post('/acceuil', async (request, response) => {
         scripts: ['/js/accueil.js'],
         id: await addTournoiInscrit(request.body.id_tournois),
     });
-});
+})
 
 //Get sur la route /compte Pour avoir les tournois Inscrits
 app.get('/compte', async (request, response) => {
@@ -105,7 +106,7 @@ app.get('/compte', async (request, response) => {
         scripts: ['/js/compte.js'],
         tournois: await getTournoiInscrit(),
     });
-});
+})
 
 //Delete sur la route /compte pour se desinscrire a un tournoi
 app.delete('/compte', async (request, response) => {
@@ -116,7 +117,7 @@ app.delete('/compte', async (request, response) => {
         scripts: ['/js/compte.js'],
         tournois: await deleteTournoiInscrit(request.body.id_tournois),
     });
-});
+})
 
 //Get sur la route /admin pour avoir tous les tournois
 app.get('/admin', async(request, response) => {
@@ -127,7 +128,8 @@ app.get('/admin', async(request, response) => {
         scripts: ['/js/admin.js','/js/admin-form.js'],
         tournois: await getTournoi(),  
     });
-});
+})
+
 
 app.post('/admin', async (request, response) =>{
     if(validate(request.body)){
@@ -144,7 +146,7 @@ app.post('/admin', async (request, response) =>{
 });
 
 app.get('/inscription', (request, response) => {
-    response.render('authentification', {
+    response.render('inscription', {
         titre: 'Inscription',
         styles: ['/css/authentification.css'],
         scripts: ['/js/inscription.js'],
@@ -153,7 +155,7 @@ app.get('/inscription', (request, response) => {
 });
 
 app.get('/connexion', (request, response) => {
-    response.render('authentification', {
+    response.render('connexion', {
         titre: 'Connexion',
         styles: ['/css/authentification.css'],
         scripts: ['/js/connexion.js'],
@@ -177,11 +179,14 @@ app.delete('/admin',async(request,response)=>{
         tournois: await getTournoi(),
         id:await supprimerTournoi(request.body.id),
     });
-});
+})
 app.post('/accept', (request, response) => {
     request.session.accept = true;
     response.status(200).end();
 });
+
+
+
 
 app.post('/inscription', async (request, response, next) => {
     // Valider les données reçu du client
@@ -206,13 +211,14 @@ app.post('/inscription', async (request, response, next) => {
 
 app.post('/connexion', (request, response, next) => {
     // Valider les données reçu du client
-    console.log('connexion');
+    console.log('connexrion')
 
     if(true) {
         passport.authenticate('local', (error, utilisateur, info) => {
             if(error) {
                 next(error);
             }
+            
             else if(!utilisateur) {
                 response.status(401).json(info);
             }
@@ -241,7 +247,7 @@ app.post('/deconnexion', (request, response, next) => {
         else {
             response.redirect('/');
         }
-    });
+    })
 });
 
 // Démarrage du serveur

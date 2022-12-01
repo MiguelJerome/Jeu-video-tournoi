@@ -1,12 +1,14 @@
 import { existsSync } from 'fs';
 import sqlite3 from 'sqlite3';
 import { open } from 'sqlite';
+import { hash } from 'bcrypt';
 
 let year = '2022';
 let month = '11';
 let days = '05';
 let separtorDate = '-';
-
+let adminHash = await hash('admin',10);
+let userHash = await hash('passw0rd',10);
 const tournoiDefaultDate = `'${year}${separtorDate}${month}${separtorDate}${days}'`;
 /**
  * Constante indiquant si la base de données existe au démarrage du serveur 
@@ -70,15 +72,15 @@ const createDatabase = async (connectionPromise) => {
             ('administrateur');
 
         INSERT INTO utilisateur (id_type_utilisateur, courriel, mot_passe, prenom, nom) VALUES 
-            (2, 'admin@admin.com', 'admin', 'Admin', 'Admin'),
-            (1, 'john_doe@gmail.com', 'passw0rd', 'John', 'Doe'),
-            (1, 'sera@gmail.com', 'passw0rd', 'Seraphina', 'Lopez'),
-            (1, 'arlo_shield@gmail.com', 'passw0rd', 'Arlo', 'Shield'),
-            (1, 'blyke_ray@gmail.com', 'passw0rd', 'Blyke', 'Leclerc'),
-            (1, 'remi_fast@gmail.com', 'passw0rd', 'Remi', 'Smith'),
-            (1, 'isen_radar@gmail.com', 'passw0rd', 'Isen', 'Turner'),
-            (1, 'elaine_doc@gmail.com', 'passw0rd', 'Elaine', 'Nelson'),
-            (1, 'zeke_the_form@gmail.com', 'passw0rd', 'Zeke', 'Anderson');
+            (2, 'admin@admin.com', '${adminHash}', 'Admin', 'Admin'),
+            (1, 'john_doe@gmail.com', '${userHash}', 'John', 'Doe'),
+            (1, 'sera@gmail.com', '${userHash}', 'Seraphina', 'Lopez'),
+            (1, 'arlo_shield@gmail.com', '${userHash}', 'Arlo', 'Shield'),
+            (1, 'blyke_ray@gmail.com', '${userHash}', 'Blyke', 'Leclerc'),
+            (1, 'remi_fast@gmail.com', '${userHash}', 'Remi', 'Smith'),
+            (1, 'isen_radar@gmail.com', '${userHash}', 'Isen', 'Turner'),
+            (1, 'elaine_doc@gmail.com', '${userHash}', 'Elaine', 'Nelson'),
+            (1, 'zeke_the_form@gmail.com', '${userHash}', 'Zeke', 'Anderson');
             
         INSERT INTO tournois (nom, date_debut, capacite, description) VALUES 
             ('Call Of Duty : Modern Warfare II',  ${tournoiDefaultDate}, 16, 'Il plonge les joueurs dans un conflit mondial sans précédent avec le retour de la Task Force 141, il propose des combats multijoueurs immersifs et des missions coop axées sur la narration.'),
