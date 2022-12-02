@@ -78,14 +78,21 @@ app.get('/', async (request, response) => {
 
 //Get sur la route /accueil pour avoir tous les tournois
 app.get('/acceuil', async (request, response) => {
-    response.render('acceuil', {
-        titre: 'Acceuil',
-        styles: ['/css/admin.css'],
-        accept: request.session.accept,
-        scripts: ['/js/accueil.js'],
-        tournois: await getTournoi(),
-        nombres : await getNombreInscrit()
-    });
+    if(request.user) {
+        response.render('acceuil', {
+            titre: 'Acceuil',
+            styles: ['/css/admin.css'],
+            scripts: ['/js/accueil.js'],
+            tournois: await getTournoi(),
+            nombres : await getNombreInscrit(),
+            user: request.user,
+            aAcces: request.user.acces > 0,
+            accept: request.session.accept,
+        });
+    }
+    else {
+        response.redirect('/connexion');
+    }
 })
 
 //Post sur la route /accueil pour s'inscrire a un tournois
@@ -184,9 +191,6 @@ app.post('/accept', (request, response) => {
     request.session.accept = true;
     response.status(200).end();
 });
-
-
-
 
 app.post('/inscription', async (request, response, next) => {
     // Valider les données reçu du client

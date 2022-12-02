@@ -265,6 +265,15 @@ span{
 #message-cookie p{
     display: flex;
 }
+
+#message-login-user{
+    background-color: #087ee1;
+    color: white;
+    display: flex;
+    height: 50px;
+    position: sticky;
+    bottom: 0;
+}
 .btn-cookie{
     background-color: #feabe6;
     display: flex;
