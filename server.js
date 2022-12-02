@@ -110,9 +110,10 @@ app.get('/compte', async (request, response) => {
     response.render('compte', {
         titre: 'Compte',
         styles: ['/css/admin.css'],
-        accept: request.session.accept,
         scripts: ['/js/compte.js'],
         tournois: await getTournoiInscrit(),
+        user: request.user,
+        accept: request.session.accept
     });
 })
 
@@ -132,9 +133,10 @@ app.get('/admin', async(request, response) => {
     response.render('admin', {
         titre: 'Administrateur',
         styles: ['/css/admin.css'],
-        accept: request.session.accept,
         scripts: ['/js/admin.js','/js/admin-form.js'],
         tournois: await getTournoi(),  
+        user: request.user,
+        accept: request.session.accept
     });
 })
 
@@ -157,6 +159,7 @@ app.get('/inscription', (request, response) => {
         titre: 'Inscription',
         styles: ['/css/authentification.css'],
         scripts: ['/js/inscription.js'],
+        user: request.user,
         accept: request.session.accept
     });
 });
@@ -166,6 +169,7 @@ app.get('/connexion', (request, response) => {
         titre: 'Connexion',
         styles: ['/css/authentification.css'],
         scripts: ['/js/connexion.js'],
+        user: request.user,
         accept: request.session.accept
     });
 });
@@ -187,6 +191,16 @@ app.delete('/admin',async(request,response)=>{
         id:await supprimerTournoi(request.body.id),
     });
 })
+
+app.get('/stream', (request, response) => {
+    if(request.user) {
+        response.initStream();
+    }
+    else {
+        response.status(401).end();
+    }
+});
+
 app.post('/accept', (request, response) => {
     request.session.accept = true;
     response.status(200).end();
