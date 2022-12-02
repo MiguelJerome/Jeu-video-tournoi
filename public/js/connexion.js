@@ -1,12 +1,12 @@
 let formAuth = document.getElementById('form-auth');
-let inputNomUtilisateur = document.getElementById('input-nom-utilisateur');
+let inputCourriel = document.getElementById('input-courriel-utilisateur');
 let inputMotDePasse = document.getElementById('input-mot-de-passe');
 
 formAuth.addEventListener('submit', async (event) => {
     event.preventDefault();
 
     let data = {
-        courriel: inputNomUtilisateur.value,
+        courriel: inputCourriel.value,
         motDePasse: inputMotDePasse.value
     };
 
