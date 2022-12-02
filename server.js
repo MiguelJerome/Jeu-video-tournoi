@@ -7,11 +7,11 @@ import compression from 'compression';
 import session from 'express-session';
 import memorystore from 'memorystore';
 import passport from 'passport';
+import middlewareSse from './middleware-sse.js';
 import { getTournoi, addTournoi,supprimerTournoi,getTournoiInscrit,addTournoiInscrit,getIds,deleteTournoiInscrit,getNombreInscrit } from './model/admin.js';
 import { addUtilisateur } from './model/utilisateur.js';
 import {validate} from './validation.js';
 import './authentification.js';
-
 
 // Création du serveur web
 let app = express();
@@ -64,6 +64,7 @@ app.use(session({
 app.use(passport.initialize());
 app.use(passport.session());
 app.use(express.static('public'));
+
 // Get sur la route racine
 app.get('/', async (request, response) => {
     response.render('acceuil', {
@@ -129,7 +130,6 @@ app.get('/admin', async(request, response) => {
         tournois: await getTournoi(),  
     });
 })
-
 
 app.post('/admin', async (request, response) =>{
     if(validate(request.body)){
@@ -211,7 +211,7 @@ app.post('/inscription', async (request, response, next) => {
 
 app.post('/connexion', (request, response, next) => {
     // Valider les données reçu du client
-    console.log('connexrion')
+    console.log('connexion')
 
     if(true) {
         passport.authenticate('local', (error, utilisateur, info) => {
