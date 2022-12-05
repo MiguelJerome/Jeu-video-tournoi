@@ -10,17 +10,17 @@ formAuth.addEventListener('submit', async (event) => {
         motDePasse: inputMotDePasse.value
     };
 
-
+if(inputCourriel && inputMotDePasse)
+{
     let response = await fetch('/connexion', {
         method: 'POST',
         headers: {'Content-Type': 'application/json'},
         body: JSON.stringify(data)
     });
+}
 
-
-    if(response.ok) {
-        window.location.replace('/');
-        
+    if(response.ok) { 
+        document.location.replace('/acceuil');  
     }
     else if(response.status === 401) {
         let info = await response.json();

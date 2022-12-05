@@ -16,13 +16,14 @@ formConnexion.addEventListener('submit', async (event) => {
 
     console.log(data.motDepasse);
 
-    
+if(inputNomUtilisateur && inputPrenomUtilisateur && inputCourriel && inputMotDePasse)
+{
     let response = await fetch('/inscription', {
         method: 'POST',
         headers: {'Content-Type': 'application/json'},
         body: JSON.stringify(data)
     });
-
+}
 
     if(response.ok) {
 
