@@ -24,9 +24,9 @@ app.engine('handlebars', engine({
         afficheNombreInscrit:(id_tournois)=>{
             i++;
             for(i ;i<nombres.length;){
-                console.log(id_tournois)
+                console.log(id_tournois);
                 if(nombres[i].id_tournois==id_tournois){
-                    return nombres[i].nombre   
+                    return nombres[i].nombre;   
                 }
                 else{
                     return 0;
@@ -74,7 +74,7 @@ app.get('/', async (request, response) => {
         scripts: ['/js/accueil.js'],
         tournois: await getTournoi(), 
     });
-})
+});
 
 //Get sur la route /accueil pour avoir tous les tournois
 app.get('/acceuil', async (request, response) => {
@@ -93,7 +93,7 @@ app.get('/acceuil', async (request, response) => {
     else {
         response.redirect('/connexion');
     }
-})
+});
 
 //Post sur la route /accueil pour s'inscrire a un tournois
 
@@ -106,7 +106,7 @@ app.post('/acceuil', async (request, response) => {
             id: await addTournoiInscrit(request.body.id_tournois),
         });    
     }
-})
+});
 
 //Get sur la route /compte Pour avoir les tournois Inscrits
 app.get('/compte', async (request, response) => {
@@ -122,7 +122,7 @@ app.get('/compte', async (request, response) => {
             accept: request.session.accept
         });
     }
-})
+});
 
 //Delete sur la route /compte pour se desinscrire a un tournoi
 app.delete('/compte', async (request, response) => {
@@ -137,7 +137,7 @@ app.delete('/compte', async (request, response) => {
             tournois: await deleteTournoiInscrit(request.body.id_tournois),
         });
     }
-})
+});
 
 //Get sur la route /admin pour avoir tous les tournois
 app.get('/admin', async(request, response) => {
@@ -153,7 +153,7 @@ app.get('/admin', async(request, response) => {
         });
 
     }
-})
+});
 
 app.post('/admin', async (request, response) =>{
 
@@ -215,7 +215,7 @@ app.delete('/admin',async(request,response)=>{
             id:await supprimerTournoi(request.body.id),
         });
     }
-})
+});
 
 app.get('/stream', (request, response) => {
     if(request.user) {
@@ -255,7 +255,7 @@ app.post('/inscription', async (request, response, next) => {
 
 app.post('/connexion', (request, response, next) => {
     // Valider les données reçu du client
-    console.log('connexion')
+    console.log('connexion');
 
     if(true) {
         passport.authenticate('local', (error, utilisateur, info) => {
@@ -291,7 +291,7 @@ app.post('/deconnexion', (request, response, next) => {
         else {
             response.redirect('/');
         }
-    })
+    });
 });
 
 // Démarrage du serveur

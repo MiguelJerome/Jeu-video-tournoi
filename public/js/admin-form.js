@@ -11,7 +11,7 @@ const validateNomTournoi = () => {
         errorNomTournoi.innerText = 'Ce champ est requis';
         errorNomTournoi.style.display = 'block';
     }
-}
+};
 
 form.addEventListener('submit', validateNomTournoi);
 
@@ -34,7 +34,7 @@ const validateCapacite = () => {
         errorCapacite.innerText = 'La valeur doit être inférieure ou égale à 16';
         errorCapacite.style.display = 'block';
     }
-}
+};
 
 form.addEventListener('submit', validateCapacite);
 
@@ -54,7 +54,7 @@ const validateDate = () => {
         errorDate.style.display = 'block';
     }
     
-}
+};
 
 form.addEventListener('submit', validateDate);
 
@@ -77,7 +77,7 @@ const validateDescription = () => {
         errorDescription.innerText = 'Le message doit avoir au maximum 50 caractères';
         errorDescription.style.display = 'block';
     }
-}
+};
 
 form.addEventListener('submit', validateDescription);
 
@@ -94,7 +94,7 @@ form.addEventListener('submit', async (event) => {
         description: inputDescription.value,
         date_debut: inputDate.value,
         capacite: parseInt(inputCapacite.value),
-    }
+    };
 
     let response = await fetch('/admin', {
         method: 'POST',

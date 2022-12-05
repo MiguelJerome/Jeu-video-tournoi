@@ -7,7 +7,7 @@ let buttons = document.querySelectorAll('.btn-supprimer-tournoi');
 async function supprimerTournoi(id){
     let data = {
         id:id
-    }
+    };
 
     let response = await fetch('/admin', {
         method: 'DELETE',

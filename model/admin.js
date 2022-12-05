@@ -29,7 +29,7 @@ export const addTournoi = async (nom,date,capacite,description) => {
     );
 
     return resultat.lastID;
-}
+};
 
 /**
  * Fonction qui permet de supprimer un tournoi
@@ -42,7 +42,7 @@ export const supprimerTournoi = async(id)=>{
      await connexion.run(
         `DELETE FROM tournois
         WHERE id_tournois = ${id};`
-     )
+     );
      return id;
 }
 
@@ -57,7 +57,7 @@ export const addTournoiInscrit = async(id_tournois)=>{
     await connexion.run(
         `INSERT INTO tournois_utilisateur (id_tournois,id_utilisateur) 
         Values (${id_tournois},1)`
-            )
+            );
     return id_tournois;
 }
 
@@ -71,7 +71,7 @@ export const getTournoiInscrit = async ()=>{
     let resultat = await connexion.all(
         `select * from tournois t, tournois_utilisateur tu
         where t.id_tournois = tu.id_tournois and tu.id_utilisateur=1`
-    )
+    );
    return resultat;
 }
 
@@ -85,7 +85,7 @@ export const getIds = async ()=>{
         let resultat = await connexion.all(
             `select id_tournois from tournois_utilisateur
             where id_utilisateur = 1`
-        )
+        );
     return resultat;
 }
 
@@ -99,7 +99,7 @@ export const deleteTournoiInscrit = async (id_tournois)=>{
     await connexion.run(
         `DELETE FROM tournois_utilisateur
         WHERE id_tournois = ${id_tournois} and id_utilisateur=1`
-    )
+    );
 }
 
 /**
@@ -112,6 +112,6 @@ export const getNombreInscrit = async ()=>{
         let resultat = await connexion.all(
             `select id_tournois, count(id_tournois) as 'nombre'  from tournois_utilisateur
             group by id_tournois`
-        )
+        );
     return resultat;  
 }

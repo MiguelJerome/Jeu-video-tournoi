@@ -5,7 +5,7 @@
  */
 const validateNom = (nom) => {
     return typeof nom === 'string' && !!nom;
-}
+};
 
 /**
  * Fonction qui verifie si la description est valide
@@ -15,7 +15,7 @@ const validateNom = (nom) => {
 const validateDescription = (description) => {
     return typeof(description) === 'string' && description.length > 0
     && description.length < 50;
-}
+};
 
 /**
  * Fonction qui verifie si la date est valide
@@ -25,7 +25,7 @@ const validateDescription = (description) => {
 const validateDate = (date) => {
     return typeof(date) === 'string' 
     && date.length == 10 ;
-}
+};
 
 /**
  * Fonction qui verifie si la capacité est valide
@@ -35,7 +35,7 @@ const validateDate = (date) => {
 const validateCapacite = (capacite) => {
     return typeof(capacite) === 'number' && capacite> 0
     && capacite < 17;
-}
+};
 
 /**
  * Fonction qui verifie tous
@@ -44,11 +44,11 @@ const validateCapacite = (capacite) => {
  */
 export const validate = (body) => {
     return validateNom(body.nom) && validateDescription(body.description) && validateDate(body.date_debut) && validateCapacite(body.capacite);
-}
+};
 
 
 const validateCourriel = (courriel) => {
     return typeof courriel === 'string' && 
         !!courriel &&
         courriel.match(/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/);
-}
+};

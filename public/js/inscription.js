@@ -34,7 +34,7 @@ formConnexion.addEventListener('submit', async (event) => {
         console.log('Utilisateur déjà existant');
     }
     else {
-        console.log(response.status)
+        console.log(response.status);
         console.log('Erreur inconnu');
     }
 });
