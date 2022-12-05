@@ -1,4 +1,4 @@
-let formConnexion = document.getElementById('inscription-form-auth');
+let formInscription = document.getElementById('inscription-form-auth');
 
 // nom usager: validation du formulaire inscription usager
 let inputNomUtilisateur = document.getElementById('input-nom-utilisateur');
@@ -14,7 +14,7 @@ const validateNomUtilisateur = () => {
     }
 };
 
-formConnexion.addEventListener('submit', validateNomUtilisateur);
+formInscription.addEventListener('submit', validateNomUtilisateur);
 // prenom usager: validation du formulaire inscription usager
 let inputPrenomUtilisateur = document.getElementById('input-prenom-utilisateur');
 let errorPrenomUtilisateur = document.getElementById('error-prenom-authentification');
@@ -29,7 +29,7 @@ const validatePrenomUtilisateur = () => {
     }
 };
 
-formConnexion.addEventListener('submit', validatePrenomUtilisateur);
+formInscription.addEventListener('submit', validatePrenomUtilisateur);
 
 // courriel usager: validation du formulaire inscription usager
 let inputCourriel = document.getElementById('input-courriel-utilisateur');
@@ -45,7 +45,7 @@ const validateNomUsager = () => {
     }
 };
 
-formConnexion.addEventListener('submit', validateNomUsager);
+formInscription.addEventListener('submit', validateNomUsager);
 
 // Mot de passe de l'usager: validation du formulaire inscription usager
 let inputMotDePasse = document.getElementById('input-mot-de-passe');
@@ -61,11 +61,11 @@ const validateMotDePasseUsager = () => {
     }
 };
 
-formConnexion.addEventListener('submit', validateMotDePasseUsager);
+formInscription.addEventListener('submit', validateMotDePasseUsager);
 
 
 // Mot de passe de l'usager: validation du formulaire inscription usager
-formConnexion.addEventListener('submit', async (event) => {
+formInscription.addEventListener('submit', async (event) => {
     event.preventDefault();
 
     let data = {
@@ -80,7 +80,7 @@ formConnexion.addEventListener('submit', async (event) => {
     // Soumission : envoyer les inputs du formulaire inscription pour etre eventuelle sauver dans la base de donnee
 if(inputNomUtilisateur && inputPrenomUtilisateur && inputCourriel && inputMotDePasse)
 {
-    if(!formConnexion.checkValidity()){
+    if(!formInscription.checkValidity()){
         return;
     }
 
@@ -93,7 +93,7 @@ if(inputNomUtilisateur && inputPrenomUtilisateur && inputCourriel && inputMotDeP
 }
 
     if(response.ok) {
-      await window.location.replace('/connexion');
+      await window.location.replace('/Inscription');
     }
     else if(response.status === 409) {
         // Afficher erreur dans l'interface graphique
@@ -146,4 +146,4 @@ const resetSoumission = () => {
     }
 };
 
-formConnexion.addEventListener('reset', resetSoumission);
+formInscription.addEventListener('reset', resetSoumission);
