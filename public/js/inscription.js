@@ -104,3 +104,46 @@ if(inputNomUtilisateur && inputPrenomUtilisateur && inputCourriel && inputMotDeP
         console.log('Erreur inconnu');
     }
 });
+
+//bouton reset : validation du formulaire inscription usager
+const resetSoumission = () => {
+    document.location.reload();
+    inputNomUtilisateur.value = '';
+    inputPrenomUtilisateur.value = '';
+    inputCourriel.value = '';
+    inputMotDePasse.value = '';
+    
+    if(inputNomUtilisateur.validity.valid) {
+        errorNomUtilisateur.style.display = 'none';
+    }
+    else if(inputNomUtilisateur.validity.valueMissing) {
+        errorNomUtilisateur.innerText = 'Ce champ est requis';
+        errorNomUtilisateur.style.display = 'block';
+    }
+
+    if(inputPrenomUtilisateur.validity.valid) {
+        errorPrenomUtilisateur.style.display = 'none';
+    }
+    else if(inputPrenomUtilisateur.validity.valueMissing) {
+        errorPrenomUtilisateur.innerText = 'Ce champ est requis';
+        errorPrenomUtilisateur.style.display = 'block';
+    }
+
+    if(inputCourriel.validity.valid) {
+        errorCourrielUsager.style.display = 'none';
+    }
+    else if(inputCourriel.validity.valueMissing) {
+        errorCourrielUsager.innerText = 'Ce champ est requis';
+        errorCourrielUsager.style.display = 'block';
+    }
+
+    if(inputMotDePasse.validity.valid) {
+        errorMotDePasseUsager.style.display = 'none';
+    }
+    else if(inputMotDePasse.validity.valueMissing) {
+        errorMotDePasseUsager.innerText = 'Ce champ est requis';
+        errorMotDePasseUsager.style.display = 'block';
+    }
+};
+
+formConnexion.addEventListener('reset', resetSoumission);

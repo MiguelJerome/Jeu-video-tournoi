@@ -93,4 +93,4 @@ const resetSoumission = () => {
     }
 };
 
-form.addEventListener('reset', resetSoumission);
+formAuth.addEventListener('reset', resetSoumission);
