@@ -1,9 +1,72 @@
 let formConnexion = document.getElementById('inscription-form-auth');
-let inputNomUtilisateur = document.getElementById('input-nom-utilisateur');
-let inputPrenomUtilisateur = document.getElementById('input-prenom-utilisateur');
-let inputCourriel = document.getElementById('input-courriel-utilisateur');
-let inputMotDePasse = document.getElementById('input-mot-de-passe');
 
+
+
+// nom usager: validation du formulaire inscription usager
+let inputNomUtilisateur = document.getElementById('input-nom-utilisateur');
+let errorNomUtilisateur = document.getElementById('error-nom-authentification');
+
+const validateNomUtilisateur = () => {
+    if(inputNomUtilisateur.validity.valid) {
+        errorNomUtilisateur.style.display = 'none';
+    }
+    else if(inputNomUtilisateur.validity.valueMissing) {
+        errorNomUtilisateur.innerText = 'Ce champ est requis';
+        errorNomUtilisateur.style.display = 'block';
+    }
+};
+
+formConnexion.addEventListener('submit', validateNomUtilisateur);
+// prenom usager: validation du formulaire inscription usager
+let inputPrenomUtilisateur = document.getElementById('input-prenom-utilisateur');
+let errorPrenomUtilisateur = document.getElementById('error-prenom-authentification');
+
+const validatePrenomUtilisateur = () => {
+    if(inputPrenomUtilisateur.validity.valid) {
+        errorPrenomUtilisateur.style.display = 'none';
+    }
+    else if(inputPrenomUtilisateur.validity.valueMissing) {
+        errorPrenomUtilisateur.innerText = 'Ce champ est requis';
+        errorPrenomUtilisateur.style.display = 'block';
+    }
+};
+
+formConnexion.addEventListener('submit', validatePrenomUtilisateur);
+
+// courriel usager: validation du formulaire inscription usager
+let inputCourriel = document.getElementById('input-courriel-utilisateur');
+let errorCourrielUsager = document.getElementById('error-courriel-authentification');
+
+const validateNomUsager = () => {
+    if(inputCourriel.validity.valid) {
+        errorCourrielUsager.style.display = 'none';
+    }
+    else if(inputCourriel.validity.valueMissing) {
+        errorCourrielUsager.innerText = 'Ce champ est requis';
+        errorCourrielUsager.style.display = 'block';
+    }
+};
+
+formConnexion.addEventListener('submit', validateNomUsager);
+
+// Mot de passe de l'usager: validation du formulaire inscription usager
+let inputMotDePasse = document.getElementById('input-mot-de-passe');
+let errorMotDePasseUsager = document.getElementById('error-MotDePasse-authentification');
+
+const validateMotDePasseUsager = () => {
+    if(inputMotDePasse.validity.valid) {
+        errorMotDePasselUsager.style.display = 'none';
+    }
+    else if(inputMotDePasse.validity.valueMissing) {
+        errorMotDePasseUsager.innerText = 'Ce champ est requis';
+        errorMotDePasseUsager.style.display = 'block';
+    }
+};
+
+formConnexion.addEventListener('submit', validateMotDePasseUsager);
+
+
+// Mot de passe de l'usager: validation du formulaire inscription usager
 formConnexion.addEventListener('submit', async (event) => {
     event.preventDefault();
 
@@ -16,8 +79,13 @@ formConnexion.addEventListener('submit', async (event) => {
 
     console.log(data.motDepasse);
 
+    // Soumission : envoyer les inputs du formulaire inscription pour etre eventuelle sauver dans la base de donnee
 if(inputNomUtilisateur && inputPrenomUtilisateur && inputCourriel && inputMotDePasse)
 {
+    if(!formConnexion.checkValidity()){
+        return;
+    }
+
     let response = await fetch('/inscription', {
         method: 'POST',
         headers: {'Content-Type': 'application/json'},

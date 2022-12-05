@@ -1,6 +1,6 @@
 let formAuth = document.getElementById('form-auth');
 
-// Nom usager: validation du formulaire connexion usager
+// courriel usager: validation du formulaire connexion usager
 let inputCourriel = document.getElementById('input-courriel-utilisateur');
 let errorCourrielUsager = document.getElementById('error-courriel-authentification');
 
@@ -16,6 +16,7 @@ const validateNomUsager = () => {
 
 formAuth.addEventListener('submit', validateNomUsager);
 
+// Mot de passe de l'usager: validation du formulaire connexion usager
 let inputMotDePasse = document.getElementById('input-mot-de-passe');
 let errorMotDePasseUsager = document.getElementById('error-MotDePasse-authentification');
 
@@ -31,7 +32,7 @@ const validateMotDePasseUsager = () => {
 
 formAuth.addEventListener('submit', validateMotDePasseUsager);
 
-
+// Soumission : envoyer les inputs du formulaire connexion pour donner la permission d'acces au page du site Web
 formAuth.addEventListener('submit', async (event) => {
     event.preventDefault();
 
