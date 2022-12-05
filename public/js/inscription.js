@@ -1,7 +1,5 @@
 let formConnexion = document.getElementById('inscription-form-auth');
 
-
-
 // nom usager: validation du formulaire inscription usager
 let inputNomUtilisateur = document.getElementById('input-nom-utilisateur');
 let errorNomUtilisateur = document.getElementById('error-nom-authentification');

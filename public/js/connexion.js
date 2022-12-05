@@ -68,3 +68,29 @@ if(inputCourriel && inputMotDePasse)
         console.log('Erreur inconnu');
     }
 });
+
+//bouton reset : validation du formulaire connexion usager
+const resetSoumission = () => {
+    document.location.reload();
+    inputCourriel.value = '';
+    inputMotDePasse.value = '';
+    
+
+    if(inputCourriel.validity.valid) {
+        errorCourrielUsager.style.display = 'none';
+    }
+    else if(inputCourriel.validity.valueMissing) {
+        errorCourrielUsager.innerText = 'Ce champ est requis';
+        errorCourrielUsager.style.display = 'block';
+    }
+
+    if(inputMotDePasse.validity.valid) {
+        errorMotDePasseUsager.style.display = 'none';
+    }
+    else if(inputMotDePasse.validity.valueMissing) {
+        errorMotDePasseUsager.innerText = 'Ce champ est requis';
+        errorMotDePasseUsager.style.display = 'block';
+    }
+};
+
+form.addEventListener('reset', resetSoumission);
