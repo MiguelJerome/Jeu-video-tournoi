@@ -11,14 +11,16 @@
         {{/if}}
         <!--ceci est la liste de lien poue chacune des pages-->
         <ul id="nav-mobile" class="right hide-on-med-and-down">
+            {{#if user}}
             <!--ceci est le lien pour se diriger vers la page acceuil-->
             <li><a href="/acceuil">Acceuil</a></li>
             <!--ceci est le lien pour se diriger vers la page compte-->
             <li><a href="/compte">Compte</a></li>
             <!--ceci est le lien pour se diriger vers la page admin-->
             <li><a href="/admin">Administrateur</a></li>
-            {{#unless user}}
+           {{/if}}
             <!--ceci est le lien pour se diriger vers la page de connexion-->
+            {{#unless user}}
             <li><a href="/connexion">Connexion</a></li>
             <!--ceci est le lien pour se diriger vers la page de Inscription-->
             <li><a href="/inscription">Inscription</a></li>
@@ -27,7 +29,7 @@
             {{#if user}}
             <li>
                 <form method="post" action="/deconnexion">
-                    <button class="btn-deconnexion   right hide-on-med-and-down" type="submit">Déconnexion</button>
+                    <button class="btn-deconnexion right hide-on-med-and-down" type="submit">Déconnexion</button>
                 </form> 
             </li>
             {{/if}}

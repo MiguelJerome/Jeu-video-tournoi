@@ -142,7 +142,7 @@ app.delete('/compte', async (request, response) => {
 //Get sur la route /admin pour avoir tous les tournois
 app.get('/admin', async(request, response) => {
 
-    if(request.user.id_type_utilisateur>0){
+    if(request.user.id_type_utilisateur == 2){
         response.render('admin', {
             titre: 'Administrateur',
             styles: ['/css/admin.css'],
@@ -151,13 +151,16 @@ app.get('/admin', async(request, response) => {
             user: request.user,
             accept: request.session.accept
         });
-
     }
+    else{
+        response.redirect('/connexion');
+    }
+
 });
 
 app.post('/admin', async (request, response) =>{
 
-    if(request.user.id_type_utilisateur>0){
+    if(request.user.id_type_utilisateur == 2){
 
         if(validate(request.body)){
             console.log('Okay add tournament');
@@ -175,7 +178,6 @@ app.post('/admin', async (request, response) =>{
 
 app.get('/inscription', (request, response) => {
 
-        
         response.render('inscription', {
             titre: 'Inscription',
             styles: ['/css/authentification.css'],
@@ -183,6 +185,7 @@ app.get('/inscription', (request, response) => {
             user: request.user,
             accept: request.session.accept
         });
+    
 });
 
 app.get('/connexion', (request, response) => {
@@ -204,7 +207,7 @@ app.get('/accueil/id', async (req,res)=>{
 //Delete sur la route /admin pour suprimmer un tournoi
 app.delete('/admin',async(request,response)=>{
 
-    if(request.user.id_type_utilisateur>0){
+    if(request.user.id_type_utilisateur == 2){
 
         response.render('admin', {
             titre: 'Administrateur',
