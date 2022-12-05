@@ -17,10 +17,11 @@ if(inputCourriel && inputMotDePasse)
         headers: {'Content-Type': 'application/json'},
         body: JSON.stringify(data)
     });
+    await document.location.reload(); 
 }
 
-    if(response.ok) { 
-        document.location.replace('/acceuil');  
+    if(response.ok) {
+        await document.location.replace('/');  
     }
     else if(response.status === 401) {
         let info = await response.json();

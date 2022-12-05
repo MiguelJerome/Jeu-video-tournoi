@@ -23,12 +23,11 @@ if(inputNomUtilisateur && inputPrenomUtilisateur && inputCourriel && inputMotDeP
         headers: {'Content-Type': 'application/json'},
         body: JSON.stringify(data)
     });
+    await document.location.reload(); 
 }
 
     if(response.ok) {
-
-        window.location.replace('/connexion');
-     
+      await window.location.replace('/connexion');
     }
     else if(response.status === 409) {
         // Afficher erreur dans l'interface graphique
