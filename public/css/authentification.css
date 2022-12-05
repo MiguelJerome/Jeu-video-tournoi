@@ -133,3 +133,9 @@ input{
 .container-auth{
     margin: 5rem;
 }
+
+.error{
+    display: none;
+    color: #a00;
+    padding: 10rem;
+}
