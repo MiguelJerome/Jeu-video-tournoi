@@ -10,7 +10,6 @@ formAuth.addEventListener('submit', async (event) => {
         motDePasse: inputMotDePasse.value
     };
 
-    console.log(data);
 
     let response = await fetch('/connexion', {
         method: 'POST',
@@ -18,7 +17,6 @@ formAuth.addEventListener('submit', async (event) => {
         body: JSON.stringify(data)
     });
 
-   console.log(response);
 
     if(response.ok) {
         window.location.replace('/');

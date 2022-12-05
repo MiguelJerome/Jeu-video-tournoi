@@ -1,5 +1,5 @@
 import 'dotenv/config';
-import express, { json } from 'express';
+import express, { json} from 'express';
 import { engine } from 'express-handlebars';
 import helmet from 'helmet';
 import cors from 'cors';
@@ -96,72 +96,93 @@ app.get('/acceuil', async (request, response) => {
 })
 
 //Post sur la route /accueil pour s'inscrire a un tournois
+
 app.post('/acceuil', async (request, response) => {
-    response.render('acceuil', {
-        titre: 'Accueil',
-        styles: ['/css/admin.css'],
-        scripts: ['/js/accueil.js'],
-        id: await addTournoiInscrit(request.body.id_tournois),
-    });
+    if(request.user){
+        response.render('acceuil', {
+            titre: 'Accueil',
+            styles: ['/css/admin.css'],
+            scripts: ['/js/accueil.js'],
+            id: await addTournoiInscrit(request.body.id_tournois),
+        });    
+    }
 })
 
 //Get sur la route /compte Pour avoir les tournois Inscrits
 app.get('/compte', async (request, response) => {
-    response.render('compte', {
-        titre: 'Compte',
-        styles: ['/css/admin.css'],
-        scripts: ['/js/compte.js'],
-        tournois: await getTournoiInscrit(),
-        user: request.user,
-        accept: request.session.accept
-    });
+
+    if(request.user){
+
+        response.render('compte', {
+            titre: 'Compte',
+            styles: ['/css/admin.css'],
+            scripts: ['/js/compte.js'],
+            tournois: await getTournoiInscrit(),
+            user: request.user,
+            accept: request.session.accept
+        });
+    }
 })
 
 //Delete sur la route /compte pour se desinscrire a un tournoi
 app.delete('/compte', async (request, response) => {
-    response.render('compte', {
-        titre: 'Compte',
-        styles: ['/css/admin.css'],
-        accept: request.session.accept,
-        scripts: ['/js/compte.js'],
-        tournois: await deleteTournoiInscrit(request.body.id_tournois),
-    });
+
+    if(request.user){
+
+        response.render('compte', {
+            titre: 'Compte',
+            styles: ['/css/admin.css'],
+            accept: request.session.accept,
+            scripts: ['/js/compte.js'],
+            tournois: await deleteTournoiInscrit(request.body.id_tournois),
+        });
+    }
 })
 
 //Get sur la route /admin pour avoir tous les tournois
 app.get('/admin', async(request, response) => {
-    response.render('admin', {
-        titre: 'Administrateur',
-        styles: ['/css/admin.css'],
-        scripts: ['/js/admin.js','/js/admin-form.js'],
-        tournois: await getTournoi(),  
-        user: request.user,
-        accept: request.session.accept
-    });
+
+    if(request.user.id_type_utilisateur>0){
+        response.render('admin', {
+            titre: 'Administrateur',
+            styles: ['/css/admin.css'],
+            scripts: ['/js/admin.js','/js/admin-form.js'],
+            tournois: await getTournoi(),  
+            user: request.user,
+            accept: request.session.accept
+        });
+
+    }
 })
 
 app.post('/admin', async (request, response) =>{
-    if(validate(request.body)){
-        console.log('Okay add tournament');
-        console.log(request.body);
-        addTournoi(request.body.nom, request.body.date_debut, request.body.capacite, request.body.description);
-        response.status(200).end();
+
+    if(request.user.id_type_utilisateur>0){
+
+        if(validate(request.body)){
+            console.log('Okay add tournament');
+            console.log(request.body);
+            addTournoi(request.body.nom, request.body.date_debut, request.body.capacite, request.body.description);
+            response.status(200).end();
+        }
+        else{
+            console.log('error add tournament');
+            console.log(request.body);
+            response.status(400).end();
+       }
     }
-    else{
-        console.log('error add tournament');
-        console.log(request.body);
-        response.status(400).end();
-   }
 });
 
 app.get('/inscription', (request, response) => {
-    response.render('inscription', {
-        titre: 'Inscription',
-        styles: ['/css/authentification.css'],
-        scripts: ['/js/inscription.js'],
-        user: request.user,
-        accept: request.session.accept
-    });
+
+        
+        response.render('inscription', {
+            titre: 'Inscription',
+            styles: ['/css/authentification.css'],
+            scripts: ['/js/inscription.js'],
+            user: request.user,
+            accept: request.session.accept
+        });
 });
 
 app.get('/connexion', (request, response) => {
@@ -182,14 +203,18 @@ app.get('/accueil/id', async (req,res)=>{
 
 //Delete sur la route /admin pour suprimmer un tournoi
 app.delete('/admin',async(request,response)=>{
-    response.render('admin', {
-        titre: 'Administrateur',
-        styles: ['/css/admin.css'],
-        accept: request.session.accept,
-        scripts: ['/js/admin.js'],  
-        tournois: await getTournoi(),
-        id:await supprimerTournoi(request.body.id),
-    });
+
+    if(request.user.id_type_utilisateur>0){
+
+        response.render('admin', {
+            titre: 'Administrateur',
+            styles: ['/css/admin.css'],
+            accept: request.session.accept,
+            scripts: ['/js/admin.js'],  
+            tournois: await getTournoi(),
+            id:await supprimerTournoi(request.body.id),
+        });
+    }
 })
 
 app.get('/stream', (request, response) => {
@@ -210,12 +235,13 @@ app.post('/inscription', async (request, response, next) => {
     // Valider les données reçu du client
     if(true) {
         try {
-            await addUtilisateur(request.body.courriel, request.body.motDePasse);
+            await addUtilisateur(request.body.courriel,request.body.motDepasse,request.body.prenom,request.body.nom);
             response.status(201).end();
         }
         catch(error) {
             if(error.code === 'SQLITE_CONSTRAINT') {
                 response.status(409).end();
+
             }
             else {
                 next(error);

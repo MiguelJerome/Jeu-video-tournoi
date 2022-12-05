@@ -270,9 +270,14 @@ span{
     background-color: #087ee1;
     color: white;
     display: flex;
-    height: 50px;
+    height: auto;
     position: sticky;
     bottom: 0;
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-content: flex-start;
+    justify-content: center;
+    align-items: flex-start;
 }
 .btn-cookie{
     background-color: #feabe6;
@@ -295,4 +300,24 @@ span{
     box-shadow: 0 3px 3px 0 rgb(0 0 0 / 14%), 0 1px 7px 0 rgb(0 0 0 / 12%), 0 3px 1px -1px rgb(0 0 0 / 20%);
     overflow: visible;
     text-shadow: 5px 5px 10px  white;
+}
+
+.btn-deconnexion{
+    background-color: #33691e;
+    transition: background-color .3s;
+    font-size: 1rem;
+    color: #fff;
+    display: block;
+    padding: 0 15px;
+    cursor: pointer;
+    text-decoration: none;
+    -webkit-tap-highlight-color: transparent;
+    list-style: none;
+    line-height: 64px;
+    font-weight: bolder;
+    border: transparent;
+}
+
+.btn-deconnexion:hover{
+    background-color: rgba(0, 0, 0, 0.1);
 }
