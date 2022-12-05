@@ -46,12 +46,9 @@
             </div>
         </div>
     </div>
-      {{#unless accept}}
-        <div id="message-cookie">
-            Ce site web utilise des cookies. Si vous naviguez sur ce site web, vous acceptez l'utilisation des cookies.
-            <button type="submit" class="btn-cookie  pulse" id="button-cookie">Accepter</button>
-        </div>
-        {{/unless}}
+    {{#unless accept}}
+        {{>bouton-cookie-message-main}}
+    {{/unless}}
 
 
         

@@ -129,6 +129,13 @@ input{
     text-shadow: 5px 5px 10px  #40b5ad;
 }
 
+/*c est le style en faisant le hover pour le bouton supprimer*/
+.btn-authentification:hover{
+    box-shadow: 0 3px 3px 0 rgb(0 0 0 / 14%), 0 1px 7px 0 rgb(0 0 0 / 12%), 0 3px 1px -1px rgb(0 0 0 / 20%);
+    background-color:springgreen;
+    border-radius: 50%;
+}
+
 /*c est le style de container du formulaire authenfication*/
 .container-auth{
     margin: 5rem;
@@ -166,6 +173,13 @@ input{
     text-shadow: 5px 5px 10px  white;
 }
 
+.btn-reset-inscription:hover{
+    box-shadow: 0 3px 3px 0 rgb(0 0 0 / 14%), 0 1px 7px 0 rgb(0 0 0 / 12%), 0 3px 1px -1px rgb(0 0 0 / 20%);
+    background-color:#ff0000;
+    color: white;
+    border-radius: 50%;
+}
+
 /*c est le style pour le bouton reset du formulaire connexion usager*/
 .btn-reset-connexion{
     display: flex;
@@ -190,4 +204,11 @@ input{
     position: relative;
     background-color:rgb(255, 0, 0);
     text-shadow: 5px 5px 10px  white;
+}
+
+.btn-reset-connexion:hover{
+    box-shadow: 0 3px 3px 0 rgb(0 0 0 / 14%), 0 1px 7px 0 rgb(0 0 0 / 12%), 0 3px 1px -1px rgb(0 0 0 / 20%);
+    background-color:#ff0000;
+    color: white;
+    border-radius: 50%;
 }

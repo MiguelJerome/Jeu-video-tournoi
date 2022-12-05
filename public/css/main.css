@@ -258,16 +258,21 @@ span{
     background-color: #087ee1;
     color: white;
     display: flex;
-    height: 50px;
+    height: auto;
     position: sticky;
     bottom: 0;
 }
 #message-cookie p{
+    font-size: 1.3rem;
+    color: white;
     display: flex;
+    z-index: -1;
+    
 }
 
 #message-login-user{
     background-color: #087ee1;
+    z-index: -1;
     color: white;
     display: flex;
     height: auto;
@@ -278,6 +283,7 @@ span{
     align-content: flex-start;
     justify-content: center;
     align-items: flex-start;
+    
 }
 .btn-cookie{
     background-color: #feabe6;
@@ -291,7 +297,7 @@ span{
     align-items: center;
     overflow: visible;
     overflow: hidden;
-    z-index: 100000;
+    z-index: -1;
     animation: buttons1 6s forwards, buttons2 4s infinite;
     flex-direction: column;
     flex-wrap: wrap;
