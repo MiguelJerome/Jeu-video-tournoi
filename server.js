@@ -157,6 +157,7 @@ app.get('/admin', async(request, response) => {
             scripts: ['/js/admin.js','/js/admin-form.js'],
             tournois: await getTournoi(),  
             admin:  await getTournoiUtilisateur() , 
+            adminUtilisateurTournoi:  await getTournoiUtilisateur() , 
             user: request.user,
             accept: request.session.accept
         });
@@ -248,10 +249,11 @@ app.post('/accept', (request, response) => {
 
 app.post('/inscription', async (request, response, next) => {
     // Valider les données reçu du client
+    
     if(true) {
         try {
             await addUtilisateur(request.body.courriel,request.body.motDepasse,request.body.prenom,request.body.nom);
-          //  response.redirect('/');
+            response.status(201).end();
         }
         catch(error) {
             if(error.code === 'SQLITE_CONSTRAINT') {
@@ -265,6 +267,7 @@ app.post('/inscription', async (request, response, next) => {
     else {
         response.status(400).end();
     }
+   
 });
 
 app.post('/connexion', (request, response, next) => {

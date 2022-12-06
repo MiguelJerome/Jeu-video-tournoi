@@ -53,7 +53,7 @@ let errorMotDePasseUsager = document.getElementById('error-MotDePasse-authentifi
 
 const validateMotDePasseUsager = () => {
     if(inputMotDePasse.validity.valid) {
-        errorMotDePasselUsager.style.display = 'none';
+        errorMotDePasseUsager.style.display = 'none';
     }
     else if(inputMotDePasse.validity.valueMissing) {
         errorMotDePasseUsager.innerText = 'Ce champ est requis';
@@ -75,7 +75,6 @@ formInscription.addEventListener('submit', async (event) => {
         courriel:inputCourriel.value,
     };
 
-    console.log(data.motDepasse);
 
     // Soumission : envoyer les inputs du formulaire inscription pour etre eventuelle sauver dans la base de donnee
 if(inputNomUtilisateur && inputPrenomUtilisateur && inputCourriel && inputMotDePasse)
@@ -89,12 +88,10 @@ if(inputNomUtilisateur && inputPrenomUtilisateur && inputCourriel && inputMotDeP
         headers: {'Content-Type': 'application/json'},
         body: JSON.stringify(data)
     });
- // await document.location.reload(); 
-
+    // await document.location.reload(); 
 
     if(response.ok) {
-      await document.location.replace('/connexion');
-      
+      window.location.replace('/Connexion');
     }
     else if(response.status === 409) {
         // Afficher erreur dans l'interface graphique
@@ -105,6 +102,7 @@ if(inputNomUtilisateur && inputPrenomUtilisateur && inputCourriel && inputMotDeP
         console.log('Erreur inconnu');
     }
 }
+
 });
 
 //bouton reset : validation du formulaire inscription usager
