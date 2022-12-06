@@ -13,6 +13,7 @@ import { addUtilisateur, getUtilisateurByCourriel } from './model/utilisateur.js
 import {validate} from './validation.js';
 import './authentification.js';
 
+
 // Création du serveur web
 let app = express();
 
@@ -74,7 +75,8 @@ app.get('/', async (request, response) => {
         accept: request.session.accept,
         scripts: ['/js/accueil.js'],
         tournois: await getTournoi(), 
-        admin:  await getTournoiUtilisateur()  
+        admin:  await getTournoiUtilisateur(),
+       
     });
 }
 else {
@@ -94,7 +96,9 @@ app.get('/acceuil', async (request, response) => {
             user: request.user,
             aAcces: request.user.acces > 0,
             accept: request.session.accept,
-            admin:  await getTournoiUtilisateur()  
+            admin:  await getTournoiUtilisateur(),
+            adminLogin: request.user?.id_type_utilisateur != 2
+
         });
     }
     else {
@@ -111,6 +115,7 @@ app.post('/acceuil', async (request, response) => {
             styles: ['/css/admin.css'],
             scripts: ['/js/accueil.js'],
             id: await addTournoiInscrit(request.body.id_tournois),
+            
         });    
     }
 });
@@ -127,9 +132,13 @@ app.get('/compte', async (request, response) => {
             tournois: await getTournoiInscrit(),
             admin:  await getTournoiUtilisateur(),  
             user: request.user,
-            accept: request.session.accept
+            accept: request.session.accept,
+            adminLogin: request.user.id_type_utilisateur != 2
 
         });
+    }
+    else {
+        response.redirect('/connexion');
     }
 });
 
@@ -159,7 +168,8 @@ app.get('/admin', async(request, response) => {
             admin:  await getTournoiUtilisateur() , 
             adminUtilisateurTournoi:  await getTournoiUtilisateur() , 
             user: request.user,
-            accept: request.session.accept
+            accept: request.session.accept,
+            adminLogin: request.user?.id_type_utilisateur != 2
         });
     }
     else{
@@ -207,7 +217,8 @@ app.get('/connexion', (request, response) => {
         styles: ['/css/authentification.css'],
         scripts: ['/js/connexion.js'],
         user: request.user,
-        accept: request.session.accept
+        accept: request.session.accept,
+        adminLogin: request.user?.id_type_utilisateur != 2
     });
 });
 
