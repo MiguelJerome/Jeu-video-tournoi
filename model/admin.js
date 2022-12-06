@@ -11,6 +11,12 @@ export const getTournoi = async () => {
     return resultat;
 };
 
+export const getTournoiUtilisateur = async () => {
+    let connexion = await connectionPromise;
+    let resultat = await connexion.all('select t.id_tournois,u.nom from tournois t,utilisateur u,tournois_utilisateur tu where tu.id_utilisateur = u.id_utilisateur and tu.id_tournois = t.id_tournois');
+   
+    return resultat;
+};
 /**
  * Fonction qui permet l'ajout d'un tournois
  * @param {string} nom 

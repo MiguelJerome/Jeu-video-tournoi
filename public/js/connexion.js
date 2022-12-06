@@ -52,11 +52,12 @@ if(inputCourriel && inputMotDePasse)
         headers: {'Content-Type': 'application/json'},
         body: JSON.stringify(data)
     });
-    await document.location.reload(); 
-}
+    //await document.location.reload(); 
+
 
     if(response.ok) {
         await document.location.replace('/');  
+        document.location.reload(); 
     }
     else if(response.status === 401) {
         let info = await response.json();
@@ -67,6 +68,7 @@ if(inputCourriel && inputMotDePasse)
     else {
         console.log('Erreur inconnu');
     }
+}
 });
 
 //bouton reset : validation du formulaire connexion usager

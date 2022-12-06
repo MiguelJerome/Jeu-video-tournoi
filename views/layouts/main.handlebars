@@ -38,11 +38,16 @@
            <li>Nom: {{user.nom}}</li>
             <li>Mot Passe: {{user.mot_passe}}</li>
            <li> Courriel: {{user.courriel}}</li>
+           {{#each admin}}
+           <li> id utilisateur: {{this.nom}}</li>
+            {{/each}}
         </div>
         <div class="container">
           
             <div class="row">
+                
                 {{{body}}}
+                
             </div>
         </div>
     </div>

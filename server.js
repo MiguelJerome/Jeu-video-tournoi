@@ -8,8 +8,8 @@ import session from 'express-session';
 import memorystore from 'memorystore';
 import passport from 'passport';
 import middlewareSse from './middleware-sse.js';
-import { getTournoi, addTournoi,supprimerTournoi,getTournoiInscrit,addTournoiInscrit,getIds,deleteTournoiInscrit,getNombreInscrit } from './model/admin.js';
-import { addUtilisateur } from './model/utilisateur.js';
+import { getTournoiUtilisateur, getTournoi, addTournoi,supprimerTournoi,getTournoiInscrit,addTournoiInscrit,getIds,deleteTournoiInscrit,getNombreInscrit } from './model/admin.js';
+import { addUtilisateur, getUtilisateurByCourriel } from './model/utilisateur.js';
 import {validate} from './validation.js';
 import './authentification.js';
 
@@ -64,18 +64,24 @@ app.use(session({
 app.use(passport.initialize());
 app.use(passport.session());
 app.use(express.static('public'));
-
+console.log(await getTournoiUtilisateur());
 // Get sur la route racine
 app.get('/', async (request, response) => {
+    if(request.user) {
     response.render('acceuil', {
         titre: 'Acceuil',
         styles: ['/css/admin.css'],
         accept: request.session.accept,
         scripts: ['/js/accueil.js'],
         tournois: await getTournoi(), 
+        admin:  await getTournoiUtilisateur()  
     });
+}
+else {
+    response.redirect('/connexion');
+}
 });
-
+console.log(await getTournoiUtilisateur());
 //Get sur la route /accueil pour avoir tous les tournois
 app.get('/acceuil', async (request, response) => {
     if(request.user) {
@@ -88,6 +94,7 @@ app.get('/acceuil', async (request, response) => {
             user: request.user,
             aAcces: request.user.acces > 0,
             accept: request.session.accept,
+            admin:  await getTournoiUtilisateur()  
         });
     }
     else {
@@ -118,8 +125,10 @@ app.get('/compte', async (request, response) => {
             styles: ['/css/admin.css'],
             scripts: ['/js/compte.js'],
             tournois: await getTournoiInscrit(),
+            admin:  await getTournoiUtilisateur(),  
             user: request.user,
             accept: request.session.accept
+
         });
     }
 });
@@ -141,13 +150,13 @@ app.delete('/compte', async (request, response) => {
 
 //Get sur la route /admin pour avoir tous les tournois
 app.get('/admin', async(request, response) => {
-
     if(request.user.id_type_utilisateur == 2){
         response.render('admin', {
             titre: 'Administrateur',
             styles: ['/css/admin.css'],
             scripts: ['/js/admin.js','/js/admin-form.js'],
             tournois: await getTournoi(),  
+            admin:  await getTournoiUtilisateur() , 
             user: request.user,
             accept: request.session.accept
         });
@@ -185,6 +194,9 @@ app.get('/inscription', (request, response) => {
             user: request.user,
             accept: request.session.accept
         });
+        
+            
+      
     
 });
 
@@ -239,12 +251,11 @@ app.post('/inscription', async (request, response, next) => {
     if(true) {
         try {
             await addUtilisateur(request.body.courriel,request.body.motDepasse,request.body.prenom,request.body.nom);
-            response.status(201).end();
+          //  response.redirect('/');
         }
         catch(error) {
             if(error.code === 'SQLITE_CONSTRAINT') {
                 response.status(409).end();
-
             }
             else {
                 next(error);

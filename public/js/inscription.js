@@ -89,11 +89,12 @@ if(inputNomUtilisateur && inputPrenomUtilisateur && inputCourriel && inputMotDeP
         headers: {'Content-Type': 'application/json'},
         body: JSON.stringify(data)
     });
-    await document.location.reload(); 
-}
+ // await document.location.reload(); 
+
 
     if(response.ok) {
-      await window.location.replace('/Inscription');
+      await document.location.replace('/connexion');
+      
     }
     else if(response.status === 409) {
         // Afficher erreur dans l'interface graphique
@@ -103,6 +104,7 @@ if(inputNomUtilisateur && inputPrenomUtilisateur && inputCourriel && inputMotDeP
         console.log(response.status);
         console.log('Erreur inconnu');
     }
+}
 });
 
 //bouton reset : validation du formulaire inscription usager
