@@ -76,6 +76,7 @@ app.get('/', async (request, response) => {
         scripts: ['/js/accueil.js'],
         tournois: await getTournoi(), 
         admin:  await getTournoiUtilisateur(),
+        adminLogin: request.user?.id_type_utilisateur != 2
        
     });
 }
@@ -212,6 +213,7 @@ app.get('/inscription', (request, response) => {
 });
 
 app.get('/connexion', (request, response) => {
+    if(!request.user > 0 ){
     response.render('connexion', {
         titre: 'Connexion',
         styles: ['/css/authentification.css'],
@@ -220,6 +222,10 @@ app.get('/connexion', (request, response) => {
         accept: request.session.accept,
         adminLogin: request.user?.id_type_utilisateur != 2
     });
+}
+else {
+    response.redirect('/acceuil');
+}
 });
 
 //Post sur la route /admin pour ajouter un trounois
@@ -300,6 +306,7 @@ app.post('/connexion', (request, response, next) => {
                         next(error);
                     }
                     else {
+                        
                         response.status(200).end();
                     }
                 });

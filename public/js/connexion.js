@@ -56,7 +56,7 @@ if(inputCourriel && inputMotDePasse)
 
 
     if(response.ok) {
-        await document.location.replace('/');  
+        document.location.replace('/');  
         document.location.reload(); 
     }
     else if(response.status === 401) {
