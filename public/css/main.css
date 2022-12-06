@@ -252,6 +252,7 @@ p{
 /*couleur titre des info donnes de la table tounoi*/
 span{
     color:white;
+    font-size: 1.3rem; 
 }
 /*cookie*/
 #message-cookie{
@@ -331,4 +332,22 @@ span{
 
 .btn-deconnexion:hover{
     background-color: rgba(0, 0, 0, 0.1);
+}
+
+#message-user-tournoi{
+    background-color: #ffd700;
+    z-index: 1;
+    color:#633633;
+    font-weight: bolder;
+    font-size: large;
+    display: flex;
+    height: auto;
+    position: sticky;
+    bottom: 0;
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-content: flex-start;
+    justify-content: center;
+    align-items: flex-start;
+    font-size: 1.3rem;    
 }
