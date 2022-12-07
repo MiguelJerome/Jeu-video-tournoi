@@ -12,6 +12,10 @@ const validateNomUsager = () => {
         errorCourrielUsager.innerText = 'Ce champ est requis';
         errorCourrielUsager.style.display = 'block';
     }
+    else if(inputCourriel.validity.typeMismatch) {
+        errorCourrielUsager.innerText = 'Ce champ n est valide comme email';
+        errorCourrielUsager.style.display = 'block';
+    }
 };
 
 formAuth.addEventListener('submit', validateNomUsager);

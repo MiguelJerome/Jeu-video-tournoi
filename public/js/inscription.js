@@ -43,6 +43,10 @@ const validateNomUsager = () => {
         errorCourrielUsager.innerText = 'Ce champ est requis';
         errorCourrielUsager.style.display = 'block';
     }
+    else if(inputCourriel.validity.typeMismatch) {
+        errorCourrielUsager.innerText = 'Ce champ n est valide comme email';
+        errorCourrielUsager.style.display = 'block';
+    }
 };
 
 formInscription.addEventListener('submit', validateNomUsager);
@@ -74,7 +78,6 @@ formInscription.addEventListener('submit', async (event) => {
         motDepasse:inputMotDePasse.value,
         courriel:inputCourriel.value,
     };
-
 
     // Soumission : envoyer les inputs du formulaire inscription pour etre eventuelle sauver dans la base de donnee
 if(inputNomUtilisateur && inputPrenomUtilisateur && inputCourriel && inputMotDePasse)

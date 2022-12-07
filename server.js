@@ -10,7 +10,7 @@ import passport from 'passport';
 import middlewareSse from './middleware-sse.js';
 import { getTournoiUtilisateur, getTournoi, addTournoi,supprimerTournoi,getTournoiInscrit,addTournoiInscrit,getIds,deleteTournoiInscrit,getNombreInscrit } from './model/admin.js';
 import { addUtilisateur} from './model/utilisateur.js';
-import {validate} from './validation.js';
+import {validateConnexion,validateInscription,validate} from './validation.js';
 import './authentification.js';
 
 
@@ -78,7 +78,7 @@ app.get('/', async (request, response) => {
         tournois: await getTournoi(), 
         admin:  await getTournoiUtilisateur(),
         adminLogin: request.user?.id_type_utilisateur != 2
-       
+    
     });
 }
 else {
@@ -179,7 +179,6 @@ app.get('/admin', async(request, response) => {
     else{
         response.redirect('/connexion');
     }
-
 });
 
 app.get('/nom-inscrits',async(request,response)=>{
@@ -206,7 +205,7 @@ app.post('/admin', async (request, response) =>{
 });
 
 app.get('/inscription', (request, response) => {
-
+    if(!request.user > 0 ){
         response.render('inscription', {
             titre: 'Inscription',
             styles: ['/css/authentification.css'],
@@ -214,6 +213,10 @@ app.get('/inscription', (request, response) => {
             user: request.user,
             accept: request.session.accept
         });  
+    }
+    else {
+        response.redirect('/acceuil');
+    } 
 });
 
 app.get('/connexion', (request, response) => {
@@ -223,8 +226,7 @@ app.get('/connexion', (request, response) => {
         styles: ['/css/authentification.css'],
         scripts: ['/js/connexion.js'],
         user: request.user,
-        accept: request.session.accept,
-        adminLogin: request.user?.id_type_utilisateur != 2
+        accept: request.session.accept
     });
 }
 else {
@@ -240,9 +242,7 @@ app.get('/accueil/id', async (req,res)=>{
 
 //Delete sur la route /admin pour suprimmer un tournoi
 app.delete('/admin',async(request,response)=>{
-
     if(request.user.id_type_utilisateur == 2){
-
         response.render('admin', {
             titre: 'Administrateur',
             styles: ['/css/admin.css'],
@@ -273,8 +273,10 @@ app.post('/inscription', async (request, response, next) => {
     
     if(true) {
         try {
+            
             await addUtilisateur(request.body.courriel,request.body.motDepasse,request.body.prenom,request.body.nom);
             response.status(201).end();
+           
         }
         catch(error) {
             if(error.code === 'SQLITE_CONSTRAINT') {
@@ -296,11 +298,11 @@ app.post('/connexion', (request, response, next) => {
     console.log('connexion');
 
     if(true) {
+        if(validateConnexion(request.body)){
         passport.authenticate('local', (error, utilisateur, info) => {
             if(error) {
                 next(error);
-            }
-            
+            }          
             else if(!utilisateur) {
                 response.status(401).json(info);
             }
@@ -310,13 +312,13 @@ app.post('/connexion', (request, response, next) => {
                         next(error);
                     }
                     else {
-                        
                         response.status(200).end();
                     }
                 });
             }
-        })(request, response, next);
+        })(request, response, next);   
     }
+}
     else {
         response.status(400).end();
     }

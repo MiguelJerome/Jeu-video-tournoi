@@ -37,6 +37,14 @@ const validateCapacite = (capacite) => {
     && capacite < 17;
 };
 
+const validateMotDePasse = (motDePasse) => {
+    return typeof motDePasse=== 'string' && !!motDePasse;
+};
+
+const validatePrenom = (prenom) => {
+    return typeof prenom === 'string' && !!prenom;
+};
+
 /**
  * Fonction qui verifie tous
  * @param {object} body 
@@ -46,9 +54,16 @@ export const validate = (body) => {
     return validateNom(body.nom) && validateDescription(body.description) && validateDate(body.date_debut) && validateCapacite(body.capacite);
 };
 
-
 const validateCourriel = (courriel) => {
     return typeof courriel === 'string' && 
         !!courriel &&
         courriel.match(/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/);
+};
+
+export const validateInscription = (body) => {
+    return validateNom(body.nom) && validatePrenom(body.prenom) && validateCourriel(body.courriel) && validateMotDePasse(body.motDePasse);
+};
+
+export const validateConnexion = (body) => {
+    return validateCourriel(body.courriel) && validateMotDePasse(body.motDePasse);
 };
