@@ -1,5 +1,5 @@
 import 'dotenv/config';
-import express, { json} from 'express';
+import express, { json, request} from 'express';
 import { engine } from 'express-handlebars';
 import helmet from 'helmet';
 import cors from 'cors';
@@ -9,7 +9,7 @@ import memorystore from 'memorystore';
 import passport from 'passport';
 import middlewareSse from './middleware-sse.js';
 import { getTournoiUtilisateur, getTournoi, addTournoi,supprimerTournoi,getTournoiInscrit,addTournoiInscrit,getIds,deleteTournoiInscrit,getNombreInscrit } from './model/admin.js';
-import { addUtilisateur, getUtilisateurByCourriel } from './model/utilisateur.js';
+import { addUtilisateur} from './model/utilisateur.js';
 import {validate} from './validation.js';
 import './authentification.js';
 
@@ -64,6 +64,7 @@ app.use(session({
 }));
 app.use(passport.initialize());
 app.use(passport.session());
+app.use(middlewareSse());
 app.use(express.static('public'));
 console.log(await getTournoiUtilisateur());
 // Get sur la route racine
@@ -110,14 +111,16 @@ app.get('/acceuil', async (request, response) => {
 //Post sur la route /accueil pour s'inscrire a un tournois
 
 app.post('/acceuil', async (request, response) => {
-    if(request.user){
-        response.render('acceuil', {
-            titre: 'Accueil',
-            styles: ['/css/admin.css'],
-            scripts: ['/js/accueil.js'],
-            id: await addTournoiInscrit(request.body.id_tournois),
-            
-        });    
+    if(!request.user){
+        response.status(401).end();
+    }
+    else{
+         let id = await addTournoiInscrit(request.body.id_tournois,request.user.id_utilisateur)
+        
+        response.pushJson({
+            id_tournois:id,
+            nom:request.user.nom
+        }, 'add-inscrit');
     }
 });
 
@@ -130,7 +133,7 @@ app.get('/compte', async (request, response) => {
             titre: 'Compte',
             styles: ['/css/admin.css'],
             scripts: ['/js/compte.js'],
-            tournois: await getTournoiInscrit(),
+            tournois: await getTournoiInscrit(request.user.id_utilisateur),
             admin:  await getTournoiUtilisateur(),  
             user: request.user,
             accept: request.session.accept,
@@ -153,7 +156,7 @@ app.delete('/compte', async (request, response) => {
             styles: ['/css/admin.css'],
             accept: request.session.accept,
             scripts: ['/js/compte.js'],
-            tournois: await deleteTournoiInscrit(request.body.id_tournois),
+            tournois: await deleteTournoiInscrit(request.body.id_tournois,request.user.id_utilisateur),
         });
     }
 });
@@ -178,6 +181,11 @@ app.get('/admin', async(request, response) => {
     }
 
 });
+
+app.get('/nom-inscrits',async(request,response)=>{
+
+    response.status(200).json(await getTournoiUtilisateur());
+})
 
 app.post('/admin', async (request, response) =>{
 
@@ -205,11 +213,7 @@ app.get('/inscription', (request, response) => {
             scripts: ['/js/inscription.js'],
             user: request.user,
             accept: request.session.accept
-        });
-        
-            
-      
-    
+        });  
 });
 
 app.get('/connexion', (request, response) => {
@@ -230,7 +234,7 @@ else {
 
 //Post sur la route /admin pour ajouter un trounois
 app.get('/accueil/id', async (req,res)=>{
-    let ids = await getIds(); 
+    let ids = await getIds(req.user.id_utilisateur); 
     res.status(200).json(ids);
 });
 

@@ -7,14 +7,13 @@
  <!--ceci est le wrapper grid de colonne pour les cartes tournoi--> 
             <div class="card">
 <!--ceci est la composante  tournoi info--> 
-
                 {{>tournoi-info}}
-                
-                {{>admin-usertournoi}}
-               
-
-<!--ceci est le wrapper du background pour la carte tournoi--> 
-                    <div class="card-background">
+<!--ceci est le wrapper du background pour la carte tournoi-->                 
+                    <div class=" card-background  card-content " > 
+                        <div class="message-user-tournoi card-content" >  
+<!--ceci est la liste des participants tournois des pour la carte tournoi pour la page admin-->  
+                               <span>Liste des Participants:</span><div class ="message-user-tournoi data-id="{{this.id_tournois}}"><li data-id="{{this.id_tournois}}" id="card-nom"></li></div>
+                        </div>
 <!--ceci est la composante pour le bouton supprimer de la page admin--> 
                         {{>bouton-supprimer-admin}} 
                     </div>

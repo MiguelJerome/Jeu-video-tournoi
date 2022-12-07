@@ -11,6 +11,8 @@ async function disableButton(){
             for(let i = 0;i<data.length;i++){
              for(let j = 0; j<inscrires.length;j++){
                     let id = data[i].id_tournois;
+                    
+                    
                     if(id==inscrires[j].dataset.id){
                         inscrires[j].disabled = true;
                          inscrires[j].innerText = "INCRIT";

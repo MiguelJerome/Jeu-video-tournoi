@@ -13,7 +13,7 @@ export const getTournoi = async () => {
 
 export const getTournoiUtilisateur = async () => {
     let connexion = await connectionPromise;
-    let resultat = await connexion.all('select t.id_tournois,u.nom from tournois t,utilisateur u,tournois_utilisateur tu where tu.id_utilisateur = u.id_utilisateur and tu.id_tournois = t.id_tournois');
+    let resultat = await connexion.all('select t.id_tournois,u.nom, u.prenom from tournois t,utilisateur u,tournois_utilisateur tu where tu.id_utilisateur = u.id_utilisateur and tu.id_tournois = t.id_tournois');
    
     return resultat;
 };
@@ -57,12 +57,12 @@ export const supprimerTournoi = async(id)=>{
  * @param {number} id_tournois 
  * @returns id du tournois inscrit
  */
-export const addTournoiInscrit = async(id_tournois)=>{
+export const addTournoiInscrit = async(id_tournois,id_utilisateur)=>{
     let connexion = await connectionPromise;
 
     await connexion.run(
         `INSERT INTO tournois_utilisateur (id_tournois,id_utilisateur) 
-        Values (${id_tournois},1)`
+        Values (?,?)`,[id_tournois,id_utilisateur]
             );
     return id_tournois;
 }
@@ -71,12 +71,12 @@ export const addTournoiInscrit = async(id_tournois)=>{
  * fonction qui retourne tous les tounrois auquel l'utilisateur est inscrit
  * @returns resultat
  */
-export const getTournoiInscrit = async ()=>{
+export const getTournoiInscrit = async (id_utilisateur)=>{
     let connexion = await connectionPromise;
     
     let resultat = await connexion.all(
         `select * from tournois t, tournois_utilisateur tu
-        where t.id_tournois = tu.id_tournois and tu.id_utilisateur=1`
+        where t.id_tournois = tu.id_tournois and tu.id_utilisateur=?`,[id_utilisateur]
     );
    return resultat;
 }
@@ -85,12 +85,12 @@ export const getTournoiInscrit = async ()=>{
  * fonction qui retourne tous les ids des tournois auquel l'utilisateur est inscrit
  * @returns id
  */
-export const getIds = async ()=>{
+export const getIds = async (id_utilisateur)=>{
         let connexion = await connectionPromise;
 
         let resultat = await connexion.all(
-            `select id_tournois from tournois_utilisateur
-            where id_utilisateur = 1`
+            `select id_tournois from tournois_utilisateur tu,utilisateur u
+            where tu.id_utilisateur = ?`,[id_utilisateur]
         );
     return resultat;
 }
@@ -99,12 +99,12 @@ export const getIds = async ()=>{
  * Fonction qui supprime un tournois auquel l'utilisateur est inscrit
  * @param {number} id_tournois 
  */
-export const deleteTournoiInscrit = async (id_tournois)=>{
+export const deleteTournoiInscrit = async (id_tournois,id_utilisateur)=>{
     let connexion = await connectionPromise;
 
     await connexion.run(
         `DELETE FROM tournois_utilisateur
-        WHERE id_tournois = ${id_tournois} and id_utilisateur=1`
+        WHERE id_tournois =? and id_utilisateur=?`,[id_tournois,id_utilisateur]
     );
 }
 
