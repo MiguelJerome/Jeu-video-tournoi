@@ -15,6 +15,7 @@ const validateNomUtilisateur = () => {
 };
 
 formInscription.addEventListener('submit', validateNomUtilisateur);
+
 // prenom usager: validation du formulaire inscription usager
 let inputPrenomUtilisateur = document.getElementById('input-prenom-utilisateur');
 let errorPrenomUtilisateur = document.getElementById('error-prenom-authentification');
@@ -67,10 +68,16 @@ const validateMotDePasseUsager = () => {
 
 formInscription.addEventListener('submit', validateMotDePasseUsager);
 
-// Mot de passe de l'usager: validation du formulaire inscription usager
+// Soumission : envoyer les inputs du formulaire inscription pour etre eventuelle sauver dans la base de donnee
 formInscription.addEventListener('submit', async (event) => {
     event.preventDefault();
 
+    if(!formInscription.checkValidity()){
+        return;
+    }
+    // Les noms des variables doivent être les mêmes
+    // que celles spécifié dans les configuration de
+    // passport dans le fichier "authentification.js"
     let data = {
         nom: inputNomUtilisateur.value,
         prenom: inputPrenomUtilisateur.value,
@@ -78,33 +85,31 @@ formInscription.addEventListener('submit', async (event) => {
         courriel:inputCourriel.value,
     };
 
-    // Soumission : envoyer les inputs du formulaire inscription pour etre eventuelle sauver dans la base de donnee
-if(inputNomUtilisateur && inputPrenomUtilisateur && inputCourriel && inputMotDePasse)
-{
-    if(!formInscription.checkValidity()){
-        return;
-    }
+    if(inputNomUtilisateur && inputPrenomUtilisateur && inputCourriel && inputMotDePasse)
+    {
+        let response = await fetch('/inscription', {
+            method: 'POST',
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify(data)
+        }); 
 
-    let response = await fetch('/inscription', {
-        method: 'POST',
-        headers: {'Content-Type': 'application/json'},
-        body: JSON.stringify(data)
-    });
-    // await document.location.reload(); 
+        if(response.ok) {
+            // Si l'authentification est réussi, on
+            // redirige vers la page connexion
+            window.location.replace('/Connexion');
+        }
+        else if(response.status === 409) {
 
-    if(response.ok) {
-      window.location.replace('/Connexion');
+            // Si l'authentification ne réussi pas, on
+            // a le message d'erreur dans l'objet "data"
+            // Afficher erreur dans l'interface graphique
+            console.log('Utilisateur déjà existant');
+        }
+        else {
+            console.log(response.status);
+            console.log('Erreur inconnu');
+        }
     }
-    else if(response.status === 409) {
-        // Afficher erreur dans l'interface graphique
-        console.log('Utilisateur déjà existant');
-    }
-    else {
-        console.log(response.status);
-        console.log('Erreur inconnu');
-    }
-}
-
 });
 
 //bouton reset : validation du formulaire inscription usager

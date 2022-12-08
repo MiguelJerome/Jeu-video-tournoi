@@ -268,11 +268,16 @@ app.post('/accept', (request, response) => {
     response.status(200).end();
 });
 
+//l'utilisateur essait de se créer un compte en verifiant la validation de sa tentative d'inscription
+// selon le résultat de la validation de l'inscription, nous devons retourner un message au client
 app.post('/inscription', async (request, response, next) => {
-    // Valider les données reçu du client
-    if(true)
+    
+    // On vérifie le le courriel et le mot de passe, nom utilisateur, et prenom utilisateur
+    // envoyé sont valides
+    if(validateInscription(request.body))
     {
-        if(validateInscription(request.body))
+        // Valider les données reçu du client
+        if(true)
         {
             console.log(`   Ajouter un nouveau utilisateur 
                             Incription formulaire value du client:
@@ -283,11 +288,15 @@ app.post('/inscription', async (request, response, next) => {
                         `)
                 try 
                 {
+                    // Si la validation passe, on crée l'utilisateur
                     await addUtilisateur(request.body.courriel,request.body.motDePasse,request.body.prenom,request.body.nom);
                     response.status(201).end();
                 }
                 catch(error) 
                 {
+                    // S'il y a une erreur de SQL, on regarde
+                    // si c'est parce qu'il y a conflit
+                    // d'identifiant
                     if(error.code === 'SQLITE_CONSTRAINT') 
                     {
                         response.status(409).end();
@@ -305,26 +314,41 @@ app.post('/inscription', async (request, response, next) => {
     }
 });
 
+// lancer l'authentification avec passport pour la connexion
+// selon le résultat de passport, nous devons retourner un message au client
 app.post('/connexion', (request, response, next) => {
-    // Valider les données reçu du client
+    
     console.log('connexion');
-
-    if(true) {
-        if(validateConnexion(request.body)){
+    // On vérifie le le courriel et le mot de passe
+    // envoyé sont valides
+    if(validateConnexion(request.body))
+    {
+        // Valider les données reçu du client
+        if(true) 
+        {
             console.log(`   Etablir une nouvelle connexion 
                                 Connexion formulaire value du client:
                                 Courriel: ${request.body.courriel} 
                                 Mot de passe: ${request.body.motDePasse} 
                             `);
+            // On lance l'authentification avec passport.js
             passport.authenticate('local', (error, utilisateur, info) => 
             {
                 if(error) {
+                    // S'il y a une erreur, on la passe
+                    // au serveur
                     next(error);
                 }          
                 else if(!utilisateur) {
+                    // Si la connexion échoue, on envoit
+                    // l'information au client avec un code
+                    // 401 (Unauthorized)
                     response.status(401).json(info);
                 }
                 else {
+                    // Si tout fonctionne, on ajoute
+                    // l'utilisateur dans la session et
+                    // on retourne un code 200 (OK)
                     request.logIn(utilisateur, (error) => {
                         if(error) {
                             next(error);
@@ -344,6 +368,8 @@ app.post('/connexion', (request, response, next) => {
 
 // deconnexion de la page web de l'utilisateur courant 
 app.post('/deconnexion', (request, response, next) => {
+
+    // Déconnecter l'utilisateur
     request.logOut((error) => {
         if(error) {
             next(error);

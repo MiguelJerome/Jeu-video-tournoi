@@ -4,7 +4,7 @@ let formAuth = document.getElementById('form-auth');
 let inputCourriel = document.getElementById('input-courriel-utilisateur');
 let errorCourrielUsager = document.getElementById('error-courriel-authentification');
 
-const validateNomUsager = () => {
+const validateCourrielUsager = () => {
     if(inputCourriel.validity.valid) {
         errorCourrielUsager.style.display = 'none';
     }
@@ -18,7 +18,7 @@ const validateNomUsager = () => {
     }
 };
 
-formAuth.addEventListener('submit', validateNomUsager);
+formAuth.addEventListener('submit', validateCourrielUsager);
 
 // Mot de passe de l'usager: validation du formulaire connexion usager
 let inputMotDePasse = document.getElementById('input-mot-de-passe');
@@ -44,35 +44,41 @@ formAuth.addEventListener('submit', async (event) => {
         return;
     }
 
+    // Les noms des variables doivent être les mêmes
+    // que celles spécifié dans les configuration de
+    // passport dans le fichier "authentification.js"
     let data = {
         courriel: inputCourriel.value,
         motDePasse: inputMotDePasse.value
     };
 
-if(inputCourriel && inputMotDePasse)
-{
-    let response = await fetch('/connexion', {
-        method: 'POST',
-        headers: {'Content-Type': 'application/json'},
-        body: JSON.stringify(data)
-    });
-    //await document.location.reload(); 
+    if(inputCourriel && inputMotDePasse)
+    {
+        let response = await fetch('/connexion', {
+            method: 'POST',
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify(data)
+        });
+    
+        if(response.ok) {
+            // Si l'authentification est réussi, on
+            // redirige vers la page root
+            document.location.replace('/');  
+            document.location.reload(); 
+        }
+        else if(response.status === 401) {
+            
+            // Si l'authentification ne réussi pas, on
+            // a le message d'erreur dans l'objet "data"
+            let info = await response.json();
 
-
-    if(response.ok) {
-        document.location.replace('/');  
-       document.location.reload(); 
+            // Afficher erreur dans l'interface graphique
+            console.log(info);
+        }
+        else {
+            console.log('Erreur inconnu');
+        }
     }
-    else if(response.status === 401) {
-        let info = await response.json();
-
-        // Afficher erreur dans l'interface graphique
-        console.log(info);
-    }
-    else {
-        console.log('Erreur inconnu');
-    }
-}
 });
 
 //bouton reset : validation du formulaire connexion usager
@@ -81,7 +87,6 @@ const resetSoumission = () => {
     inputCourriel.value = '';
     inputMotDePasse.value = '';
     
-
     if(inputCourriel.validity.valid) {
         errorCourrielUsager.style.display = 'none';
     }
