@@ -270,27 +270,31 @@ app.post('/accept', (request, response) => {
 
 app.post('/inscription', async (request, response, next) => {
     // Valider les données reçu du client
-    
-    if(true) {
-        try {
-            
-            await addUtilisateur(request.body.courriel,request.body.motDepasse,request.body.prenom,request.body.nom);
-            response.status(201).end();
-           
-        }
-        catch(error) {
-            if(error.code === 'SQLITE_CONSTRAINT') {
-                response.status(409).end();
+    if(true)
+    {
+        
+            try 
+            {
+                await addUtilisateur(request.body.courriel,request.body.motDepasse,request.body.prenom,request.body.nom);
+                response.status(201).end();
             }
-            else {
-                next(error);
+            catch(error) 
+            {
+                if(error.code === 'SQLITE_CONSTRAINT') 
+                {
+                    response.status(409).end();
+                }
+                else 
+                {
+                    next(error);
+                }
             }
-        }
+        
     }
-    else {
+    else 
+    {
         response.status(400).end();
     }
-   
 });
 
 app.post('/connexion', (request, response, next) => {

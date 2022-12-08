@@ -35,7 +35,7 @@ formInscription.addEventListener('submit', validatePrenomUtilisateur);
 let inputCourriel = document.getElementById('input-courriel-utilisateur');
 let errorCourrielUsager = document.getElementById('error-courriel-authentification');
 
-const validateNomUsager = () => {
+const validateCourrielUsager = () => {
     if(inputCourriel.validity.valid) {
         errorCourrielUsager.style.display = 'none';
     }
@@ -49,7 +49,7 @@ const validateNomUsager = () => {
     }
 };
 
-formInscription.addEventListener('submit', validateNomUsager);
+formInscription.addEventListener('submit', validateCourrielUsager);
 
 // Mot de passe de l'usager: validation du formulaire inscription usager
 let inputMotDePasse = document.getElementById('input-mot-de-passe');

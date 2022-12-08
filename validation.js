@@ -1,3 +1,5 @@
+import { hash } from 'bcrypt';
+
 /**
  * Fonction qui verifie si le nom est valide
  * @param {string} nom 
@@ -60,8 +62,8 @@ const validateCourriel = (courriel) => {
         courriel.match(/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/);
 };
 
-export const validateInscription = (body) => {
-    return validateNom(body.nom) && validatePrenom(body.prenom) && validateCourriel(body.courriel) && validateMotDePasse(body.motDePasse);
+export const validateInscription = async (body) => {
+        return validateNom(body.nom) && validatePrenom(body.prenom) && validateMotDePasse(body.motDePasse) && validateCourriel(body.courriel);
 };
 
 export const validateConnexion = (body) => {
