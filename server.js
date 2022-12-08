@@ -69,25 +69,27 @@ app.use(express.static('public'));
 console.log(await getTournoiUtilisateur());
 // Get sur la route racine
 app.get('/', async (request, response) => {
-    if(request.user) {
-    response.render('acceuil', {
-        titre: 'Acceuil',
-        styles: ['/css/admin.css'],
-        accept: request.session.accept,
-        scripts: ['/js/accueil.js'],
-        tournois: await getTournoi(), 
-        admin:  await getTournoiUtilisateur(),
-        adminLogin: request.user?.id_type_utilisateur != 2
-    });
-}
-else {
-    response.redirect('/connexion');
-}
+    if(request.user) 
+    {
+        response.render('acceuil', {
+            titre: 'Acceuil',
+            styles: ['/css/admin.css'],
+            accept: request.session.accept,
+            scripts: ['/js/accueil.js'],
+            tournois: await getTournoi(), 
+            admin:  await getTournoiUtilisateur(),
+            adminLogin: request.user?.id_type_utilisateur != 2
+        });
+    }
+    else {
+        response.redirect('/connexion');
+    }
 });
 console.log(await getTournoiUtilisateur());
 //Get sur la route /accueil pour avoir tous les tournois
 app.get('/acceuil', async (request, response) => {
-    if(request.user) {
+    if(request.user) 
+    {
         response.render('acceuil', {
             titre: 'Acceuil',
             styles: ['/css/admin.css'],
@@ -107,9 +109,10 @@ app.get('/acceuil', async (request, response) => {
 });
 
 //Post sur la route /accueil pour s'inscrire a un tournois
-
 app.post('/acceuil', async (request, response) => {
-    if(!request.user){
+
+    if(!request.user)
+    {
         response.status(401).end();
     }
     else{
@@ -124,7 +127,9 @@ app.post('/acceuil', async (request, response) => {
 
 //Get sur la route /compte Pour avoir les tournois Inscrits
 app.get('/compte', async (request, response) => {
-    if(request.user){
+
+    if(request.user)
+    {
         response.render('compte', {
             titre: 'Compte',
             styles: ['/css/admin.css'],
@@ -144,8 +149,8 @@ app.get('/compte', async (request, response) => {
 //Delete sur la route /compte pour se desinscrire a un tournoi
 app.delete('/compte', async (request, response) => {
 
-    if(request.user){
-
+    if(request.user)
+    {
         response.render('compte', {
             titre: 'Compte',
             styles: ['/css/admin.css'],
@@ -159,7 +164,8 @@ app.delete('/compte', async (request, response) => {
 
 //Get sur la route /admin pour avoir tous les tournois
 app.get('/admin', async(request, response) => {
-    if(request.user.id_type_utilisateur == 2){
+    if(request.user.id_type_utilisateur == 2)
+    {
         response.render('admin', {
             titre: 'Administrateur',
             styles: ['/css/admin.css'],
@@ -179,13 +185,16 @@ app.get('/admin', async(request, response) => {
 
 app.get('/nom-inscrits',async(request,response)=>{
 
-    response.status(200).json(await getTournoiUtilisateur());
+    if(request.user)
+    {
+         response.status(200).json(await getTournoiUtilisateur());
+    }
 })
 
 app.post('/admin', async (request, response) =>{
 
-    if(request.user.id_type_utilisateur == 2){
-
+    if(request.user.id_type_utilisateur == 2)
+    {
         if(validate(request.body)){
             console.log('Okay add tournament');
             console.log(request.body);
@@ -201,14 +210,15 @@ app.post('/admin', async (request, response) =>{
 });
 
 app.get('/inscription', (request, response) => {
-    if(!request.user > 0 ){
+
+    if(!request.user > 0 )
+    {
         response.render('inscription', {
             titre: 'Inscription',
             styles: ['/css/authentification.css'],
             scripts: ['/js/inscription.js'],
             user: request.user,
-            accept: request.session.accept,
-            adminLogin: request.user?.id_type_utilisateur != 2
+            accept: request.session.accept
         });  
     }
     else {
@@ -217,30 +227,35 @@ app.get('/inscription', (request, response) => {
 });
 
 app.get('/connexion', (request, response) => {
-    if(!request.user > 0 ){
-    response.render('connexion', {
-        titre: 'Connexion',
-        styles: ['/css/authentification.css'],
-        scripts: ['/js/connexion.js'],
-        user: request.user,
-        accept: request.session.accept,
-        adminLogin: request.user?.id_type_utilisateur != 2
-    });
-}
-else {
-    response.redirect('/acceuil');
-}
+    if(!request.user > 0 )
+    {
+            response.render('connexion', {
+            titre: 'Connexion',
+            styles: ['/css/authentification.css'],
+            scripts: ['/js/connexion.js'],
+            user: request.user,
+            accept: request.session.accept,
+        });
+    }
+    else {
+        response.redirect('/acceuil');
+    }
 });
 
-//Post sur la route /admin pour ajouter un trounois
+//Post sur la route /admin pour ajouter un tournois
 app.get('/accueil/id', async (req,res)=>{
-    let ids = await getIds(req.user.id_utilisateur); 
-    res.status(200).json(ids);
+    if(request.user)
+    {
+        let ids = await getIds(req.user.id_utilisateur); 
+        res.status(200).json(ids);
+    }
 });
 
 //Delete sur la route /admin pour suprimmer un tournoi
 app.delete('/admin',async(request,response)=>{
-    if(request.user.id_type_utilisateur == 2){
+
+    if(request.user.id_type_utilisateur == 2)
+    {
         response.render('admin', {
             titre: 'Administrateur',
             styles: ['/css/admin.css'],
@@ -254,7 +269,9 @@ app.delete('/admin',async(request,response)=>{
 });
 
 app.get('/stream', (request, response) => {
-    if(request.user) {
+
+    if(request.user) 
+    {
         response.initStream();
     }
     else {
