@@ -44,7 +44,7 @@ const validateCourrielUsager = () => {
         errorCourrielUsager.style.display = 'block';
     }
     else if(inputCourriel.validity.typeMismatch) {
-        errorCourrielUsager.innerText = 'Ce champ n est valide comme email';
+        errorCourrielUsager.innerText = 'Ce champ n est pas valide comme email';
         errorCourrielUsager.style.display = 'block';
     }
 };
@@ -67,7 +67,6 @@ const validateMotDePasseUsager = () => {
 
 formInscription.addEventListener('submit', validateMotDePasseUsager);
 
-
 // Mot de passe de l'usager: validation du formulaire inscription usager
 formInscription.addEventListener('submit', async (event) => {
     event.preventDefault();
@@ -75,7 +74,7 @@ formInscription.addEventListener('submit', async (event) => {
     let data = {
         nom: inputNomUtilisateur.value,
         prenom: inputPrenomUtilisateur.value,
-        motDepasse:inputMotDePasse.value,
+        motDePasse:inputMotDePasse.value,
         courriel:inputCourriel.value,
     };
 

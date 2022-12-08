@@ -13,7 +13,7 @@ const validateNomUsager = () => {
         errorCourrielUsager.style.display = 'block';
     }
     else if(inputCourriel.validity.typeMismatch) {
-        errorCourrielUsager.innerText = 'Ce champ n est valide comme email';
+        errorCourrielUsager.innerText = 'Ce champ n est pas valide comme email';
         errorCourrielUsager.style.display = 'block';
     }
 };
@@ -26,7 +26,7 @@ let errorMotDePasseUsager = document.getElementById('error-MotDePasse-authentifi
 
 const validateMotDePasseUsager = () => {
     if(inputMotDePasse.validity.valid) {
-        errorMotDePasselUsager.style.display = 'none';
+        errorMotDePasseUsager.style.display = 'none';
     }
     else if(inputMotDePasse.validity.valueMissing) {
         errorMotDePasseUsager.innerText = 'Ce champ est requis';

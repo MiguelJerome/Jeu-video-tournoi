@@ -29,34 +29,30 @@
 <body>
     <!--ceci est le body du main layout-->
     {{>barre-de-navigation-main}}
-    <div class="container"></div>
-    <div class="wallpaper-background">
-  <div id="message-login-user">
-           <li>Id Type: {{user.id_type_utilisateur}}</li>
-           <li>Id: {{user.id_utilisateur}}</li>
-           <li>Prenom: {{user.prenom}}</li>
-           <li>Nom: {{user.nom}}</li>
-            <li>Mot Passe: {{user.mot_passe}}</li>
-           <li> Courriel: {{user.courriel}}</li>
-           {{#each admin}}
-           <li>Tournoi Id utilisateur: {{this.id_tournois}}-------Prenom Utilisateur: {{this.prenom}}-------Nom Utilisateur: {{this.nom}}</li>
-            {{/each}}
-        </div>
-        <div class="container">
-          
-            <div class="row">
-                
-                {{{body}}}
-                
+    <div class="container">        
+    </div>
+        <div class="wallpaper-background">
+            <div id="message-login-user">
+                <li>Id Type: {{user.id_type_utilisateur}}</li>
+                <li>Id: {{user.id_utilisateur}}</li>
+                <li>Prenom: {{user.prenom}}</li>
+                <li>Nom: {{user.nom}}</li>
+                <li>Mot Passe: {{user.mot_passe}}</li>
+                <li> Courriel: {{user.courriel}}</li>
+                {{#each admin}}
+                    <li>Tournoi Id utilisateur: {{this.id_tournois}}-------Prenom Utilisateur: {{this.prenom}}-------Nom Utilisateur: {{this.nom}}</li>
+                {{/each}}
+            </div>
+            <div class="container">
+                <div class="row">
+                    {{{body}}}
+                </div>
             </div>
         </div>
-    </div>
     {{#unless accept}}
         {{>bouton-cookie-message-main}}
     {{/unless}}
 
-
-        
 </body>
 <!--ceci est le footer avec le lien de notre repo GitHub et heroku et la liste des developpeur pour ce projet-->
 <footer class="page-footer light-green darken-4">

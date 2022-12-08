@@ -1,4 +1,4 @@
-/*c est le style pour les labels du formulaire authentifation*/
+/*c est le style pour les labels du formulaire connexion et inscription*/
 label{
     display: flex;
     flex-direction: column;
@@ -8,7 +8,7 @@ label{
     color:#ffd700;
 }
 
-/*c est le style pour le formulaire authentifation*/
+/*c est le style pour le formulaire connexion et inscription*/
 form{
     display: flex;
     flex-direction: column;
@@ -18,7 +18,7 @@ form{
     align-items: stretch;
 }
 
-/*c est le style du titre du formulaire authentifation*/
+/*c est le style du titre du formulaire connexion et inscription*/
 .title-auth{
     display: flex;
     flex-direction: column;
@@ -28,7 +28,7 @@ form{
     color:white;
 }
 
-/*c est le style pour les inputs du formulaire authentifation*/
+/*c est le style pour les inputs du formulaire connexion et inscription*/
 input{
     border-radius: 5px;
     width: 500px;
@@ -41,7 +41,7 @@ input{
     border: 0.5rem solid #555;
 }
 
-/*c est le style pour l'input-nom-utilisateur*/
+/*c est le style de l'input-nom-utilisateur du formulaire inscription*/
 #input-nom-utilisateur{
     background-color: #feabe6;
     border: 0.5rem solid #92baf4;
@@ -51,7 +51,7 @@ input{
     font-size: 1.7rem;
 }
 
-/*c est le style pour l'input-prenom-utilisateur*/
+/*c est le style de l'input-prenom-utilisateur du formulaire inscription*/
 #input-prenom-utilisateur{
     background-color: #feabe6;
     border: 0.5rem solid #92baf4;
@@ -61,7 +61,7 @@ input{
     font-size: 1.7rem;
 }
 
-/*c est le style pour l'input-mot-de-passe*/
+/*c est le style de l'input-mot-de-passe du formulaire connexion et inscription*/
 #input-mot-de-passe{
     background-color: #feabe6;
     border: 0.5rem solid #92baf4;
@@ -71,7 +71,7 @@ input{
     font-size: 1.7rem;
 }
 
-/*c est le style pour l'input-prenom-utilisateur*/
+/*c est le style de l'input-courriel-utilisateur du formulaire connexion et inscription*/
 #input-courriel-utilisateur{
     background-color: #feabe6;
     border: 0.5rem solid #92baf4;
@@ -81,14 +81,14 @@ input{
     font-size: 1.7rem;
 }
 
-/*c est le style pour des placeholder pour chaque des input du formulaire authentifation qui l'utilise*/
+/*c est le style pour des placeholder pour chaque des input du formulaire connexion et inscription qui l'utilise*/
 ::placeholder{
     color:springgreen;
     text-shadow: 5px 5px 10px  black;
     font-size: 1.7rem;
 }
 
-/*c est le style pour le formulaire authenfication*/
+/*c est le style pour le formulaire connexion et inscription*/
 .form-authentification-wrapper{
     display: flex;
     flex-direction: column;
@@ -105,7 +105,7 @@ input{
     border: 2rem solid #f8c5ae;
 }
 
-/*c est le style pour le bouton authenfication du formulaire authenfication*/
+/*c est le style pour le bouton connexion et inscription du formulaire connexion et inscription*/
 .btn-authentification{
     display: flex;
     color: black;
@@ -129,18 +129,19 @@ input{
     text-shadow: 5px 5px 10px  #40b5ad;
 }
 
-/*c est le style en faisant le hover pour le bouton supprimer*/
+/*c est le style hover pour le bouton connexion et inscription du formulaire connexion et inscription*/
 .btn-authentification:hover{
     box-shadow: 0 3px 3px 0 rgb(0 0 0 / 14%), 0 1px 7px 0 rgb(0 0 0 / 12%), 0 3px 1px -1px rgb(0 0 0 / 20%);
     background-color:springgreen;
     border-radius: 50%;
 }
 
-/*c est le style de container du formulaire authenfication*/
+/*c est le style de container du formulaire connexion et inscription*/
 .container-auth{
     margin: 5rem;
 }
 
+/*c est le style pour le bloc d error pour chaque des input du formaulaire connexion et inscription*/
 .error{
     display: none;
     color: #a00;
@@ -173,6 +174,7 @@ input{
     text-shadow: 5px 5px 10px  white;
 }
 
+/*c est le style hover pour le bouton reset du formulaire inscription usager*/
 .btn-reset-inscription:hover{
     box-shadow: 0 3px 3px 0 rgb(0 0 0 / 14%), 0 1px 7px 0 rgb(0 0 0 / 12%), 0 3px 1px -1px rgb(0 0 0 / 20%);
     background-color:#ff0000;
@@ -206,6 +208,7 @@ input{
     text-shadow: 5px 5px 10px  white;
 }
 
+/*c est le style hover pour le bouton reset du formulaire connexion usager*/
 .btn-reset-connexion:hover{
     box-shadow: 0 3px 3px 0 rgb(0 0 0 / 14%), 0 1px 7px 0 rgb(0 0 0 / 12%), 0 3px 1px -1px rgb(0 0 0 / 20%);
     background-color:#ff0000;

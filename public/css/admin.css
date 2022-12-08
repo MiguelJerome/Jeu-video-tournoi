@@ -178,12 +178,8 @@ textarea{
     padding: 10rem;
 }
 
-.list-tournoi-participation
-{
-    list-style-type: style; 
-}
-
-#message-user-tournoi{
+/*c est le style pour la liste des participant pour chaque tournoi*/
+#message-participant-tournoi{
     background-color: #ffd700;
     z-index: 1;
     color:#633633;

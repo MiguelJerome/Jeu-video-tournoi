@@ -3,6 +3,10 @@ import sqlite3 from 'sqlite3';
 import { open } from 'sqlite';
 import { hash } from 'bcrypt';
 
+/**
+ * tous les variables et constante pour les dates et mot de passe pour le module de connexion.js
+ * ou non.
+ */
 let year = '2022';
 let month = '11';
 let days = '05';

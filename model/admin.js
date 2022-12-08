@@ -11,6 +11,10 @@ export const getTournoi = async () => {
     return resultat;
 };
 
+/**
+ * fonction qui permet de retourner tous les nom des participants de chaque tournoi stockées dans la base de donnée
+ * @returns le resultal de la requete pour savoir le id des tournois, des noms de participant et des noms de participant
+ */
 export const getTournoiUtilisateur = async () => {
     let connexion = await connectionPromise;
     let resultat = await connexion.all('select t.id_tournois,u.nom, u.prenom from tournois t,utilisateur u,tournois_utilisateur tu where tu.id_utilisateur = u.id_utilisateur and tu.id_tournois = t.id_tournois');

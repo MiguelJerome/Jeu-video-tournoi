@@ -2,6 +2,7 @@
 <nav class="light-green darken-4">
     <!--ceci est le wrapper de la barre de navigation-->
     <div class="nav-wrapper">
+        <!--si l'utilisateur est connecter, il va avoir au lien de la route acceuil-->
         {{#if user}}
             <!--ceci est le lien pour se diriger vers la page acceuil a l'aide du logo-->
             <a href="/acceuil" class="brand-logo">
@@ -11,29 +12,36 @@
         {{/if}}
         <!--ceci est la liste de lien poue chacune des pages-->
         <ul id="nav-mobile" class="right hide-on-med-and-down">
+            <!--si l'utilisateur est connecter, il va avoir au lien de la route acceuil, compte-->
             {{#if user}}
-            <!--ceci est le lien pour se diriger vers la page acceuil-->
-            <li><a href="/acceuil">Acceuil</a></li>
-            <!--ceci est le lien pour se diriger vers la page compte-->
-            <li><a href="/compte">Compte</a></li>
-            {{#unless adminLogin}} 
-            <!--ceci est le lien pour se diriger vers la page admin-->
-            <li><a href="/admin">Administrateur</a></li>
-            {{/unless}}
+             <!--ceci est le lien pour se diriger vers la page acceuil-->
+                <li><a href="/acceuil">Acceuil</a></li>
+                <!--ceci est le lien pour se diriger vers la page compte-->
+                <li><a href="/compte">Compte</a></li>
+                <!--si l'utilisateur admin est connecter, il est le seule utilisateur qui va avoir au lien de la route admin-->
+                {{#unless adminLogin}} 
+                    <!--ceci est le lien pour se diriger vers la page admin-->
+                    <li><a href="/admin">Administrateur</a></li>
+                {{/unless}}
            {{/if}}
-            <!--ceci est le lien pour se diriger vers la page de connexion-->
+            
+            <!--si l'utilisateur n'est pas connecter, il va avoir au lien de la route connexion et inscription-->
             {{#unless user}}
+            <!--ceci est le lien pour se diriger vers la page de connexion-->
             <li><a href="/connexion">Connexion</a></li>
             <!--ceci est le lien pour se diriger vers la page de Inscription-->
             <li><a href="/inscription">Inscription</a></li>
             <!--ceci est le lien pour se diriger vers la page de Deconnexion-->
             {{/unless}}
+
+            <!--si l'utilisateur est connecter, il va avoir pouvoir se deconnecter a partir du bouton deconnexion -->
             {{#if user}}
-            <li>
-                <form method="post" action="/deconnexion">
-                    <button class="btn-deconnexion right hide-on-med-and-down" type="submit">Déconnexion</button>
-                </form> 
-            </li>
+                <li>
+                    <!--ceci est le formulaire deconnexion pour tous les pages--> 
+                    <form method="post" action="/deconnexion">
+                        <button class="btn-deconnexion right hide-on-med-and-down" type="submit">Déconnexion</button>
+                    </form> 
+                </li>
             {{/if}}
         </ul>
     </div>

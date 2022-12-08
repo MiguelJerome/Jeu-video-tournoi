@@ -14,7 +14,6 @@ import {validateConnexion,validateInscription,validate} from './validation.js';
 import './authentification.js';
 
 
-
 // Création du serveur web
 let app = express();
 
@@ -273,30 +272,32 @@ app.post('/inscription', async (request, response, next) => {
     // Valider les données reçu du client
     if(true)
     {
-        console.log(`   Ajouter un nouveau utilisateur 
-                        Incription formulaire value du client:
-                        Courriel: ${request.body.courriel} 
-                        Mot de passe: ${request.body.motDepasse} 
-                        Prenom: ${request.body.prenom} 
-                        Nom: ${request.body.nom}
-                    `)
-            try 
-            {
-                await addUtilisateur(request.body.courriel,request.body.motDepasse,request.body.prenom,request.body.nom);
-                response.status(201).end();
-            }
-            catch(error) 
-            {
-                if(error.code === 'SQLITE_CONSTRAINT') 
+        if(validateInscription(request.body))
+        {
+            console.log(`   Ajouter un nouveau utilisateur 
+                            Incription formulaire value du client:
+                            Courriel: ${request.body.courriel} 
+                            Mot de passe: ${request.body.motDePasse} 
+                            Prenom: ${request.body.prenom} 
+                            Nom: ${request.body.nom}
+                        `)
+                try 
                 {
-                    response.status(409).end();
+                    await addUtilisateur(request.body.courriel,request.body.motDePasse,request.body.prenom,request.body.nom);
+                    response.status(201).end();
                 }
-                else 
+                catch(error) 
                 {
-                    next(error);
+                    if(error.code === 'SQLITE_CONSTRAINT') 
+                    {
+                        response.status(409).end();
+                    }
+                    else 
+                    {
+                        next(error);
+                    }
                 }
-            }
-        
+        }
     }
     else 
     {
@@ -306,41 +307,42 @@ app.post('/inscription', async (request, response, next) => {
 
 app.post('/connexion', (request, response, next) => {
     // Valider les données reçu du client
-   
+    console.log('connexion');
+
     if(true) {
-        
         if(validateConnexion(request.body)){
             console.log(`   Etablir une nouvelle connexion 
-                            Connexion formulaire value du client:
-                            Courriel: ${request.body.courriel} 
-                            Mot de passe: ${request.body.motDepasse} 
-                        `);
-                        
-        passport.authenticate('local', (error, utilisateur, info) => {
-            if(error) {
-                next(error);
-            }          
-            else if(!utilisateur) {
-                response.status(401).json(info);
-            }
-            else {
-                request.logIn(utilisateur, (error) => {
-                    if(error) {
-                        next(error);
-                    }
-                    else {
-                        response.status(200).end();
-                    }
-                });
-            }
-        })(request, response, next);   
-   }
-}
+                                Connexion formulaire value du client:
+                                Courriel: ${request.body.courriel} 
+                                Mot de passe: ${request.body.motDePasse} 
+                            `);
+            passport.authenticate('local', (error, utilisateur, info) => 
+            {
+                if(error) {
+                    next(error);
+                }          
+                else if(!utilisateur) {
+                    response.status(401).json(info);
+                }
+                else {
+                    request.logIn(utilisateur, (error) => {
+                        if(error) {
+                            next(error);
+                        }
+                        else {
+                            response.status(200).end();
+                        }
+                    });
+                }
+            })(request, response, next);   
+        }
+    }
     else {
         response.status(400).end();
     }
 });
 
+// deconnexion de la page web de l'utilisateur courant 
 app.post('/deconnexion', (request, response, next) => {
     request.logOut((error) => {
         if(error) {

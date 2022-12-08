@@ -1,6 +1,7 @@
 import connectionPromise from './connexion.js';
 import { hash } from 'bcrypt';
 
+// ajouter un nouveau utilisateur et ensuite l'inserer dans la base de donnees
 export const addUtilisateur = async (courriel,motDePasse,prenom, nom) => {
     let connexion = await connectionPromise;
 
@@ -11,10 +12,9 @@ export const addUtilisateur = async (courriel,motDePasse,prenom, nom) => {
         VALUES (1,?,?,?,?)`,
         [courriel, motDePasseHash,prenom,nom]
     );
-}
+};
 
-
-
+// verifire dans la base de donnees si le courriel est existant obtenu a partir de l'utilisateur
 export const getUtilisateurByCourriel = async (courriel) => {
     let connexion = await connectionPromise;
 
@@ -25,4 +25,4 @@ export const getUtilisateurByCourriel = async (courriel) => {
         [courriel]
     )
     return utilisateur;
-}
+};

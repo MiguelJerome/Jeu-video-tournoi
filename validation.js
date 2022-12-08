@@ -39,16 +39,26 @@ const validateCapacite = (capacite) => {
     && capacite < 17;
 };
 
+/**
+ * Fonction qui verifie si la mot de pase est valide
+ * @param {motDePasse}  motDePasse)
+ * @returns booleen vrai ou faux
+ */
 const validateMotDePasse = (motDePasse) => {
     return typeof motDePasse=== 'string' && !!motDePasse;
 };
 
+/**
+ * Fonction qui verifie si le prenom est valide
+ * @param {prenom}  prenom
+ * @returns booleen vrai ou faux
+ */
 const validatePrenom = (prenom) => {
     return typeof prenom === 'string' && !!prenom;
 };
 
 /**
- * Fonction qui verifie tous
+ * Fonction qui verifie la validation des datas obtenu a partir des inputs du formulaire ajouter tournoi
  * @param {object} body 
  * @returns booleen vrai ou faux
  */
@@ -56,16 +66,32 @@ export const validate = (body) => {
     return validateNom(body.nom) && validateDescription(body.description) && validateDate(body.date_debut) && validateCapacite(body.capacite);
 };
 
+
+/**
+ * Fonction qui verifie si le courriel est valide 
+ * @param {courriel}  courriel
+ * @returns booleen vrai ou faux
+ */
 const validateCourriel = (courriel) => {
     return typeof courriel === 'string' && 
         !!courriel &&
         courriel.match(/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/);
 };
 
+/**
+ * Fonction qui verifie la validation des datas obtenu a partir des inputs du formulaire inscription
+ * @param {object} body 
+ * @returns booleen vrai ou faux
+ */
 export const validateInscription = (body) => {
-        return validateNom(body.user.nom) && validatePrenom(body.user.prenom) && validateMotDePasse(body.user.motDePasse) && validateCourriel(body.user.courriel);
+        return validateNom(body.nom) && validatePrenom(body.prenom) && validateMotDePasse(body.motDePasse) && validateCourriel(body.courriel);
 };
 
+/**
+ * Fonction qui verifie la validation des datas obtenu a partir des inputs du formulaire connexion
+ * @param {object} body 
+ * @returns booleen vrai ou faux
+ */
 export const validateConnexion = (body) => {
     return validateCourriel(body.courriel) && validateMotDePasse(body.motDePasse);
 };

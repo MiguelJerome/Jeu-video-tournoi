@@ -218,7 +218,6 @@ footer{
     color: black;
 }
 
-
 /*c est le style pour la carte tournoi*/
 .tournoi-card{ 
     padding: 2rem;
@@ -254,7 +253,8 @@ span{
     color:white;
     font-size: 1.3rem; 
 }
-/*cookie*/
+
+/*c est le style pour le message de cookies pour toute les pages*/
 #message-cookie{
     background-color: #087ee1;
     color: white;
@@ -262,15 +262,20 @@ span{
     height: auto;
     position: sticky;
     bottom: 0;
+    flex-direction: row;
+    align-content: center;
+    align-items: center;
 }
+
+/*c est le style pour le message en paragraphe de cookies pour toute les pages*/
 #message-cookie p{
     font-size: 1.3rem;
     color: white;
     display: flex;
     z-index: -1;
-    
 }
 
+/*c est le style pour le message login info de l utilisateur connecter*/
 #message-login-user{
     background-color: #087ee1;
     z-index: 1;
@@ -314,6 +319,7 @@ span{
     border-radius: 50%;
 }
 
+/*c est le style pour le bouton deconnexion*/
 .btn-deconnexion{
     background-color: #33691e;
     transition: background-color .3s;
@@ -330,6 +336,7 @@ span{
     border: transparent;
 }
 
+/*c est le style en faisant le hover pour le bouton deconnexion*/
 .btn-deconnexion:hover{
     background-color: rgba(0, 0, 0, 0.1);
 }
