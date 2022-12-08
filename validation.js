@@ -62,8 +62,8 @@ const validateCourriel = (courriel) => {
         courriel.match(/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/);
 };
 
-export const validateInscription = async (body) => {
-        return validateNom(body.nom) && validatePrenom(body.prenom) && validateMotDePasse(body.motDePasse) && validateCourriel(body.courriel);
+export const validateInscription = (body) => {
+        return validateNom(body.user.nom) && validatePrenom(body.user.prenom) && validateMotDePasse(body.user.motDePasse) && validateCourriel(body.user.courriel);
 };
 
 export const validateConnexion = (body) => {

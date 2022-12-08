@@ -61,7 +61,7 @@ if(inputCourriel && inputMotDePasse)
 
     if(response.ok) {
         document.location.replace('/');  
-       //document.location.reload(); 
+       document.location.reload(); 
     }
     else if(response.status === 401) {
         let info = await response.json();
