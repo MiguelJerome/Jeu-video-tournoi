@@ -1,4 +1,6 @@
 import 'dotenv/config';
+import https from 'https';
+import { readFile } from 'fs/promises';
 import express, { json, request} from 'express';
 import { engine } from 'express-handlebars';
 import helmet from 'helmet';
@@ -12,7 +14,6 @@ import { getTournoiUtilisateur, getTournoi, addTournoi,supprimerTournoi,getTourn
 import { addUtilisateur} from './model/utilisateur.js';
 import {validateConnexion,validateInscription,validate} from './validation.js';
 import './authentification.js';
-
 
 // Création du serveur web
 let app = express();
@@ -396,6 +397,20 @@ app.post('/deconnexion', (request, response, next) => {
     });
 });
 
-// Démarrage du serveur
-app.listen(process.env.PORT);
-console.log(`Serveur démarré: http://localhost:${process.env.PORT}`);
+// Démarrage du serveur en mode http
+console.info('Serveurs démarré:');
+if (process.env.NODE_ENV === 'production') {
+    app.listen(process.env.PORT);
+    console.info(`http://localhost:${process.env.PORT}`);
+}
+else {
+    //Sécuriser le serveur
+    const credentials = {
+        key: await readFile('./security/localhost.key'),
+        cert: await readFile('./security/localhost.cert')
+    }
+
+    // Démarrage du serveur en mode https
+    https.createServer(credentials, app).listen(process.env.PORT);
+    console.info(`https://localhost:${process.env.PORT}`);
+}

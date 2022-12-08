@@ -1,5 +1,6 @@
 let buttons = document.querySelectorAll('.btn-supprimer-tournoi');
 let cardDivs = document.querySelectorAll('#card-nom');
+let nomIsncrits = document.querySelectorAll('#card-nom p');
 
   /**
    * Suprimer un tournoi
@@ -69,3 +70,9 @@ source.addEventListener('add-inscrit', (event) => {
     let data = JSON.parse(event.data);
     addNomInscritLive(data.id_tournois,data.prenom,data.nom);
 });
+
+async function deleteNom(nom){
+
+}
+
+console.log(nomIsncrits)
