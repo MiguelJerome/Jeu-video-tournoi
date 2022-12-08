@@ -78,7 +78,6 @@ app.get('/', async (request, response) => {
         tournois: await getTournoi(), 
         admin:  await getTournoiUtilisateur(),
         adminLogin: request.user?.id_type_utilisateur != 2
-    
     });
 }
 else {
@@ -100,7 +99,6 @@ app.get('/acceuil', async (request, response) => {
             accept: request.session.accept,
             admin:  await getTournoiUtilisateur(),
             adminLogin: request.user?.id_type_utilisateur != 2
-
         });
     }
     else {
@@ -126,9 +124,7 @@ app.post('/acceuil', async (request, response) => {
 
 //Get sur la route /compte Pour avoir les tournois Inscrits
 app.get('/compte', async (request, response) => {
-
     if(request.user){
-
         response.render('compte', {
             titre: 'Compte',
             styles: ['/css/admin.css'],
@@ -138,7 +134,6 @@ app.get('/compte', async (request, response) => {
             user: request.user,
             accept: request.session.accept,
             adminLogin: request.user.id_type_utilisateur != 2
-
         });
     }
     else {
@@ -157,6 +152,7 @@ app.delete('/compte', async (request, response) => {
             accept: request.session.accept,
             scripts: ['/js/compte.js'],
             tournois: await deleteTournoiInscrit(request.body.id_tournois,request.user.id_utilisateur),
+            adminLogin: request.user?.id_type_utilisateur != 2
         });
     }
 });
@@ -211,7 +207,8 @@ app.get('/inscription', (request, response) => {
             styles: ['/css/authentification.css'],
             scripts: ['/js/inscription.js'],
             user: request.user,
-            accept: request.session.accept
+            accept: request.session.accept,
+            adminLogin: request.user?.id_type_utilisateur != 2
         });  
     }
     else {
@@ -226,7 +223,8 @@ app.get('/connexion', (request, response) => {
         styles: ['/css/authentification.css'],
         scripts: ['/js/connexion.js'],
         user: request.user,
-        accept: request.session.accept
+        accept: request.session.accept,
+        adminLogin: request.user?.id_type_utilisateur != 2
     });
 }
 else {
@@ -250,6 +248,7 @@ app.delete('/admin',async(request,response)=>{
             scripts: ['/js/admin.js'],  
             tournois: await getTournoi(),
             id:await supprimerTournoi(request.body.id),
+            adminLogin: request.user?.id_type_utilisateur != 2
         });
     }
 });
