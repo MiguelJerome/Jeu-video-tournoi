@@ -93,7 +93,7 @@ export const getIds = async (id_utilisateur)=>{
         let connexion = await connectionPromise;
 
         let resultat = await connexion.all(
-            `select id_tournois from tournois_utilisateur tu,utilisateur u
+            `select id_tournois from tournois_utilisateur tu 
             where tu.id_utilisateur = ?`,[id_utilisateur]
         );
     return resultat;

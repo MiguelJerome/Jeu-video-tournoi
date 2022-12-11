@@ -1,13 +1,14 @@
 // Reference avec le bouton inscrire et le bouton desinscricre
 let inscrires = document.querySelectorAll('.btn-inscription-tournoi');
-let desincrire = document.querySelectorAll('.btn-desinscrire-tournoi');
-
 //Fonction qui permet de soumettre le formulaire d'inscription
-async function disableButton(){
-    let response = await fetch('/accueil/id');
 
+
+async function disableButton(){
+
+  let response = await fetch('/accueil/id')
     if(response.ok){
         let data = await response.json();
+        console.log(data)
             for(let i = 0;i<data.length;i++){
              for(let j = 0; j<inscrires.length;j++){
                     let id = data[i].id_tournois;
@@ -21,7 +22,6 @@ async function disableButton(){
         }
     }
 }
-
 /**
  * Fonction qui inscrit l'utilisateur a un cours.
  * @param {number} id_tournois 
@@ -31,15 +31,15 @@ async function inscription(id_tournois){
     let data = {
       id_tournois:id_tournois
     };
+
   
     let response = await fetch('/acceuil', {
       method: 'POST',
       headers: {'Content-Type':'application/json'},
       body: JSON.stringify(data)
   });
-
   if(response.ok){
-    let data = await response.json();
+    document.location.reload();
   }
 }
 

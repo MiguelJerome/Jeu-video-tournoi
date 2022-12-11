@@ -13,6 +13,7 @@ const validateNomTournoi = () => {
     }
 };
 
+
 form.addEventListener('submit', validateNomTournoi);
 
 // Capacite : validation du formulaire ajouter tournoi
@@ -103,7 +104,6 @@ form.addEventListener('submit', async (event) => {
     });
 
     if(response.ok) {
-        document.location.reload();
         inputNomTournoi.value = '';
         inputCapacite.value = '';
         inputDate.value = '';
@@ -153,3 +153,63 @@ const resetSoumission = () => {
 };
 
 form.addEventListener('reset', resetSoumission);
+
+
+let source =  new EventSource('/stream');
+
+source.addEventListener('add-tournoi', (event) => {
+    let data = JSON.parse(event.data);
+    let adminGrid = document.getElementById('admin-tournoi-live');
+
+    adminGrid.innerHTML+=`<div class="grid-example col s12 m6" data-id="${data.id_tournois}">
+    <!--ceci est le wrapper carte tournoi-->
+    <div class="tournoi-card">
+        <!--ceci est le wrapper grid de colonne pour les cartes tournoi-->
+        <div class="card">
+            <!--ceci est la composante  tournoi info-->
+            <!--ceci est le wrapper pour la carte info tournoi-->
+            <div class="tournoi-card-info">
+            <!--ceci est l'image et le title d un tournoi-->
+                <div class="card-image">
+                    <img src="/img/2208_w023_n003_2818b_p1_2818.jpg">
+                        <span class="card-title">Tournoi Info</span>
+                </div>
+            <!--ceci est les wrappers pour la carte info tournoi-->
+                    <div class ="card-content">
+                        <div class=" card-content">   
+            <!-- voici les composantes pour montrer que les donnees d un tournoi-->   
+                            <!--ceci est le wrapper et les infos pour montrer le id de la table tournoi--> 
+                            <div class ="tournoi-info">
+                                <p><span>Numero Tournoi:</span>${data.id_tournois}</p>
+                            </div>                <!--ceci est le wrapper et les infos pour montrer le nom de la table tournoi--> 
+                            <div class ="tournoi-info">
+                                <p><span>Nom:</span>${data.nom}</p>
+                            </div>                <!--ceci est le wrapper et les infos pour montrer la description de la table tournoi--> 
+                            <div class ="tournoi-info">
+                                <p><span>Description:</span>${data.description}</p>
+                            </div>                <!--ceci est le wrapper et les infos pour montrer la Capacite de la table tournoi--> 
+                            <div class ="tournoi-info">
+                                <p><span>Capacite:</span>${data.capacite}</p>
+                            </div>                <!--ceci est le wrapper et les infos pour montrer la date_debut de la table tournoi--> 
+                             <div class ="tournoi-info">
+                                <p><span>Date debut:</span>${data.date_debut}</p>
+                            </div>            </div>
+                    </div>
+            </div>                <!--ceci est le wrapper du background pour la carte tournoi-->
+            <div class=" card-background  card-content ">
+                <!--ceci est le wrapper pour la liste des participants tournois pour la carte tournoi pour la page admin-->
+                <div class="message-participant-tournoi card-content">
+                    <!--ceci est la liste des participants tournois pour la carte tournoi pour la page admin-->
+                    <span>Liste des Participants:</span>
+                    <div class="message-participant-tournoi data-id="${data.id_tournois}">
+                        <li data-id="${data.id_tournois}" id="card-nom"></li>
+                    </div>
+                </div>
+                <!--ceci est la composante pour le bouton supprimer de la page admin-->
+                <!--ceci est le bouton pour supprimer tournoi de la page admin--> 
+                <button type="submit" class="btn-supprimer-tournoi pulse" data-id="${data.id_tournois}">Supprimer Tournoi</button>                </div>
+        </div>
+    </div>
+</div>`
+resetSoumission();
+});

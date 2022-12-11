@@ -18,7 +18,6 @@ import './authentification.js';
 // Création du serveur web
 let app = express();
 
-let i = -1;
 let nombres = await getNombreInscrit();
 // Création de l'engin dans Express
 app.engine('handlebars', engine({
@@ -67,7 +66,7 @@ app.use(passport.initialize());
 app.use(passport.session());
 app.use(middlewareSse());
 app.use(express.static('public'));
-console.log(await getTournoiUtilisateur());
+
 // Get sur la route racine
 app.get('/', async (request, response) => {
     if(request.user) 
@@ -86,7 +85,7 @@ app.get('/', async (request, response) => {
         response.redirect('/connexion');
     }
 });
-console.log(await getTournoiUtilisateur());
+
 //Get sur la route /accueil pour avoir tous les tournois
 app.get('/acceuil', async (request, response) => {
     if(request.user) 
@@ -111,17 +110,17 @@ app.get('/acceuil', async (request, response) => {
 
 //Post sur la route /accueil pour s'inscrire a un tournois
 app.post('/acceuil', async (request, response) => {
-
+    
     if(!request.user)
     {
         response.status(401).end();
     }
     else{
-         let id = await addTournoiInscrit(request.body.id_tournois,request.user.id_utilisateur)
-        
+        let id = await addTournoiInscrit(request.body.id_tournois,request.user.id_utilisateur)
         response.pushJson({
-            id_tournois:id,
-            nom:request.user.nom
+            id_tournois:request.body.id_tournois,
+            nom:request.user.nom,
+            prenom:request.user.prenom
         }, 'add-inscrit');
     }
 });
@@ -160,11 +159,18 @@ app.delete('/compte', async (request, response) => {
             tournois: await deleteTournoiInscrit(request.body.id_tournois,request.user.id_utilisateur),
             adminLogin: request.user?.id_type_utilisateur != 2
         });
+
+        response.pushJson({
+            id_tournois:request.body.id_tournois,
+            nom:request.user.nom,
+            prenom : request.user.prenom
+        }, 'delete-inscrit');
     }
 });
 
 //Get sur la route /admin pour avoir tous les tournois
 app.get('/admin', async(request, response) => {
+    if(request.user){
     if(request.user.id_type_utilisateur == 2)
     {
         response.render('admin', {
@@ -180,8 +186,12 @@ app.get('/admin', async(request, response) => {
         });
     }
     else{
-        response.redirect('/connexion');
+        response.redirect('/');
     }
+}
+else{
+    response.redirect('/connexion')
+}
 });
 
 app.get('/nom-inscrits',async(request,response)=>{
@@ -198,10 +208,15 @@ app.post('/admin', async (request, response) =>{
     {
         if(validate(request.body)){
             console.log('Okay add tournament');
-            console.log(request.body);
-            addTournoi(request.body.nom, request.body.date_debut, request.body.capacite, request.body.description);
-            response.status(200).end();
-        }
+            console.table(request.body);
+            let id = await addTournoi(request.body.nom, request.body.date_debut, request.body.capacite, request.body.description);
+            response.pushJson({
+                id_tournois:id,
+                nom:request.body.nom,
+                date_debut:request.body.date_debut,
+                capacite:request.body.capacite,
+                description:request.body.description
+            },  'add-tournoi');        }
         else{
             console.log('error add tournament');
             console.log(request.body);
@@ -245,28 +260,16 @@ app.get('/connexion', (request, response) => {
 
 //Post sur la route /admin pour ajouter un tournois
 app.get('/accueil/id', async (req,res)=>{
-    if(request.user)
-    {
-        let ids = await getIds(req.user.id_utilisateur); 
-        res.status(200).json(ids);
-    }
+    let ids = await getIds(req.user.id_utilisateur); 
+    res.status(200).json(ids);
 });
 
 //Delete sur la route /admin pour suprimmer un tournoi
 app.delete('/admin',async(request,response)=>{
-
-    if(request.user.id_type_utilisateur == 2)
-    {
-        response.render('admin', {
-            titre: 'Administrateur',
-            styles: ['/css/admin.css'],
-            accept: request.session.accept,
-            scripts: ['/js/admin.js'],  
-            tournois: await getTournoi(),
-            id:await supprimerTournoi(request.body.id),
-            adminLogin: request.user?.id_type_utilisateur != 2
-        });
-    }
+    await supprimerTournoi(request.body.id);
+    response.pushJson({
+        id_tournois:request.body.id,
+    },  'delete-tournoi');
 });
 
 app.get('/stream', (request, response) => {

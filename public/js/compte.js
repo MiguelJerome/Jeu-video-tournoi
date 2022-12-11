@@ -1,5 +1,4 @@
 let desinscrires = document.querySelectorAll('.btn-desinscrire-tournoi');
-
 /**
  * Fonction qui desinscrit l'utilisateur a un tournois
  * @param {number} id_tournois 
@@ -20,10 +19,11 @@ async function desinscription(id_tournois){
     }
 }
 
+
 //Ajout des eventslisteners sur les boutons desinscrires
 for(let i = 0 ;i < desinscrires.length;i++)
 {
-    desinscrires[i].addEventListener('click',()=>{
+        desinscrires[i].addEventListener('click',()=>{
         desinscription(desinscrires[i].dataset.id)
      })
 }
