@@ -1,10 +1,13 @@
-// Reference avec le bouton inscrire et le bouton desinscricre
+/**
+ * Reference avec le bouton inscrire et le bouton desinscricre
+ */
 let inscrires = document.querySelectorAll('.btn-inscription-tournoi');
-//Fonction qui permet de soumettre le formulaire d'inscription
-
+/**
+ * Fonction qui permet de soumettre le formulaire d'inscription
+ */
 
 async function disableButton(){
-
+  
   let response = await fetch('/accueil/id')
     if(response.ok){
         let data = await response.json();

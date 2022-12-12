@@ -1,7 +1,10 @@
-// Ensemble de connexions
+/**
+ * Ensemble de connexions
+ */
 let connexions = new Set();
-
-// Identifiant courant des messages
+/**
+ * Identifiant courant des messages
+ */
 let currentId = 0;
 
 export default function middlewareSse() {
@@ -10,23 +13,28 @@ export default function middlewareSse() {
          * Initialiser la connexion avec le client
          */
         response.initStream = () => {
-            // Retourner le stream au client
+            /**
+             * Retourner le stream au client
+             */
             response.writeHead(200, {
                 'Cache-Control': 'no-cache',
                 'Content-Type': 'text/event-stream',
                 'Connection': 'keep-alive'
             });
-
-            // Ajouter la connexion à notre ensemble
+            /**
+             * Ajouter la connexion à notre ensemble
+             */
             connexions.add(response);
-
-            // Boucle pour garder la connexion en vie
+            /**
+             * Boucle pour garder la connexion en vie
+             */
             const intervalId = setInterval(() => {
                 response.write(':\n\n');
                 response.flush();
             }, 30000);
-
-            // Arrêter la boucle si le client stop la connexion
+            /**
+             * Arrêter la boucle si le client stop la connexion
+             */ 
             response.on('close', () => {
                 connexions.delete(response);
                 clearInterval(intervalId);
@@ -38,13 +46,16 @@ export default function middlewareSse() {
          * Envoyer des objets sous le format JSON à tous le clients
          */
         response.pushJson = (data, eventName) => {
-            // Bâtir la chaîne de données
+            /**
+             * Bâtir la chaîne de données
+             */
             let dataString = 
                 `id: ${ currentId }\n` + 
                 `data: ${ JSON.stringify(data) }\n` + 
                 (eventName ? `event: ${ eventName }\n\n` : '\n');
-
-            // Envoyer les données à toutes les connexions
+                /**
+                 * Envoyer les données à toutes les connexions
+                 */
             for(let connexion of connexions){
                 connexion.write(dataString);
                 connexion.flush();
@@ -52,8 +63,9 @@ export default function middlewareSse() {
 
             currentId++;
         };
-
-        // Passer au prochain middleware
+        /**
+         * Passer au prochain middleware
+         */
         next();
     }
 }

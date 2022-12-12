@@ -31,7 +31,10 @@ async function supprimerTournoi(id){
         supprimerTournoi(buttons[i].dataset.id);
     });
 }
-
+/**
+ * L'ajout du nom et du prenom de tous les utilisateurs
+ * qui sont inscrits ax tournois 
+ */
 async function getInscrits(){
     let response = await fetch('/nom-inscrits');
     
@@ -56,7 +59,12 @@ async function getInscrits(){
 }
 
 getInscrits();
-
+/**
+ * Ajout du nom et du prenom de l'utilisateur en temps reel
+ * @param {*id_tournois} id_tournois 
+ * @param {*prenom utilisateur} prenom 
+ * @param {*nom utilisateur} nom 
+ */
 async function addNomInscritLive(id_tournois,prenom,nom){  
     let p = document.createElement('p');
     p.dataset.id = id_tournois;
@@ -78,7 +86,13 @@ source.addEventListener('add-inscrit', (event) => {
     console.log(data)
     addNomInscritLive(data.id_tournois,data.prenom,data.nom);
 });
-
+/**
+ * Supression du nom et du prenom de l'utilisateur en temps reel
+ * @param {*id du tournois } id 
+ * @param {* nom utilisateur} nom 
+ * @param {* prenom utilisateur} prenom 
+ * @param {*Les elements html} mesNoms 
+ */
 async function deleteNomLive(id,nom,prenom,mesNoms){
    for(let i = 0;i<mesNoms.length;i++){
     console.warn(`${mesNoms[i].dataset.id}==${id}`);

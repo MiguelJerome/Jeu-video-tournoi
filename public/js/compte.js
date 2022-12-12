@@ -19,8 +19,9 @@ async function desinscription(id_tournois){
     }
 }
 
-
-//Ajout des eventslisteners sur les boutons desinscrires
+/**
+ * Ajout des eventslisteners sur les boutons desinscrires
+ */
 for(let i = 0 ;i < desinscrires.length;i++)
 {
         desinscrires[i].addEventListener('click',()=>{

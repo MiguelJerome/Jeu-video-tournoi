@@ -1,6 +1,7 @@
 let formInscription = document.getElementById('inscription-form-auth');
-
-// nom usager: validation du formulaire inscription usager
+/**
+ * nom usager: validation du formulaire inscription usager
+ */
 let inputNomUtilisateur = document.getElementById('input-nom-utilisateur');
 let errorNomUtilisateur = document.getElementById('error-nom-authentification');
 
@@ -15,8 +16,9 @@ const validateNomUtilisateur = () => {
 };
 
 formInscription.addEventListener('submit', validateNomUtilisateur);
-
-// prenom usager: validation du formulaire inscription usager
+/**
+ * prenom usager: validation du formulaire inscription usager
+ */
 let inputPrenomUtilisateur = document.getElementById('input-prenom-utilisateur');
 let errorPrenomUtilisateur = document.getElementById('error-prenom-authentification');
 
@@ -31,8 +33,9 @@ const validatePrenomUtilisateur = () => {
 };
 
 formInscription.addEventListener('submit', validatePrenomUtilisateur);
-
-// courriel usager: validation du formulaire inscription usager
+/**
+ * courriel usager: validation du formulaire inscription usager
+ */
 let inputCourriel = document.getElementById('input-courriel-utilisateur');
 let errorCourrielUsager = document.getElementById('error-courriel-authentification');
 
@@ -51,8 +54,9 @@ const validateCourrielUsager = () => {
 };
 
 formInscription.addEventListener('submit', validateCourrielUsager);
-
-// Mot de passe de l'usager: validation du formulaire inscription usager
+/**
+ * Mot de passe de l'usager: validation du formulaire inscription usager
+ */
 let inputMotDePasse = document.getElementById('input-mot-de-passe');
 let errorMotDePasseUsager = document.getElementById('error-MotDePasse-authentification');
 
@@ -67,17 +71,21 @@ const validateMotDePasseUsager = () => {
 };
 
 formInscription.addEventListener('submit', validateMotDePasseUsager);
-
-// Soumission : envoyer les inputs du formulaire inscription pour etre eventuelle sauver dans la base de donnee
+/**
+ * Soumission : envoyer les inputs du formulaire inscription
+ * pour etre eventuelle sauver dans la base de donnee
+ */
 formInscription.addEventListener('submit', async (event) => {
     event.preventDefault();
 
     if(!formInscription.checkValidity()){
         return;
     }
-    // Les noms des variables doivent être les mêmes
-    // que celles spécifié dans les configuration de
-    // passport dans le fichier "authentification.js"
+    /**
+     * Les noms des variables doivent être les mêmes
+     * que celles spécifié dans les configuration de
+     * passport dans le fichier "authentification.js"
+     */
     let data = {
         nom: inputNomUtilisateur.value,
         prenom: inputPrenomUtilisateur.value,
@@ -94,15 +102,18 @@ formInscription.addEventListener('submit', async (event) => {
         }); 
 
         if(response.ok) {
-            // Si l'authentification est réussi, on
-            // redirige vers la page connexion
+            /**
+             * Si l'authentification est réussi, on
+             * redirige vers la page connexion
+             */
             window.location.replace('/Connexion');
         }
         else if(response.status === 409) {
-
-            // Si l'authentification ne réussi pas, on
-            // a le message d'erreur dans l'objet "data"
-            // Afficher erreur dans l'interface graphique
+            /**
+             * Si l'authentification ne réussi pas, on
+             * a le message d'erreur dans l'objet "data"
+             * Afficher erreur dans l'interface graphique
+             */
             console.log('Utilisateur déjà existant');
         }
         else {
@@ -111,8 +122,9 @@ formInscription.addEventListener('submit', async (event) => {
         }
     }
 });
-
-//bouton reset : validation du formulaire inscription usager
+/**
+ * bouton reset : validation du formulaire inscription usager
+ */
 const resetSoumission = () => {
     document.location.reload();
     inputNomUtilisateur.value = '';

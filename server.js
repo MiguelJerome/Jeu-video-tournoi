@@ -14,12 +14,15 @@ import { getTournoiUtilisateur, getTournoi, addTournoi,supprimerTournoi,getTourn
 import { addUtilisateur} from './model/utilisateur.js';
 import {validateConnexion,validateInscription,validate} from './validation.js';
 import './authentification.js';
-
-// Création du serveur web
+/**
+ * Création du serveur web
+ */
 let app = express();
 
 let nombres = await getNombreInscrit();
-// Création de l'engin dans Express
+/**
+ * Création de l'engin dans Express
+ */
 app.engine('handlebars', engine({
     helpers: {
         afficheNombreInscrit:(id_tournois)=>{
@@ -39,17 +42,21 @@ app.engine('handlebars', engine({
         }
     }
 }));
-
-// Mettre l'engin handlebars comme engin de rendu
+/**
+ * Mettre l'engin handlebars comme engin de rendu
+ */
 app.set('view engine', 'handlebars');
-
-// Configuration de handlebars
+/**
+ * Configuration de handlebars
+ */
 app.set('views', './views');
-
-// Créer le constructeur de base de données
+/**
+ * Créer le constructeur de base de données
+ */
 const MemoryStore = memorystore(session);
-
-// Ajout de middlewares
+/**
+ * Ajout de middlewares
+ */
 app.use(helmet());
 app.use(cors());
 app.use(compression());
@@ -66,8 +73,9 @@ app.use(passport.initialize());
 app.use(passport.session());
 app.use(middlewareSse());
 app.use(express.static('public'));
-
-// Get sur la route racine
+/**
+ * Get sur la route racine
+ */
 app.get('/', async (request, response) => {
     if(request.user) 
     {
@@ -85,8 +93,9 @@ app.get('/', async (request, response) => {
         response.redirect('/connexion');
     }
 });
-
-//Get sur la route /accueil pour avoir tous les tournois
+/**
+ * Get sur la route /accueil pour avoir tous les tournois
+ */
 app.get('/acceuil', async (request, response) => {
     if(request.user) 
     {
@@ -107,8 +116,9 @@ app.get('/acceuil', async (request, response) => {
         response.redirect('/connexion');
     }
 });
-
-//Post sur la route /accueil pour s'inscrire a un tournois
+/**
+ * Post sur la route /accueil pour s'inscrire a un tournois
+ */
 app.post('/acceuil', async (request, response) => {
     
     if(!request.user)
@@ -124,8 +134,9 @@ app.post('/acceuil', async (request, response) => {
         }, 'add-inscrit');
     }
 });
-
-//Get sur la route /compte Pour avoir les tournois Inscrits
+/**
+ * Get sur la route /compte Pour avoir les tournois Inscrits
+ */
 app.get('/compte', async (request, response) => {
 
     if(request.user)
@@ -145,8 +156,9 @@ app.get('/compte', async (request, response) => {
         response.redirect('/connexion');
     }
 });
-
-//Delete sur la route /compte pour se desinscrire a un tournoi
+/**
+ * Delete sur la route /compte pour se desinscrire a un tournoi
+ */
 app.delete('/compte', async (request, response) => {
 
     if(request.user)
@@ -167,8 +179,9 @@ app.delete('/compte', async (request, response) => {
         }, 'delete-inscrit');
     }
 });
-
-//Get sur la route /admin pour avoir tous les tournois
+/**
+ * Get sur la route /admin pour avoir tous les tournois
+ */
 app.get('/admin', async(request, response) => {
     if(request.user){
     if(request.user.id_type_utilisateur == 2)
@@ -257,14 +270,16 @@ app.get('/connexion', (request, response) => {
         response.redirect('/acceuil');
     }
 });
-
-//Post sur la route /admin pour ajouter un tournois
+/**
+ * Post sur la route /admin pour ajouter un tournois
+ */
 app.get('/accueil/id', async (req,res)=>{
     let ids = await getIds(req.user.id_utilisateur); 
     res.status(200).json(ids);
 });
-
-//Delete sur la route /admin pour suprimmer un tournoi
+/**
+ * Delete sur la route /admin pour suprimmer un tournoi
+ */
 app.delete('/admin',async(request,response)=>{
     await supprimerTournoi(request.body.id);
     response.pushJson({
@@ -287,16 +302,22 @@ app.post('/accept', (request, response) => {
     request.session.accept = true;
     response.status(200).end();
 });
-
-//l'utilisateur essait de se créer un compte en verifiant la validation de sa tentative d'inscription
-// selon le résultat de la validation de l'inscription, nous devons retourner un message au client
+/**
+ * l'utilisateur essait de se créer un compte en verifiant
+ * la validation de sa tentative d'inscription
+ * selon le résultat de la validation de l'inscription,
+ * nous devons retourner un message au client
+ */
 app.post('/inscription', async (request, response, next) => {
-    
-    // On vérifie le le courriel et le mot de passe, nom utilisateur, et prenom utilisateur
-    // envoyé sont valides
+    /**
+     * On vérifie le le courriel et le mot de passe, nom utilisateur, et prenom utilisateur
+     * envoyé sont valides
+     */
     if(validateInscription(request.body))
     {
-        // Valider les données reçu du client
+        /**
+         * Valider les données reçu du client
+         */
         if(true)
         {
             console.log(`   Ajouter un nouveau utilisateur 
@@ -308,15 +329,19 @@ app.post('/inscription', async (request, response, next) => {
                         `)
                 try 
                 {
-                    // Si la validation passe, on crée l'utilisateur
+                    /**
+                     * Si la validation passe, on crée l'utilisateur
+                     */
                     await addUtilisateur(request.body.courriel,request.body.motDePasse,request.body.prenom,request.body.nom);
                     response.status(201).end();
                 }
                 catch(error) 
                 {
-                    // S'il y a une erreur de SQL, on regarde
-                    // si c'est parce qu'il y a conflit
-                    // d'identifiant
+                    /**
+                     * S'il y a une erreur de SQL, on regarde
+                     * si c'est parce qu'il y a conflit
+                     * d'identifiant
+                     */
                     if(error.code === 'SQLITE_CONSTRAINT') 
                     {
                         response.status(409).end();
@@ -333,17 +358,22 @@ app.post('/inscription', async (request, response, next) => {
         response.status(400).end();
     }
 });
-
-// lancer l'authentification avec passport pour la connexion
-// selon le résultat de passport, nous devons retourner un message au client
+/**
+ * lancer l'authentification avec passport pour la connexion
+ * selon le résultat de passport, nous devons retourner un message au client
+ */
 app.post('/connexion', (request, response, next) => {
     
     console.log('connexion');
-    // On vérifie le le courriel et le mot de passe
-    // envoyé sont valides
+    /**
+     * On vérifie le le courriel et le mot de passe
+     * envoyé sont valides
+     */
     if(validateConnexion(request.body))
     {
-        // Valider les données reçu du client
+        /**
+         * Valider les données reçu du client
+         */
         if(true) 
         {
             console.log(`   Etablir une nouvelle connexion 
@@ -351,24 +381,32 @@ app.post('/connexion', (request, response, next) => {
                                 Courriel: ${request.body.courriel} 
                                 Mot de passe: ${request.body.motDePasse} 
                             `);
-            // On lance l'authentification avec passport.js
+            /**
+             * On lance l'authentification avec passport.js
+             */
             passport.authenticate('local', (error, utilisateur, info) => 
             {
                 if(error) {
-                    // S'il y a une erreur, on la passe
-                    // au serveur
+                    /**
+                     * S'il y a une erreur, on la passe
+                     * au serveur
+                     */
                     next(error);
                 }          
                 else if(!utilisateur) {
-                    // Si la connexion échoue, on envoit
-                    // l'information au client avec un code
-                    // 401 (Unauthorized)
+                    /**
+                     * Si la connexion échoue, on envoit
+                     * l'information au client avec un code
+                     * 401 (Unauthorized)
+                     */
                     response.status(401).json(info);
                 }
                 else {
-                    // Si tout fonctionne, on ajoute
-                    // l'utilisateur dans la session et
-                    // on retourne un code 200 (OK)
+                    /**
+                     * Si tout fonctionne, on ajoute
+                     * l'utilisateur dans la session et
+                     * on retourne un code 200 (OK)
+                     */
                     request.logIn(utilisateur, (error) => {
                         if(error) {
                             next(error);
@@ -385,11 +423,13 @@ app.post('/connexion', (request, response, next) => {
         response.status(400).end();
     }
 });
-
-// deconnexion de la page web de l'utilisateur courant 
+/**
+ * deconnexion de la page web de l'utilisateur courant 
+ */
 app.post('/deconnexion', (request, response, next) => {
-
-    // Déconnecter l'utilisateur
+    /**
+     * Déconnecter l'utilisateur
+     */
     request.logOut((error) => {
         if(error) {
             next(error);
@@ -399,21 +439,25 @@ app.post('/deconnexion', (request, response, next) => {
         }
     });
 });
-
-// Démarrage du serveur en mode http
+/**
+ * Démarrage du serveur en mode http
+ */
 console.info('Serveurs démarré:');
 if (process.env.NODE_ENV === 'production') {
     app.listen(process.env.PORT);
     console.info(`http://localhost:${process.env.PORT}`);
 }
 else {
-    //Sécuriser le serveur
+    /**
+     * Sécuriser le serveur
+     */
     const credentials = {
         key: await readFile('./security/localhost.key'),
         cert: await readFile('./security/localhost.cert')
     }
-
-    // Démarrage du serveur en mode https
+    /**
+     * Démarrage du serveur en mode https
+     */
     https.createServer(credentials, app).listen(process.env.PORT);
     console.info(`https://localhost:${process.env.PORT}`);
 }

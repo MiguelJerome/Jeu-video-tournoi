@@ -23,7 +23,6 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       slice = ArrayProto.slice,
       filter = ArrayProto.filter,
       push = ArrayProto.push;
-
   var noop = function () {},
       isFunction = function (item) {
     // @see https://crbug.com/568448
@@ -70,8 +69,9 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
     if (!selector) {
       return this;
     }
-
-    // If already a cash collection, don't do any further processing
+    /**
+     * If already a cash collection, don't do any further processing
+     */
     if (selector.cash && selector !== win) {
       return selector;
     }
@@ -82,14 +82,21 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
     if (isString(selector)) {
       elems = idMatch.test(selector) ?
-      // If an ID use the faster getElementById check
+      /**
+       * If an ID use the faster getElementById check
+       */
       doc.getElementById(selector.slice(1)) : htmlMatch.test(selector) ?
-      // If HTML, parse it into real elements
+      /**
+       * If HTML, parse it into real elements
+       */
       parseHTML(selector) :
-      // else use `find`
+      /**
+       * else use `find`
+       */ 
       find(selector, context);
-
-      // If function, use as shortcut for DOM ready
+      /**
+       * If function, use as shortcut for DOM ready
+       */
     } else if (isFunction(selector)) {
       onReady(selector);return this;
     }
@@ -97,13 +104,16 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
     if (!elems) {
       return this;
     }
-
-    // If a single DOM element is passed in or received via ID, return the single element
+    /**
+     * If a single DOM element is passed in or received via ID, return the single element
+     */
     if (elems.nodeType || elems === win) {
       this[0] = elems;
       this.length = 1;
     } else {
-      // Treat like an array and loop through each item.
+      /**
+       * Treat like an array and loop through each item.
+       */
       length = this.length = elems.length;
       for (; i < length; i++) {
         this[i] = elems[i];
