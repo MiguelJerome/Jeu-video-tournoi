@@ -1,174 +1,159 @@
-let form = document.getElementById('form-admin');
+let form = document.getElementById("form-admin");
 /**
  * Nom tournoi: validation du formulaire ajouter tournoi
  */
-let inputNomTournoi = document.getElementById('nom-tournoi');
-let errorNomTournoi = document.getElementById('error-nom-tournoi');
+let inputNomTournoi = document.getElementById("nom-tournoi");
+let errorNomTournoi = document.getElementById("error-nom-tournoi");
 const validateNomTournoi = () => {
-    if(inputNomTournoi.validity.valid) {
-        errorNomTournoi.style.display = 'none';
-    }
-    else if(inputNomTournoi.validity.valueMissing) {
-        errorNomTournoi.innerText = 'Ce champ est requis';
-        errorNomTournoi.style.display = 'block';
-    }
+  if (inputNomTournoi.validity.valid) {
+    errorNomTournoi.style.display = "none";
+  } else if (inputNomTournoi.validity.valueMissing) {
+    errorNomTournoi.innerText = "Ce champ est requis";
+    errorNomTournoi.style.display = "block";
+  }
 };
 
-
-form.addEventListener('submit', validateNomTournoi);
+form.addEventListener("submit", validateNomTournoi);
 /**
  * Capacite : validation du formulaire ajouter tournoi
  */
-let inputCapacite = document.getElementById('capacite-tournoi');
-let errorCapacite = document.getElementById('error-capacite');
+let inputCapacite = document.getElementById("capacite-tournoi");
+let errorCapacite = document.getElementById("error-capacite");
 const validateCapacite = () => {
-    if(inputCapacite.validity.valid) {
-        errorCapacite.style.display = 'none';
-    }
-    else if(inputCapacite.validity.valueMissing) {
-        errorCapacite.innerText = 'Ce champ est requis';
-        errorCapacite.style.display = 'block';
-    }
-    else if(inputCapacite.validity.rangeUnderflow) {
-        errorCapacite.innerText = 'La valeur doit être supérieure à 0';
-        errorCapacite.style.display = 'block';
-    }
-    else if(inputCapacite.validity.rangeOverflow) {
-        errorCapacite.innerText = 'La valeur doit être inférieure ou égale à 16';
-        errorCapacite.style.display = 'block';
-    }
+  if (inputCapacite.validity.valid) {
+    errorCapacite.style.display = "none";
+  } else if (inputCapacite.validity.valueMissing) {
+    errorCapacite.innerText = "Ce champ est requis";
+    errorCapacite.style.display = "block";
+  } else if (inputCapacite.validity.rangeUnderflow) {
+    errorCapacite.innerText = "La valeur doit être supérieure à 0";
+    errorCapacite.style.display = "block";
+  } else if (inputCapacite.validity.rangeOverflow) {
+    errorCapacite.innerText = "La valeur doit être inférieure ou égale à 16";
+    errorCapacite.style.display = "block";
+  }
 };
 
-form.addEventListener('submit', validateCapacite);
+form.addEventListener("submit", validateCapacite);
 /**
  * Date : validation du formulaire ajouter tournoi
  */
-let inputDate = document.getElementById('date-debut-tournoi');
-let errorDate = document.getElementById('error-date');
+let inputDate = document.getElementById("date-debut-tournoi");
+let errorDate = document.getElementById("error-date");
 const validateDate = () => {
-    if(inputDate.validity.valid) {
-        errorDate.style.display = 'none';
-    }
-    else if(inputDate.validity.valueMissing) {
-        errorDate.innerText = 'Ce champ est requis';
-        errorDate.style.display = 'block';
-    }
-    else if(inputDate.validity.typeMismatch) {
-        errorDate.innerText = 'Le format est invalide';
-        errorDate.style.display = 'block';
-    }
-    
+  if (inputDate.validity.valid) {
+    errorDate.style.display = "none";
+  } else if (inputDate.validity.valueMissing) {
+    errorDate.innerText = "Ce champ est requis";
+    errorDate.style.display = "block";
+  } else if (inputDate.validity.typeMismatch) {
+    errorDate.innerText = "Le format est invalide";
+    errorDate.style.display = "block";
+  }
 };
 
-form.addEventListener('submit', validateDate);
+form.addEventListener("submit", validateDate);
 /**
  * Description : validation du formulaire ajouter tournoi
  */
-let inputDescription = document.getElementById('description-tournoi');
-let errorDescription = document.getElementById('error-description');
+let inputDescription = document.getElementById("description-tournoi");
+let errorDescription = document.getElementById("error-description");
 const validateDescription = () => {
-    if(inputDescription.validity.valid) {
-        errorDescription.style.display = 'none';
-    }
-    else if(inputDescription.validity.valueMissing) {
-        errorDescription.innerText = 'Ce champ est requis';
-        errorDescription.style.display = 'block';
-    }
-    else if(inputDescription.validity.tooShort) {
-        errorDescription.innerText = 'Le message doit avoir au moins 10 caractères';
-        errorDescription.style.display = 'block';
-    }
-    else if(inputDescription.validity.tooLong) {
-        errorDescription.innerText = 'Le message doit avoir au maximum 50 caractères';
-        errorDescription.style.display = 'block';
-    }
+  if (inputDescription.validity.valid) {
+    errorDescription.style.display = "none";
+  } else if (inputDescription.validity.valueMissing) {
+    errorDescription.innerText = "Ce champ est requis";
+    errorDescription.style.display = "block";
+  } else if (inputDescription.validity.tooShort) {
+    errorDescription.innerText = "Le message doit avoir au moins 10 caractères";
+    errorDescription.style.display = "block";
+  } else if (inputDescription.validity.tooLong) {
+    errorDescription.innerText =
+      "Le message doit avoir au maximum 50 caractères";
+    errorDescription.style.display = "block";
+  }
 };
 
-form.addEventListener('submit', validateDescription);
+form.addEventListener("submit", validateDescription);
 /**
  * Soumission : envoyer les inputs du formulaire ajouter tournoi
  * pour etre eventuelle sauver dans la base de données
- */  
-form.addEventListener('submit', async (event) => {
-    event.preventDefault();
+ */
+form.addEventListener("submit", async (event) => {
+  event.preventDefault();
 
-    if(!form.checkValidity()){
-        return;
-    }
+  if (!form.checkValidity()) {
+    return;
+  }
 
-    let data = {
-        nom: inputNomTournoi.value,
-        description: inputDescription.value,
-        date_debut: inputDate.value,
-        capacite: parseInt(inputCapacite.value),
-    };
+  let data = {
+    nom: inputNomTournoi.value,
+    description: inputDescription.value,
+    date_debut: inputDate.value,
+    capacite: parseInt(inputCapacite.value),
+  };
 
-    let response = await fetch('/admin', {
-        method: 'POST',
-        headers: {'Content-Type': 'application/json'},
-        body: JSON.stringify(data)
-    });
+  let response = await fetch("/admin", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(data),
+  });
 
-    if(response.ok) {
-        inputNomTournoi.value = '';
-        inputCapacite.value = '';
-        inputDate.value = '';
-        inputDescription.value = '';
-    }
+  if (response.ok) {
+    inputNomTournoi.value = "";
+    inputCapacite.value = "";
+    inputDate.value = "";
+    inputDescription.value = "";
+  }
 });
 /**
  * bouton reset : validation du formulaire ajouter tournoi
  */
 const resetSoumission = () => {
-    document.location.reload();
-    inputNomTournoi.value = '';
-    inputCapacite.value = '';
-    inputDate.value = '';
-    inputDescription.value = '';
+  document.location.reload();
+  inputNomTournoi.value = "";
+  inputCapacite.value = "";
+  inputDate.value = "";
+  inputDescription.value = "";
 
-    if(inputNomTournoi.validity.valid) {
-        errorNomTournoi.style.display = 'none';
-    }
-    else if(inputNomTournoi.validity.valueMissing) {
-        errorNomTournoi.innerText = 'Ce champ est requis';
-        errorNomTournoi.style.display = 'block';
-    }
+  if (inputNomTournoi.validity.valid) {
+    errorNomTournoi.style.display = "none";
+  } else if (inputNomTournoi.validity.valueMissing) {
+    errorNomTournoi.innerText = "Ce champ est requis";
+    errorNomTournoi.style.display = "block";
+  }
 
-    if(inputDescription.validity.valid) {
-        errorDescription.style.display = 'none';
-    }
-    else if(inputDescription.validity.valueMissing) {
-        errorDescription.innerText = 'Ce champ est requis';
-        errorDescription.style.display = 'block';
-    }
-    
-    if(inputDate.validity.valid) {
-        errorDate.style.display = 'none';
-    }
-    else if(inputDate.validity.valueMissing) {
-        errorDate.innerText = 'Ce champ est requis';
-        errorDate.style.display = 'block';
-    }
+  if (inputDescription.validity.valid) {
+    errorDescription.style.display = "none";
+  } else if (inputDescription.validity.valueMissing) {
+    errorDescription.innerText = "Ce champ est requis";
+    errorDescription.style.display = "block";
+  }
 
-    if(inputCapacite.validity.valid) {
-        errorCapacite.style.display = 'none';
-    }
-    else if(inputCapacite.validity.valueMissing) {
-        errorCapacite.innerText = 'Ce champ est requis';
-        errorCapacite.style.display = 'block';
-    }
+  if (inputDate.validity.valid) {
+    errorDate.style.display = "none";
+  } else if (inputDate.validity.valueMissing) {
+    errorDate.innerText = "Ce champ est requis";
+    errorDate.style.display = "block";
+  }
+
+  if (inputCapacite.validity.valid) {
+    errorCapacite.style.display = "none";
+  } else if (inputCapacite.validity.valueMissing) {
+    errorCapacite.innerText = "Ce champ est requis";
+    errorCapacite.style.display = "block";
+  }
 };
 
-form.addEventListener('reset', resetSoumission);
+form.addEventListener("reset", resetSoumission);
 
+let source = new EventSource("/stream");
 
-let source =  new EventSource('/stream');
+source.addEventListener("add-tournoi", (event) => {
+  let data = JSON.parse(event.data);
+  let adminGrid = document.getElementById("admin-tournoi-live");
 
-source.addEventListener('add-tournoi', (event) => {
-    let data = JSON.parse(event.data);
-    let adminGrid = document.getElementById('admin-tournoi-live');
-
-    adminGrid.innerHTML+=`<div class="grid-example col s12 m6" data-id="${data.id_tournois}">
+  adminGrid.innerHTML += `<div class="grid-example col s12 m6" data-id="${data.id_tournois}">
     <!--ceci est le wrapper carte tournoi-->
     <div class="tournoi-card">
         <!--ceci est le wrapper grid de colonne pour les cartes tournoi-->
@@ -217,6 +202,6 @@ source.addEventListener('add-tournoi', (event) => {
                 <button type="submit" class="btn-supprimer-tournoi pulse" data-id="${data.id_tournois}">Supprimer Tournoi</button>                </div>
         </div>
     </div>
-</div>`
-resetSoumission();
+</div>`;
+  resetSoumission();
 });

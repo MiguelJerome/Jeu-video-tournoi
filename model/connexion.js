@@ -1,21 +1,21 @@
-import { existsSync } from 'fs';
-import sqlite3 from 'sqlite3';
-import { open } from 'sqlite';
-import { hash } from 'bcrypt';
+import { existsSync } from "fs";
+import sqlite3 from "sqlite3";
+import { open } from "sqlite";
+import { hash } from "bcrypt";
 
 /**
  * tous les variables et constante pour les dates et mot de passe pour le module de connexion.js
  * ou non.
  */
-let year = '2022';
-let month = '11';
-let days = '05';
-let separtorDate = '-';
-let adminHash = await hash('admin',10);
-let userHash = await hash('passw0rd',10);
+let year = "2022";
+let month = "11";
+let days = "05";
+let separtorDate = "-";
+let adminHash = await hash("admin", 10);
+let userHash = await hash("passw0rd", 10);
 const tournoiDefaultDate = `'${year}${separtorDate}${month}${separtorDate}${days}'`;
 /**
- * Constante indiquant si la base de données existe au démarrage du serveur 
+ * Constante indiquant si la base de données existe au démarrage du serveur
  * ou non.
  */
 const IS_NEW = !existsSync(process.env.DB_FILE);
@@ -25,10 +25,10 @@ const IS_NEW = !existsSync(process.env.DB_FILE);
  * pour tester le serveur y ont été ajouté.
  */
 const createDatabase = async (connectionPromise) => {
-    let connection = await connectionPromise;
+  let connection = await connectionPromise;
 
-    await connection.exec(
-        `CREATE TABLE IF NOT EXISTS type_utilisateur(
+  await connection.exec(
+    `CREATE TABLE IF NOT EXISTS type_utilisateur(
             id_type_utilisateur INTEGER PRIMARY KEY,
             type TEXT NOT NULL
         );
@@ -117,21 +117,21 @@ const createDatabase = async (connectionPromise) => {
             (7, 6),
             (7, 7),
             (7, 8);`
-    );
+  );
 
-    return connection;
+  return connection;
 };
 
 // Base de données dans un fichier
 let connectionPromise = open({
-    filename: process.env.DB_FILE,
-    driver: sqlite3.Database
+  filename: process.env.DB_FILE,
+  driver: sqlite3.Database,
 });
 
 // Si le fichier de base de données n'existe pas, on crée la base de données
 // et on y insère des données fictive de test.
 if (IS_NEW) {
-    connectionPromise = createDatabase(connectionPromise);
+  connectionPromise = createDatabase(connectionPromise);
 }
 
 export default connectionPromise;
