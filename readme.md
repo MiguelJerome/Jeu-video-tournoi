@@ -48,7 +48,7 @@ NPM package requires for this project are :
 ### Tournoi de video jeu and all the links
 
 - [Tournoi de jeu video Git Hub](https://github.com/MiguelJerome/Jeu-video-tournoi)
-- [Tournoi de jeu video Heroku](https://warm-river-83946.herokuapp.com/)
+- [Tournoi de jeu video Render](https://jeuvideotournoi.onrender.com/connexion)
 
 ## Test Instructions
 
